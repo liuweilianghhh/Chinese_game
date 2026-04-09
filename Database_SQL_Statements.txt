@@ -1,0 +1,318 @@
+-- ============================================================
+-- 中文学习游戏数据库完整SQL语句
+-- 数据库类型: SQLite
+-- 创建日期: 2024-01-20
+-- ============================================================
+
+-- ============================================================
+-- 1. users (用户表)
+-- ============================================================
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(32) UNIQUE NOT NULL,
+    password VARCHAR(32) NOT NULL,
+    email VARCHAR(64),
+    registration_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_login_date DATETIME,
+    login_streak INTEGER DEFAULT 0,
+    total_games_played INTEGER DEFAULT 0,
+    total_score INTEGER DEFAULT 0,
+    avatar_path VARCHAR(255)
+);
+
+-- ============================================================
+-- 2. achievements (成就表)
+-- ============================================================
+CREATE TABLE achievements (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(64) NOT NULL,
+    description TEXT,
+    icon_path VARCHAR(255),
+    type VARCHAR(32) NOT NULL,
+    category VARCHAR(32) NOT NULL,
+    required_value INTEGER DEFAULT 0,
+    reward_points INTEGER DEFAULT 0
+);
+
+-- ============================================================
+-- 3. user_achievements (用户成就关联表)
+-- ============================================================
+CREATE TABLE user_achievements (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    achievement_id INTEGER NOT NULL,
+    unlocked_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    progress_value INTEGER DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (achievement_id) REFERENCES achievements(id),
+    UNIQUE(user_id, achievement_id)
+);
+
+-- ============================================================
+-- 4. game_scores (游戏分数表)
+-- ============================================================
+CREATE TABLE game_scores (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    game_type VARCHAR(32) NOT NULL,
+    difficulty VARCHAR(16) NOT NULL,
+    score INTEGER NOT NULL,
+    max_possible_score INTEGER DEFAULT 0,
+    accuracy REAL DEFAULT 0.0,
+    time_spent INTEGER DEFAULT 0,
+    play_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    completed INTEGER DEFAULT 1,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- ============================================================
+-- 5. game_question_details (游戏题目详情表)
+-- ============================================================
+CREATE TABLE game_question_details (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    game_score_id INTEGER NOT NULL,
+    question_order INTEGER NOT NULL,
+    question_id INTEGER NOT NULL,
+    user_answer TEXT,
+    is_correct INTEGER DEFAULT 0,
+    time_spent INTEGER DEFAULT 0,
+    question_score INTEGER DEFAULT 0,
+    max_score INTEGER DEFAULT 10,
+    FOREIGN KEY (game_score_id) REFERENCES game_scores(id)
+);
+
+-- ============================================================
+-- 6. sentences (句子资源表)
+-- ============================================================
+CREATE TABLE sentences (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sentence TEXT NOT NULL UNIQUE,
+    pinyin TEXT,
+    difficulty VARCHAR(16) NOT NULL DEFAULT 'EASY',
+    category VARCHAR(32),
+    word_count INTEGER DEFAULT 0
+);
+
+-- ============================================================
+-- 7. sentence_words (分词结果表)
+-- ============================================================
+CREATE TABLE sentence_words (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sentence_id INTEGER NOT NULL,
+    word TEXT NOT NULL,
+    pinyin TEXT,
+    pos_tag VARCHAR(8) NOT NULL,
+    word_order INTEGER NOT NULL,
+    word_position INTEGER DEFAULT 0,
+    word_difficulty VARCHAR(16) DEFAULT 'EASY',
+    word_frequency INTEGER DEFAULT 0,
+    FOREIGN KEY (sentence_id) REFERENCES sentences(id) ON DELETE CASCADE,
+    UNIQUE(sentence_id, word_order)
+);
+
+-- ============================================================
+-- 8. character_matching (字符匹配游戏表)
+-- ============================================================
+CREATE TABLE character_matching (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sentence_id INTEGER NOT NULL,
+    word_id INTEGER NOT NULL,
+    difficulty VARCHAR(16) NOT NULL,
+    hint TEXT,
+    FOREIGN KEY (sentence_id) REFERENCES sentences(id),
+    FOREIGN KEY (word_id) REFERENCES sentence_words(id)
+);
+
+-- ============================================================
+-- 9. pronunciation_quiz (发音测验游戏表)
+-- ============================================================
+CREATE TABLE pronunciation_quiz (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sentence_id INTEGER NOT NULL,
+    word_id INTEGER NOT NULL,
+    audio_path VARCHAR(255),
+    difficulty VARCHAR(16) NOT NULL,
+    hint TEXT,
+    FOREIGN KEY (sentence_id) REFERENCES sentences(id),
+    FOREIGN KEY (word_id) REFERENCES sentence_words(id)
+);
+
+-- ============================================================
+-- 10. word_puzzle (字词谜题游戏表)
+-- ============================================================
+CREATE TABLE word_puzzle (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sentence_id INTEGER NOT NULL,
+    difficulty VARCHAR(16) NOT NULL,
+    hint TEXT,
+    FOREIGN KEY (sentence_id) REFERENCES sentences(id)
+);
+
+-- ============================================================
+-- 索引创建
+-- ============================================================
+
+-- users表索引
+CREATE INDEX idx_users_name ON users(name);
+
+-- game_scores表索引
+CREATE INDEX idx_game_scores_user_id ON game_scores(user_id);
+CREATE INDEX idx_game_scores_game_type ON game_scores(game_type);
+CREATE INDEX idx_game_scores_difficulty ON game_scores(difficulty);
+CREATE INDEX idx_game_scores_play_date ON game_scores(play_date);
+
+-- game_question_details表索引
+CREATE INDEX idx_game_question_details_game_score_id ON game_question_details(game_score_id);
+CREATE INDEX idx_game_question_details_question_id ON game_question_details(question_id);
+
+-- sentences表索引
+CREATE INDEX idx_sentences_difficulty ON sentences(difficulty);
+CREATE INDEX idx_sentences_category ON sentences(category);
+CREATE INDEX idx_sentences_word_count ON sentences(word_count);
+
+-- sentence_words表索引
+CREATE INDEX idx_sentence_words_sentence_id ON sentence_words(sentence_id);
+CREATE INDEX idx_sentence_words_pos_tag ON sentence_words(pos_tag);
+CREATE INDEX idx_sentence_words_word_difficulty ON sentence_words(word_difficulty);
+CREATE INDEX idx_sentence_words_word ON sentence_words(word);
+
+-- character_matching表索引
+CREATE INDEX idx_character_matching_sentence_id ON character_matching(sentence_id);
+CREATE INDEX idx_character_matching_word_id ON character_matching(word_id);
+CREATE INDEX idx_character_matching_difficulty ON character_matching(difficulty);
+
+-- pronunciation_quiz表索引
+CREATE INDEX idx_pronunciation_quiz_sentence_id ON pronunciation_quiz(sentence_id);
+CREATE INDEX idx_pronunciation_quiz_word_id ON pronunciation_quiz(word_id);
+CREATE INDEX idx_pronunciation_quiz_difficulty ON pronunciation_quiz(difficulty);
+
+-- word_puzzle表索引
+CREATE INDEX idx_word_puzzle_sentence_id ON word_puzzle(sentence_id);
+CREATE INDEX idx_word_puzzle_difficulty ON word_puzzle(difficulty);
+
+-- user_achievements表索引
+CREATE INDEX idx_user_achievements_user_id ON user_achievements(user_id);
+CREATE INDEX idx_user_achievements_achievement_id ON user_achievements(achievement_id);
+
+-- ============================================================
+-- 数据完整性检查约束（SQLite不支持CHECK约束，需要在应用层实现）
+-- ============================================================
+
+-- 注意：以下约束需要在应用层代码中实现
+-- 
+-- 1. difficulty字段必须是 'EASY', 'MEDIUM', 'HARD' 中的一个
+-- 2. accuracy字段范围在 0.0-1.0 之间
+-- 3. question_order >= 1 且 <= 10
+-- 4. is_correct 必须是 0 或 1
+-- 5. time_spent >= 0
+-- 6. question_score >= 0 且 <= max_score
+-- 7. word_count > 0
+-- 8. word_order > 0
+-- 9. word_frequency >= 0
+-- 10. login_streak >= 0
+-- 11. total_games_played >= 0
+-- 12. total_score >= 0
+-- 13. required_value > 0
+-- 14. reward_points >= 0
+
+-- ============================================================
+-- 示例数据插入（可选）
+-- ============================================================
+
+-- 插入示例用户
+INSERT INTO users (name, password, email, registration_date, login_streak, total_games_played, total_score) 
+VALUES ('chinese_learner', 'hashed_password_here', 'user@example.com', '2024-01-15 10:00:00', 5, 25, 1250);
+
+-- 插入示例成就
+INSERT INTO achievements (name, description, icon_path, type, category, required_value, reward_points) 
+VALUES ('First Steps', '完成10个游戏', '/icons/first_steps.png', 'MILESTONE', 'GENERAL', 10, 50);
+
+-- 插入示例句子
+INSERT INTO sentences (sentence, pinyin, difficulty, category, word_count) 
+VALUES ('我喜欢在北京学习中文', 'wǒ xǐ huan zài běi jīng xué xí zhōng wén', 'MEDIUM', '日常学习', 6);
+
+-- 插入示例分词结果（基于上面的句子，sentence_id=1）
+INSERT INTO sentence_words (sentence_id, word, pinyin, pos_tag, word_order, word_position, word_difficulty, word_frequency) VALUES
+(1, '我', 'wǒ', 'PN', 1, 1, 'EASY', 50000),
+(1, '喜欢', 'xǐ huan', 'VV', 2, 2, 'MEDIUM', 8000),
+(1, '在', 'zài', 'P', 3, 4, 'EASY', 45000),
+(1, '北京', 'běi jīng', 'NR', 4, 5, 'MEDIUM', 12000),
+(1, '学习', 'xué xí', 'VV', 5, 7, 'MEDIUM', 15000),
+(1, '中文', 'zhōng wén', 'NN', 6, 9, 'MEDIUM', 10000);
+
+-- 插入示例字符匹配题目
+INSERT INTO character_matching (sentence_id, word_id, difficulty, hint) 
+VALUES (1, 5, 'MEDIUM', NULL);
+
+-- 插入示例发音测验题目
+INSERT INTO pronunciation_quiz (sentence_id, word_id, audio_path, difficulty, hint) 
+VALUES (1, 4, '/audio/beijing.mp3', 'MEDIUM', NULL);
+
+-- 插入示例字词谜题题目
+INSERT INTO word_puzzle (sentence_id, difficulty, hint) 
+VALUES (1, 'MEDIUM', NULL);
+
+-- 插入示例游戏分数
+INSERT INTO game_scores (user_id, game_type, difficulty, score, max_possible_score, accuracy, time_spent, play_date, completed) 
+VALUES (1, 'CHARACTER_MATCHING', 'EASY', 85, 100, 0.85, 120, '2024-01-20 14:30:00', 1);
+
+-- 插入示例游戏题目详情
+INSERT INTO game_question_details (game_score_id, question_order, question_id, user_answer, is_correct, time_spent, question_score, max_score) VALUES
+(1, 1, 1, '学习', 1, 8, 10, 10),
+(1, 2, 2, '上海', 0, 15, 0, 10),
+(1, 3, 3, '中文', 1, 6, 10, 10);
+
+-- ============================================================
+-- 常用查询语句示例
+-- ============================================================
+
+-- 查询用户的所有游戏记录
+-- SELECT * FROM game_scores WHERE user_id = 1 ORDER BY play_date DESC;
+
+-- 查询某局游戏的所有题目详情
+-- SELECT * FROM game_question_details WHERE game_score_id = 1 ORDER BY question_order;
+
+-- 查询某个难度的句子
+-- SELECT * FROM sentences WHERE difficulty = 'MEDIUM' ORDER BY word_count;
+
+-- 查询某个句子的所有分词
+-- SELECT * FROM sentence_words WHERE sentence_id = 1 ORDER BY word_order;
+
+-- 查询某个词性的词语（用于生成干扰项）
+-- SELECT * FROM sentence_words WHERE pos_tag = 'VV' AND word_difficulty = 'MEDIUM' LIMIT 10;
+
+-- 查询用户已解锁的成就
+-- SELECT a.*, ua.unlocked_date 
+-- FROM achievements a
+-- JOIN user_achievements ua ON a.id = ua.achievement_id
+-- WHERE ua.user_id = 1;
+
+-- 查询用户的游戏统计
+-- SELECT 
+--     COUNT(*) as total_games,
+--     SUM(score) as total_score,
+--     AVG(accuracy) as avg_accuracy,
+--     game_type
+-- FROM game_scores
+-- WHERE user_id = 1
+-- GROUP BY game_type;
+
+-- ============================================================
+-- 数据库维护语句
+-- ============================================================
+
+-- 查看所有表
+-- SELECT name FROM sqlite_master WHERE type='table';
+
+-- 查看表结构
+-- PRAGMA table_info(users);
+
+-- 查看外键约束
+-- PRAGMA foreign_key_list(game_scores);
+
+-- 分析表（更新统计信息）
+-- ANALYZE;
+
+-- ============================================================
+-- SQL语句文件结束
+-- ============================================================

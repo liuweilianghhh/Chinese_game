@@ -1,0 +1,2732 @@
+[
+  {
+    "word": "爱",
+    "pinyin": "ài",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To love."
+  },
+  {
+    "word": "八",
+    "pinyin": "bā",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Eight."
+  },
+  {
+    "word": "爸爸",
+    "pinyin": "bà bà",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Father."
+  },
+  {
+    "word": "杯子",
+    "pinyin": "bēi zi",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Cup."
+  },
+  {
+    "word": "北京",
+    "pinyin": "bĕi jīng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Beijing."
+  },
+  {
+    "word": "本",
+    "pinyin": "bĕn",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Roots or stems of plants."
+  },
+  {
+    "word": "不",
+    "pinyin": "bù",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "A common Chinese word."
+  },
+  {
+    "word": "菜",
+    "pinyin": "cài",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Dish."
+  },
+  {
+    "word": "茶",
+    "pinyin": "chá",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Tea."
+  },
+  {
+    "word": "吃",
+    "pinyin": "chī",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To eat."
+  },
+  {
+    "word": "大",
+    "pinyin": "dà",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Big."
+  },
+  {
+    "word": "的",
+    "pinyin": "de",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Of."
+  },
+  {
+    "word": "点",
+    "pinyin": "diăn",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Point."
+  },
+  {
+    "word": "电脑",
+    "pinyin": "diàn năo",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Computer."
+  },
+  {
+    "word": "电视",
+    "pinyin": "diàn shì",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Television."
+  },
+  {
+    "word": "电影",
+    "pinyin": "diàn yĭng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Movie."
+  },
+  {
+    "word": "东西",
+    "pinyin": "dōng xī",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Thing."
+  },
+  {
+    "word": "都",
+    "pinyin": "dōu",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "All."
+  },
+  {
+    "word": "读",
+    "pinyin": "dú",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To read."
+  },
+  {
+    "word": "多",
+    "pinyin": "duō",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Many."
+  },
+  {
+    "word": "多少",
+    "pinyin": "duō shăo",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "How much."
+  },
+  {
+    "word": "儿子",
+    "pinyin": "ér zi",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Son."
+  },
+  {
+    "word": "二",
+    "pinyin": "èr",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Two."
+  },
+  {
+    "word": "饭馆",
+    "pinyin": "fàn guăn",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Restaurant."
+  },
+  {
+    "word": "飞机",
+    "pinyin": "fēi jī",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Airplane."
+  },
+  {
+    "word": "分钟",
+    "pinyin": "fēn zhōng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Minute."
+  },
+  {
+    "word": "高兴",
+    "pinyin": "gāo xīng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Happy."
+  },
+  {
+    "word": "个",
+    "pinyin": "gè",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "A common Chinese word."
+  },
+  {
+    "word": "工作",
+    "pinyin": "gōng zuò",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To work."
+  },
+  {
+    "word": "狗",
+    "pinyin": "gŏu",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Dog."
+  },
+  {
+    "word": "汉语",
+    "pinyin": "hàn yŭ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Chinese language."
+  },
+  {
+    "word": "好",
+    "pinyin": "hăo",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Good."
+  },
+  {
+    "word": "喝",
+    "pinyin": "hē",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To drink."
+  },
+  {
+    "word": "和",
+    "pinyin": "hé",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "And."
+  },
+  {
+    "word": "很",
+    "pinyin": "hĕn",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "A common Chinese word."
+  },
+  {
+    "word": "后面",
+    "pinyin": "hòu miàn",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Rear."
+  },
+  {
+    "word": "回",
+    "pinyin": "huí",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To curve."
+  },
+  {
+    "word": "会",
+    "pinyin": "huì",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Can."
+  },
+  {
+    "word": "几",
+    "pinyin": "jĭ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "How much."
+  },
+  {
+    "word": "家",
+    "pinyin": "jiā",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Home."
+  },
+  {
+    "word": "叫",
+    "pinyin": "jiào",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To shout."
+  },
+  {
+    "word": "今天",
+    "pinyin": "jīn tiān",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Today."
+  },
+  {
+    "word": "九",
+    "pinyin": "jiŭ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Nine."
+  },
+  {
+    "word": "开",
+    "pinyin": "kāi",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To open."
+  },
+  {
+    "word": "看",
+    "pinyin": "kàn",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To see."
+  },
+  {
+    "word": "看见",
+    "pinyin": "kàn jiàn",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To see."
+  },
+  {
+    "word": "块",
+    "pinyin": "kuài",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Lump."
+  },
+  {
+    "word": "来",
+    "pinyin": "lái",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To come."
+  },
+  {
+    "word": "老师",
+    "pinyin": "lăo shī",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Teacher."
+  },
+  {
+    "word": "了",
+    "pinyin": "le",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "A common Chinese word."
+  },
+  {
+    "word": "冷",
+    "pinyin": "lĕng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Cold."
+  },
+  {
+    "word": "里",
+    "pinyin": "lĭ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Li."
+  },
+  {
+    "word": "零",
+    "pinyin": "líng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Zero."
+  },
+  {
+    "word": "六",
+    "pinyin": "liù",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Six."
+  },
+  {
+    "word": "妈妈",
+    "pinyin": "mā mā",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Mama."
+  },
+  {
+    "word": "吗",
+    "pinyin": "ma",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "A common Chinese word."
+  },
+  {
+    "word": "买",
+    "pinyin": "măi",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To buy."
+  },
+  {
+    "word": "猫",
+    "pinyin": "māo",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Cat."
+  },
+  {
+    "word": "没",
+    "pinyin": "méi",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "A common Chinese word."
+  },
+  {
+    "word": "米饭",
+    "pinyin": "mĭ fàn",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Rice."
+  },
+  {
+    "word": "明天",
+    "pinyin": "míng tiān",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Tomorrow."
+  },
+  {
+    "word": "名字",
+    "pinyin": "míng zì",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Name."
+  },
+  {
+    "word": "哪",
+    "pinyin": "nă",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "How."
+  },
+  {
+    "word": "那",
+    "pinyin": "nèi",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "That."
+  },
+  {
+    "word": "呢",
+    "pinyin": "ní",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Particle indicating that a previously asked question is to be applied..."
+  },
+  {
+    "word": "能",
+    "pinyin": "néng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To be able to."
+  },
+  {
+    "word": "你",
+    "pinyin": "nĭ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "You (informal."
+  },
+  {
+    "word": "年",
+    "pinyin": "nián",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Year."
+  },
+  {
+    "word": "女儿",
+    "pinyin": "nǚ ér",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Daughter."
+  },
+  {
+    "word": "朋友",
+    "pinyin": "péng yŏu",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Friend."
+  },
+  {
+    "word": "漂亮",
+    "pinyin": "piāo liàng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Pretty."
+  },
+  {
+    "word": "苹果",
+    "pinyin": "píng guŏ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Apple."
+  },
+  {
+    "word": "七",
+    "pinyin": "qī",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Seven."
+  },
+  {
+    "word": "钱",
+    "pinyin": "qián",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Coin."
+  },
+  {
+    "word": "前面",
+    "pinyin": "qián miàn",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Ahead."
+  },
+  {
+    "word": "请",
+    "pinyin": "qĭng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To ask."
+  },
+  {
+    "word": "去",
+    "pinyin": "qù",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To go."
+  },
+  {
+    "word": "热",
+    "pinyin": "rè",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To warm up."
+  },
+  {
+    "word": "人",
+    "pinyin": "rén",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Man."
+  },
+  {
+    "word": "认识",
+    "pinyin": "rèn shī",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To know."
+  },
+  {
+    "word": "日",
+    "pinyin": "rì",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Sun."
+  },
+  {
+    "word": "三",
+    "pinyin": "sān",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Three."
+  },
+  {
+    "word": "商店",
+    "pinyin": "shāng diàn",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Store."
+  },
+  {
+    "word": "上",
+    "pinyin": "shàng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "On top."
+  },
+  {
+    "word": "上午",
+    "pinyin": "shàng wŭ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Morning."
+  },
+  {
+    "word": "少",
+    "pinyin": "shăo",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Few."
+  },
+  {
+    "word": "谁",
+    "pinyin": "shéi",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Who."
+  },
+  {
+    "word": "什么",
+    "pinyin": "shén me",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "What?."
+  },
+  {
+    "word": "十",
+    "pinyin": "shí",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Ten."
+  },
+  {
+    "word": "时候",
+    "pinyin": "shí hòu",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Time."
+  },
+  {
+    "word": "是",
+    "pinyin": "shì",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Is."
+  },
+  {
+    "word": "书",
+    "pinyin": "shū",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Book."
+  },
+  {
+    "word": "水",
+    "pinyin": "shuĭ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Water."
+  },
+  {
+    "word": "水果",
+    "pinyin": "shuĭ guŏ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Fruit."
+  },
+  {
+    "word": "睡觉",
+    "pinyin": "shuì jué",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To go to bed."
+  },
+  {
+    "word": "说话",
+    "pinyin": "shuō huà",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To speak."
+  },
+  {
+    "word": "四",
+    "pinyin": "sì",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Four."
+  },
+  {
+    "word": "岁",
+    "pinyin": "suì",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Classifier for years."
+  },
+  {
+    "word": "他",
+    "pinyin": "tā",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "He or him."
+  },
+  {
+    "word": "她",
+    "pinyin": "tā",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "She."
+  },
+  {
+    "word": "太",
+    "pinyin": "tài",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Highest."
+  },
+  {
+    "word": "天气",
+    "pinyin": "tiān qì",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Weather."
+  },
+  {
+    "word": "听",
+    "pinyin": "tīng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To listen."
+  },
+  {
+    "word": "同学",
+    "pinyin": "tóng xué",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To study at the same school."
+  },
+  {
+    "word": "喂",
+    "pinyin": "wèi",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To feed."
+  },
+  {
+    "word": "我",
+    "pinyin": "wŏ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "A common Chinese word."
+  },
+  {
+    "word": "我们",
+    "pinyin": "wŏ men",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "We."
+  },
+  {
+    "word": "五",
+    "pinyin": "wŭ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Five."
+  },
+  {
+    "word": "喜欢",
+    "pinyin": "xĭ huān",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To like."
+  },
+  {
+    "word": "下",
+    "pinyin": "xià",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Down."
+  },
+  {
+    "word": "下午",
+    "pinyin": "xià wŭ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Afternoon."
+  },
+  {
+    "word": "下雨",
+    "pinyin": "xià yŭ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To rain."
+  },
+  {
+    "word": "先生",
+    "pinyin": "xiān shēng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Teacher."
+  },
+  {
+    "word": "现在",
+    "pinyin": "xiàn zài",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Now."
+  },
+  {
+    "word": "想",
+    "pinyin": "xiăng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To think."
+  },
+  {
+    "word": "小",
+    "pinyin": "xiăo",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Small."
+  },
+  {
+    "word": "小姐",
+    "pinyin": "xiăo jiĕ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Young lady."
+  },
+  {
+    "word": "些",
+    "pinyin": "xiē",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Some."
+  },
+  {
+    "word": "写",
+    "pinyin": "xiĕ",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To write."
+  },
+  {
+    "word": "谢谢",
+    "pinyin": "xiè xiè",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To thank."
+  },
+  {
+    "word": "星期",
+    "pinyin": "xīng qī",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Week."
+  },
+  {
+    "word": "学生",
+    "pinyin": "xué shēng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Student."
+  },
+  {
+    "word": "学习",
+    "pinyin": "xué xí",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To learn."
+  },
+  {
+    "word": "学校",
+    "pinyin": "xué xiào",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "School."
+  },
+  {
+    "word": "一",
+    "pinyin": "yī",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "One."
+  },
+  {
+    "word": "衣服",
+    "pinyin": "yī fú",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Clothes."
+  },
+  {
+    "word": "医生",
+    "pinyin": "yī shēng",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Doctor."
+  },
+  {
+    "word": "医院",
+    "pinyin": "yī yuàn",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Hospital."
+  },
+  {
+    "word": "椅子",
+    "pinyin": "yĭ zi",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "Chair."
+  },
+  {
+    "word": "有",
+    "pinyin": "yŏu",
+    "pos_tag": "NN",
+    "difficulty": "EASY",
+    "hint": "To have."
+  },
+  {
+    "word": "阿姨",
+    "pinyin": "ā yí",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Maternal aunt."
+  },
+  {
+    "word": "爱好",
+    "pinyin": "ài hăo",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To like."
+  },
+  {
+    "word": "安静",
+    "pinyin": "ān jìng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Quiet."
+  },
+  {
+    "word": "办法",
+    "pinyin": "bàn fă",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Means."
+  },
+  {
+    "word": "帮忙",
+    "pinyin": "bāng máng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To help."
+  },
+  {
+    "word": "北方",
+    "pinyin": "bĕi fāng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "North."
+  },
+  {
+    "word": "鼻子",
+    "pinyin": "bí zi",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Nose."
+  },
+  {
+    "word": "比较",
+    "pinyin": "bĭ jiào",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To compare."
+  },
+  {
+    "word": "比赛",
+    "pinyin": "bĭ sài",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Competition."
+  },
+  {
+    "word": "必须",
+    "pinyin": "bì xū",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To have to."
+  },
+  {
+    "word": "变化",
+    "pinyin": "biàn huà",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Change."
+  },
+  {
+    "word": "表示",
+    "pinyin": "biăo shì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To express."
+  },
+  {
+    "word": "表演",
+    "pinyin": "biăo yăn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Play."
+  },
+  {
+    "word": "别人",
+    "pinyin": "bié rén",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Other people."
+  },
+  {
+    "word": "宾馆",
+    "pinyin": "bīn guăn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Guesthouse."
+  },
+  {
+    "word": "冰箱",
+    "pinyin": "bīng xiāng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Icebox."
+  },
+  {
+    "word": "菜单",
+    "pinyin": "cài dān",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Menu."
+  },
+  {
+    "word": "参加",
+    "pinyin": "cān jiā",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To participate."
+  },
+  {
+    "word": "超市",
+    "pinyin": "chāo shì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Supermarket."
+  },
+  {
+    "word": "衬衫",
+    "pinyin": "chèn shān",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Shirt."
+  },
+  {
+    "word": "成绩",
+    "pinyin": "chéng jì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Achievement."
+  },
+  {
+    "word": "城市",
+    "pinyin": "chéng shì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "City."
+  },
+  {
+    "word": "迟到",
+    "pinyin": "chí dào",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To arrive late."
+  },
+  {
+    "word": "出现",
+    "pinyin": "chū xiàn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To appear."
+  },
+  {
+    "word": "除了",
+    "pinyin": "chú le",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Besides."
+  },
+  {
+    "word": "厨房",
+    "pinyin": "chú fáng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Kitchen."
+  },
+  {
+    "word": "词语",
+    "pinyin": "cí yŭ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Word."
+  },
+  {
+    "word": "聪明",
+    "pinyin": "cōng míng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Acute."
+  },
+  {
+    "word": "打扫",
+    "pinyin": "dă săo",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To clean."
+  },
+  {
+    "word": "打算",
+    "pinyin": "dă suàn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To plan."
+  },
+  {
+    "word": "担心",
+    "pinyin": "dān xīn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Anxious."
+  },
+  {
+    "word": "蛋糕",
+    "pinyin": "dàn gāo",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Cake."
+  },
+  {
+    "word": "当然",
+    "pinyin": "dāng rán",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Only natural."
+  },
+  {
+    "word": "地方",
+    "pinyin": "dì fāng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Area."
+  },
+  {
+    "word": "地铁",
+    "pinyin": "dì tiĕ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Subway."
+  },
+  {
+    "word": "地图",
+    "pinyin": "dì tú",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Map."
+  },
+  {
+    "word": "电梯",
+    "pinyin": "diàn tī",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Elevator."
+  },
+  {
+    "word": "电子",
+    "pinyin": "diàn zi",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Electronic."
+  },
+  {
+    "word": "动物",
+    "pinyin": "dòng wù",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Animal."
+  },
+  {
+    "word": "锻炼",
+    "pinyin": "duàn liàn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To engage in physical exercise."
+  },
+  {
+    "word": "多么",
+    "pinyin": "duō me",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "How."
+  },
+  {
+    "word": "而且",
+    "pinyin": "ér qiĕ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "But also."
+  },
+  {
+    "word": "耳朵",
+    "pinyin": "ĕr duŏ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Ear."
+  },
+  {
+    "word": "发烧",
+    "pinyin": "fā shāo",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To have a high temperature."
+  },
+  {
+    "word": "发现",
+    "pinyin": "fā xiàn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To find."
+  },
+  {
+    "word": "方便",
+    "pinyin": "fāng biàn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Convenient."
+  },
+  {
+    "word": "放心",
+    "pinyin": "fàng xīn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To feel relieved."
+  },
+  {
+    "word": "附近",
+    "pinyin": "fù jìn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Vicinity."
+  },
+  {
+    "word": "复习",
+    "pinyin": "fù xí",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "A common Chinese word."
+  },
+  {
+    "word": "干净",
+    "pinyin": "gān jìng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Clean."
+  },
+  {
+    "word": "感冒",
+    "pinyin": "găn mào",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To catch cold."
+  },
+  {
+    "word": "刚才",
+    "pinyin": "gāng cái",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "A moment ago."
+  },
+  {
+    "word": "根据",
+    "pinyin": "gēn jù",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "According to."
+  },
+  {
+    "word": "公园",
+    "pinyin": "gōng yuán",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Public park."
+  },
+  {
+    "word": "故事",
+    "pinyin": "gù shì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Narrative."
+  },
+  {
+    "word": "关系",
+    "pinyin": "guān xì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "A common Chinese word."
+  },
+  {
+    "word": "关心",
+    "pinyin": "guān xīn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To care for sth."
+  },
+  {
+    "word": "关于",
+    "pinyin": "guān yú",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Pertaining to."
+  },
+  {
+    "word": "国家",
+    "pinyin": "guó jiā",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Country."
+  },
+  {
+    "word": "果汁",
+    "pinyin": "guŏ zhī",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Fruit juice."
+  },
+  {
+    "word": "过去",
+    "pinyin": "guò qù",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Past."
+  },
+  {
+    "word": "还是",
+    "pinyin": "hái shì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Or."
+  },
+  {
+    "word": "害怕",
+    "pinyin": "hài pà",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To be afraid."
+  },
+  {
+    "word": "黑板",
+    "pinyin": "hēi băn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Blackboard."
+  },
+  {
+    "word": "护照",
+    "pinyin": "hù zhào",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Passport."
+  },
+  {
+    "word": "花园",
+    "pinyin": "huā yuán",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Garden."
+  },
+  {
+    "word": "环境",
+    "pinyin": "huán jìng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Environment."
+  },
+  {
+    "word": "会议",
+    "pinyin": "huì yì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Meeting."
+  },
+  {
+    "word": "或者",
+    "pinyin": "huò zhĕ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Or."
+  },
+  {
+    "word": "机会",
+    "pinyin": "jī huì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Opportunity."
+  },
+  {
+    "word": "几乎",
+    "pinyin": "jĭ hū",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Almost."
+  },
+  {
+    "word": "记得",
+    "pinyin": "jì dé",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To remember."
+  },
+  {
+    "word": "季节",
+    "pinyin": "jì jié",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Time."
+  },
+  {
+    "word": "检查",
+    "pinyin": "jiăn chá",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Inspection."
+  },
+  {
+    "word": "简单",
+    "pinyin": "jiăn dān",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Simple."
+  },
+  {
+    "word": "见面",
+    "pinyin": "jiàn miàn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To meet."
+  },
+  {
+    "word": "健康",
+    "pinyin": "jiàn kāng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Health."
+  },
+  {
+    "word": "街道",
+    "pinyin": "jiē dào",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Street."
+  },
+  {
+    "word": "节目",
+    "pinyin": "jié mù",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Program."
+  },
+  {
+    "word": "节日",
+    "pinyin": "jié rì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Holiday."
+  },
+  {
+    "word": "结婚",
+    "pinyin": "jié hūn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To marry."
+  },
+  {
+    "word": "结束",
+    "pinyin": "jié shù",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Termination."
+  },
+  {
+    "word": "解决",
+    "pinyin": "jiĕ jué",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To settle."
+  },
+  {
+    "word": "经常",
+    "pinyin": "jīng cháng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Day to day."
+  },
+  {
+    "word": "经过",
+    "pinyin": "jīng guò",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To pass."
+  },
+  {
+    "word": "经理",
+    "pinyin": "jīng lĭ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Manager."
+  },
+  {
+    "word": "举行",
+    "pinyin": "jŭ xíng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To hold (a meeting."
+  },
+  {
+    "word": "句子",
+    "pinyin": "jù zi",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Sentence."
+  },
+  {
+    "word": "决定",
+    "pinyin": "jué dìng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To decide."
+  },
+  {
+    "word": "可爱",
+    "pinyin": "kĕ ài",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Adorable."
+  },
+  {
+    "word": "客人",
+    "pinyin": "kè rén",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Visitor."
+  },
+  {
+    "word": "空调",
+    "pinyin": "kōng diào",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Air conditioning."
+  },
+  {
+    "word": "裤子",
+    "pinyin": "kù zi",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Trousers."
+  },
+  {
+    "word": "筷子",
+    "pinyin": "kuài zi",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Chopsticks."
+  },
+  {
+    "word": "离开",
+    "pinyin": "lí kāi",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To depart."
+  },
+  {
+    "word": "礼物",
+    "pinyin": "lĭ wù",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Gift."
+  },
+  {
+    "word": "历史",
+    "pinyin": "lì shĭ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "History."
+  },
+  {
+    "word": "练习",
+    "pinyin": "liàn xí",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Exercise."
+  },
+  {
+    "word": "了解",
+    "pinyin": "le jiĕ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To understand."
+  },
+  {
+    "word": "邻居",
+    "pinyin": "lín jū",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Neighbor."
+  },
+  {
+    "word": "马上",
+    "pinyin": "mă shàng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "At once."
+  },
+  {
+    "word": "满意",
+    "pinyin": "măn yì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Satisfied."
+  },
+  {
+    "word": "帽子",
+    "pinyin": "mào zi",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Hat."
+  },
+  {
+    "word": "面包",
+    "pinyin": "miàn bāo",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Bread."
+  },
+  {
+    "word": "面条",
+    "pinyin": "miàn tiáo",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Noodles."
+  },
+  {
+    "word": "明白",
+    "pinyin": "míng bái",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Clear."
+  },
+  {
+    "word": "奶奶",
+    "pinyin": "năi năi",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Grandma."
+  },
+  {
+    "word": "难过",
+    "pinyin": "nán guò",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To feel sad."
+  },
+  {
+    "word": "年级",
+    "pinyin": "nián jí",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Grade."
+  },
+  {
+    "word": "年轻",
+    "pinyin": "nián qīng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Young."
+  },
+  {
+    "word": "努力",
+    "pinyin": "nŭ lì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Great effort."
+  },
+  {
+    "word": "爬山",
+    "pinyin": "pá shān",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To climb a mountain."
+  },
+  {
+    "word": "盘子",
+    "pinyin": "pán zi",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Tray."
+  },
+  {
+    "word": "啤酒",
+    "pinyin": "pí jiŭ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Beer."
+  },
+  {
+    "word": "葡萄",
+    "pinyin": "pú táo",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Grape."
+  },
+  {
+    "word": "其实",
+    "pinyin": "qí shí",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Actually."
+  },
+  {
+    "word": "其他",
+    "pinyin": "qí tā",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Other."
+  },
+  {
+    "word": "奇怪",
+    "pinyin": "qí guài",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Strange."
+  },
+  {
+    "word": "铅笔",
+    "pinyin": "qiān bĭ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Pencil."
+  },
+  {
+    "word": "清楚",
+    "pinyin": "qīng chŭ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Clear."
+  },
+  {
+    "word": "裙子",
+    "pinyin": "qún zi",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Skirt."
+  },
+  {
+    "word": "然后",
+    "pinyin": "rán hòu",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "After."
+  },
+  {
+    "word": "热情",
+    "pinyin": "rè qíng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Cordial."
+  },
+  {
+    "word": "认为",
+    "pinyin": "rèn wéi",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To believe."
+  },
+  {
+    "word": "认真",
+    "pinyin": "rèn zhēn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Conscientious."
+  },
+  {
+    "word": "容易",
+    "pinyin": "róng yì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Easy."
+  },
+  {
+    "word": "如果",
+    "pinyin": "rú guŏ",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "If."
+  },
+  {
+    "word": "上网",
+    "pinyin": "shàng wăng",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "To be on the internet."
+  },
+  {
+    "word": "生气",
+    "pinyin": "shēng qì",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Angry."
+  },
+  {
+    "word": "声音",
+    "pinyin": "shēng yīn",
+    "pos_tag": "NN",
+    "difficulty": "MEDIUM",
+    "hint": "Voice."
+  },
+  {
+    "word": "爱护",
+    "pinyin": "ài hù",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To cherish."
+  },
+  {
+    "word": "爱惜",
+    "pinyin": "ài xī",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To cherish."
+  },
+  {
+    "word": "爱心",
+    "pinyin": "ài xīn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Compassion."
+  },
+  {
+    "word": "安慰",
+    "pinyin": "ān wèi",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To comfort."
+  },
+  {
+    "word": "安装",
+    "pinyin": "ān zhuāng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To install."
+  },
+  {
+    "word": "把握",
+    "pinyin": "bă wò",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To grasp."
+  },
+  {
+    "word": "办理",
+    "pinyin": "bàn lĭ",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To handle."
+  },
+  {
+    "word": "傍晚",
+    "pinyin": "bàng wăn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "In the evening."
+  },
+  {
+    "word": "包裹",
+    "pinyin": "bāo guŏ",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Wrap up."
+  },
+  {
+    "word": "包含",
+    "pinyin": "bāo hán",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To contain."
+  },
+  {
+    "word": "包子",
+    "pinyin": "bāo zi",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Steamed stuffed bun."
+  },
+  {
+    "word": "宝贝",
+    "pinyin": "băo bèi",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Treasured object."
+  },
+  {
+    "word": "宝贵",
+    "pinyin": "băo guì",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Valuable."
+  },
+  {
+    "word": "保持",
+    "pinyin": "băo chí",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To keep."
+  },
+  {
+    "word": "保存",
+    "pinyin": "băo cún",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To conserve."
+  },
+  {
+    "word": "保留",
+    "pinyin": "băo liú",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To retain."
+  },
+  {
+    "word": "保险",
+    "pinyin": "băo xiăn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Insurance."
+  },
+  {
+    "word": "报告",
+    "pinyin": "bào gào",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To inform."
+  },
+  {
+    "word": "悲观",
+    "pinyin": "bēi guān",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Pessimistic."
+  },
+  {
+    "word": "被子",
+    "pinyin": "bèi zi",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Quilt."
+  },
+  {
+    "word": "背景",
+    "pinyin": "bèi jĭng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Background."
+  },
+  {
+    "word": "本科",
+    "pinyin": "bĕn kē",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Undergraduate course."
+  },
+  {
+    "word": "本领",
+    "pinyin": "bĕn lĭng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Skill."
+  },
+  {
+    "word": "本质",
+    "pinyin": "bĕn zhì",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Essence."
+  },
+  {
+    "word": "比例",
+    "pinyin": "bĭ lì",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Proportion."
+  },
+  {
+    "word": "比如",
+    "pinyin": "bĭ rú",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "For example."
+  },
+  {
+    "word": "彼此",
+    "pinyin": "bĭ cĭ",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Each other."
+  },
+  {
+    "word": "必然",
+    "pinyin": "bì rán",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Inevitable."
+  },
+  {
+    "word": "必需",
+    "pinyin": "bì xū",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To need."
+  },
+  {
+    "word": "必要",
+    "pinyin": "bì yào",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Necessary."
+  },
+  {
+    "word": "毕竟",
+    "pinyin": "bì jìng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "After all."
+  },
+  {
+    "word": "避免",
+    "pinyin": "bì miăn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To avert."
+  },
+  {
+    "word": "鞭炮",
+    "pinyin": "biān pào",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Firecrackers."
+  },
+  {
+    "word": "编辑",
+    "pinyin": "biān jí",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To edit."
+  },
+  {
+    "word": "辩论",
+    "pinyin": "biàn lùn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Debate."
+  },
+  {
+    "word": "标点",
+    "pinyin": "biāo diăn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Punctuation."
+  },
+  {
+    "word": "标志",
+    "pinyin": "biāo zhì",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Sign."
+  },
+  {
+    "word": "表面",
+    "pinyin": "biăo miàn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Surface."
+  },
+  {
+    "word": "表明",
+    "pinyin": "biăo míng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To make clear."
+  },
+  {
+    "word": "表情",
+    "pinyin": "biăo qíng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Expression."
+  },
+  {
+    "word": "表现",
+    "pinyin": "biăo xiàn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To show."
+  },
+  {
+    "word": "病毒",
+    "pinyin": "bìng dú",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Virus."
+  },
+  {
+    "word": "玻璃",
+    "pinyin": "bō lí",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Glass."
+  },
+  {
+    "word": "脖子",
+    "pinyin": "bó zi",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Neck."
+  },
+  {
+    "word": "不必",
+    "pinyin": "bù bì",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Need not."
+  },
+  {
+    "word": "不断",
+    "pinyin": "bù duàn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Unceasing."
+  },
+  {
+    "word": "补充",
+    "pinyin": "bŭ chōng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To replenish."
+  },
+  {
+    "word": "不安",
+    "pinyin": "bù ān",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Unpeaceful."
+  },
+  {
+    "word": "不免",
+    "pinyin": "bù miăn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Inevitably."
+  },
+  {
+    "word": "不然",
+    "pinyin": "bù rán",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Not so."
+  },
+  {
+    "word": "不如",
+    "pinyin": "bù rú",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Not equal to."
+  },
+  {
+    "word": "不足",
+    "pinyin": "bù zú",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Insufficient."
+  },
+  {
+    "word": "步骤",
+    "pinyin": "bù zhòu",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Procedure."
+  },
+  {
+    "word": "部门",
+    "pinyin": "bù mén",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Department."
+  },
+  {
+    "word": "财产",
+    "pinyin": "cái chăn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Property."
+  },
+  {
+    "word": "采访",
+    "pinyin": "căi făng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To interview."
+  },
+  {
+    "word": "采取",
+    "pinyin": "căi qŭ",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To adopt or carry out (measures."
+  },
+  {
+    "word": "彩虹",
+    "pinyin": "căi hóng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Rainbow."
+  },
+  {
+    "word": "参考",
+    "pinyin": "cān kăo",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Consultation."
+  },
+  {
+    "word": "参与",
+    "pinyin": "cān yŭ",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To participate."
+  },
+  {
+    "word": "餐厅",
+    "pinyin": "cān tīng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Dining hall."
+  },
+  {
+    "word": "残疾",
+    "pinyin": "cán jí",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Disabled."
+  },
+  {
+    "word": "惭愧",
+    "pinyin": "cán kuì",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Ashamed."
+  },
+  {
+    "word": "操场",
+    "pinyin": "cāo chăng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Playground."
+  },
+  {
+    "word": "操心",
+    "pinyin": "cāo xīn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To worry about."
+  },
+  {
+    "word": "测验",
+    "pinyin": "cè yàn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Test."
+  },
+  {
+    "word": "厕所",
+    "pinyin": "cè suŏ",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Toilet."
+  },
+  {
+    "word": "曾经",
+    "pinyin": "céng jīng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Once."
+  },
+  {
+    "word": "差别",
+    "pinyin": "chā bié",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Difference."
+  },
+  {
+    "word": "叉子",
+    "pinyin": "chā zi",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Fork."
+  },
+  {
+    "word": "产品",
+    "pinyin": "chăn pĭn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Goods."
+  },
+  {
+    "word": "产生",
+    "pinyin": "chăn shēng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To arise."
+  },
+  {
+    "word": "长途",
+    "pinyin": "zhăng tú",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Long distance."
+  },
+  {
+    "word": "常识",
+    "pinyin": "cháng shī",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Common sense."
+  },
+  {
+    "word": "朝代",
+    "pinyin": "cháo dài",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Dynasty."
+  },
+  {
+    "word": "吵架",
+    "pinyin": "chăo jià",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To quarrel."
+  },
+  {
+    "word": "车库",
+    "pinyin": "chē kù",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Garage."
+  },
+  {
+    "word": "车厢",
+    "pinyin": "chē xiāng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Carriage."
+  },
+  {
+    "word": "彻底",
+    "pinyin": "chè dĭ",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Thorough."
+  },
+  {
+    "word": "沉默",
+    "pinyin": "chén mò",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Taciturn."
+  },
+  {
+    "word": "称呼",
+    "pinyin": "chēng hū",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To call."
+  },
+  {
+    "word": "称赞",
+    "pinyin": "chēng zàn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To praise."
+  },
+  {
+    "word": "承担",
+    "pinyin": "chéng dān",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To undertake."
+  },
+  {
+    "word": "承认",
+    "pinyin": "chéng rèn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To admit."
+  },
+  {
+    "word": "承受",
+    "pinyin": "chéng shòu",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To bear."
+  },
+  {
+    "word": "成分",
+    "pinyin": "chéng fēn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Composition."
+  },
+  {
+    "word": "成果",
+    "pinyin": "chéng guŏ",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Result."
+  },
+  {
+    "word": "成就",
+    "pinyin": "chéng jiù",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Accomplishment."
+  },
+  {
+    "word": "成立",
+    "pinyin": "chéng lì",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To establish."
+  },
+  {
+    "word": "成语",
+    "pinyin": "chéng yŭ",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Chinese set expression."
+  },
+  {
+    "word": "成长",
+    "pinyin": "chéng zhăng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To mature."
+  },
+  {
+    "word": "程度",
+    "pinyin": "chéng dù",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Degree."
+  },
+  {
+    "word": "程序",
+    "pinyin": "chéng xù",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Procedures."
+  },
+  {
+    "word": "诚恳",
+    "pinyin": "chéng kĕn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Sincere."
+  },
+  {
+    "word": "吃亏",
+    "pinyin": "chī kuī",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To suffer losses."
+  },
+  {
+    "word": "持续",
+    "pinyin": "chí xù",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To continue."
+  },
+  {
+    "word": "池子",
+    "pinyin": "chí zi",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Pond."
+  },
+  {
+    "word": "尺子",
+    "pinyin": "chĭ zi",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Rule."
+  },
+  {
+    "word": "翅膀",
+    "pinyin": "chì băng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Wing."
+  },
+  {
+    "word": "充分",
+    "pinyin": "chōng fēn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Ample."
+  },
+  {
+    "word": "充满",
+    "pinyin": "chōng măn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Full of."
+  },
+  {
+    "word": "重复",
+    "pinyin": "zhòng fù",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To repeat."
+  },
+  {
+    "word": "宠物",
+    "pinyin": "chŏng wù",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "House pet."
+  },
+  {
+    "word": "抽屉",
+    "pinyin": "chōu tì",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Drawer."
+  },
+  {
+    "word": "抽象",
+    "pinyin": "chōu xiàng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Abstract."
+  },
+  {
+    "word": "出版",
+    "pinyin": "chū băn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To publish."
+  },
+  {
+    "word": "出口",
+    "pinyin": "chū kŏu",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "An exit."
+  },
+  {
+    "word": "出色",
+    "pinyin": "chū sè",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Remarkable."
+  },
+  {
+    "word": "出席",
+    "pinyin": "chū xí",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To attend."
+  },
+  {
+    "word": "初级",
+    "pinyin": "chū jí",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Junior."
+  },
+  {
+    "word": "除非",
+    "pinyin": "chú fēi",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Only if (."
+  },
+  {
+    "word": "除夕",
+    "pinyin": "chú xī",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Eve."
+  },
+  {
+    "word": "处理",
+    "pinyin": "chŭ lĭ",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To handle."
+  },
+  {
+    "word": "传播",
+    "pinyin": "chuán bō",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To disseminate."
+  },
+  {
+    "word": "传递",
+    "pinyin": "chuán dì",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To transmit."
+  },
+  {
+    "word": "传染",
+    "pinyin": "chuán răn",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To infect."
+  },
+  {
+    "word": "传说",
+    "pinyin": "chuán shuō",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Legend."
+  },
+  {
+    "word": "传统",
+    "pinyin": "chuán tŏng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Tradition."
+  },
+  {
+    "word": "窗帘",
+    "pinyin": "chuāng lián",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Window curtains."
+  },
+  {
+    "word": "创造",
+    "pinyin": "chuàng zào",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To create."
+  },
+  {
+    "word": "磁带",
+    "pinyin": "cí dài",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Magnetic tape."
+  },
+  {
+    "word": "辞职",
+    "pinyin": "cí zhí",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To resign."
+  },
+  {
+    "word": "此外",
+    "pinyin": "cĭ wài",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Besides."
+  },
+  {
+    "word": "刺激",
+    "pinyin": "cì jī",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To provoke."
+  },
+  {
+    "word": "次要",
+    "pinyin": "cì yào",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Secondary."
+  },
+  {
+    "word": "匆忙",
+    "pinyin": "cōng máng",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Hasty."
+  },
+  {
+    "word": "从此",
+    "pinyin": "cóng cĭ",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "From now on."
+  },
+  {
+    "word": "从而",
+    "pinyin": "cóng ér",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Thus."
+  },
+  {
+    "word": "从前",
+    "pinyin": "cóng qián",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "Previously."
+  },
+  {
+    "word": "从事",
+    "pinyin": "cóng shì",
+    "pos_tag": "NN",
+    "difficulty": "HARD",
+    "hint": "To go for."
+  }
+]

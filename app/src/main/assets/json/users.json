@@ -1,0 +1,35 @@
+[
+  {
+    "name": "admin",
+    "password": "admin123",
+    "email": "admin@chinesegame.com",
+    "registration_date": "2024-01-01 00:00:00",
+    "last_login_date": "2024-01-20 10:00:00",
+    "login_streak": 7,
+    "total_games_played": 50,
+    "total_score": 2500,
+    "avatar_path": null
+  },
+  {
+    "name": "123",
+    "password": "123456",
+    "email": "",
+    "registration_date": "2024-01-05 09:00:00",
+    "last_login_date": "2024-01-19 15:30:00",
+    "login_streak": 5,
+    "total_games_played": 30,
+    "total_score": 1800,
+    "avatar_path": "/avatars/teacher.png"
+  },
+  {
+    "name": "student1",
+    "password": "student123",
+    "email": "student1@school.com",
+    "registration_date": "2024-01-10 08:00:00",
+    "last_login_date": "2024-01-20 14:20:00",
+    "login_streak": 3,
+    "total_games_played": 15,
+    "total_score": 950,
+    "avatar_path": null
+  }
+]

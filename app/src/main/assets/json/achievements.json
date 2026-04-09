@@ -1,0 +1,47 @@
+[
+  {
+    "name": "First Steps",
+    "description": "完成10个游戏",
+    "icon_path": "/icons/first_steps.png",
+    "type": "MILESTONE",
+    "category": "GENERAL",
+    "required_value": 10,
+    "reward_points": 50
+  },
+  {
+    "name": "Learning Enthusiast",
+    "description": "连续7天登录",
+    "icon_path": "/icons/login_streak.png",
+    "type": "MILESTONE",
+    "category": "LOGIN_STREAK",
+    "required_value": 7,
+    "reward_points": 100
+  },
+  {
+    "name": "Perfect Match",
+    "description": "在Character Matching中连续10次正确",
+    "icon_path": "/icons/perfect_match.png",
+    "type": "GAME_SPECIFIC",
+    "category": "CHARACTER_MATCHING",
+    "required_value": 10,
+    "reward_points": 75
+  },
+  {
+    "name": "Excellent Pronunciation",
+    "description": "在Pronunciation Quiz中连续3次优秀",
+    "icon_path": "/icons/excellent_pronunciation.png",
+    "type": "GAME_SPECIFIC",
+    "category": "PRONUNCIATION_QUIZ",
+    "required_value": 3,
+    "reward_points": 60
+  },
+  {
+    "name": "Word Master",
+    "description": "在Word Puzzle中连续5次满分",
+    "icon_path": "/icons/word_master.png",
+    "type": "GAME_SPECIFIC",
+    "category": "WORD_PUZZLE",
+    "required_value": 5,
+    "reward_points": 80
+  }
+]

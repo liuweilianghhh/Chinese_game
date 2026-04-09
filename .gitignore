@@ -1,0 +1,43 @@
+# Android / Gradle
+.gradle/
+.kotlin/
+build/
+*/build/
+captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+out/
+
+# VS Code / Cursor
+.vscode/
+.cursor/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build artifacts
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Signing / local secrets
+*.jks
+*.keystore
+keystore.properties
+signing.properties
+secrets.properties
+.env
+.env.*
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

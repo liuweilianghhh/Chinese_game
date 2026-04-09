@@ -1,0 +1,546 @@
+[
+  {
+    "id": 1,
+    "sentence": "我喜欢在北京学习中文",
+    "pinyin": "wǒ xǐ huān zài běi jīng xué xí zhōng wén",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 6
+  },
+  {
+    "id": 2,
+    "sentence": "今天天气很好",
+    "pinyin": "jīn tiān tiān qì hěn hǎo",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 3
+  },
+  {
+    "id": 3,
+    "sentence": "科学技术是第一生产力",
+    "pinyin": "kē xué jì shù shì dì yī shēng chǎn lì",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 4
+  },
+  {
+    "id": 4,
+    "sentence": "游客向许愿池里投硬币",
+    "pinyin": "yóu kè xiàng xǔ yuàn chí lǐ tóu yìng bì",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 6
+  },
+  {
+    "id": 5,
+    "sentence": "游客就是冲着美食而来",
+    "pinyin": "yóu kè jiù shì chōng zhe měi shí ér lái",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 6
+  },
+  {
+    "id": 6,
+    "sentence": "我们去过德国、瑞士、荷兰",
+    "pinyin": "wǒ men qù guò dé guó 、 ruì shì 、 hé lán",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 7
+  },
+  {
+    "id": 7,
+    "sentence": "我最喜欢澳洲的蓝天白云和简单的人际关系",
+    "pinyin": "wǒ zuì xǐ huān ào zhōu de lán tiān bái yún hé jiǎn dān de rén jì guān xì",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 10
+  },
+  {
+    "id": 8,
+    "sentence": "我的学生来自不同国家，都是第一次来中国",
+    "pinyin": "wǒ de xué shēng lái zì bù tóng guó jiā ， dōu shì dì yī cì lái zhōng guó",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 12
+  },
+  {
+    "id": 9,
+    "sentence": "我知道它仍在那里，因为它现在叫做梵高桥",
+    "pinyin": "wǒ zhī dào tā réng zài nà lǐ ， yīn wèi tā xiàn zài jiào zuò fàn gāo qiáo",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 13
+  },
+  {
+    "id": 10,
+    "sentence": "我约会、旅行、拾起了一份新的差事",
+    "pinyin": "wǒ yuē huì 、 lǚ xíng 、 shí qǐ le yī fèn xīn de chà shì",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 11
+  },
+  {
+    "id": 11,
+    "sentence": "截至目前，游客们似乎并未因为昆虫而却步",
+    "pinyin": "jié zhì mù qián ， yóu kè men shì hū bìng wèi yīn wèi kūn chóng ér què bù",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 11
+  },
+  {
+    "id": 12,
+    "sentence": "拍摄过程中，现场围聚了一群又一群的游客",
+    "pinyin": "pāi shè guò chéng zhōng ， xiàn chǎng wéi jù le yī qún yòu yī qún de yóu kè",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 12
+  },
+  {
+    "id": 13,
+    "sentence": "旅游和餐饮这样的服务业受到的打击尤其严重",
+    "pinyin": "lǚ yóu hé cān yǐn zhè yàng de fú wù yè shòu dào de dǎ jī yóu qí yán zhòng",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 11
+  },
+  {
+    "id": 14,
+    "sentence": "最常推荐给独自旅行者们的地方，是都柏林",
+    "pinyin": "zuì cháng tuī jiàn gěi dú zì lǚ xíng zhě men de dì fāng ， shì dōu bǎi lín",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 12
+  },
+  {
+    "id": 15,
+    "sentence": "本州西海岸日本艺术博览会和新观光游",
+    "pinyin": "běn zhōu xī hǎi àn rì běn yì shù bó lǎn huì hé xīn guān guāng yóu",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 9
+  },
+  {
+    "id": 16,
+    "sentence": "正是这些建筑吸引了源源不断的游客来到拉辛",
+    "pinyin": "zhèng shì zhè xiē jiàn zhù xī yǐn le yuán yuán bù duàn de yóu kè lái dào lā xīn",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 10
+  },
+  {
+    "id": 17,
+    "sentence": "每年有无数女性出国旅行而没有出现意外",
+    "pinyin": "měi nián yǒu wú shù nǚ xìng chū guó lǚ xíng ér méi yǒu chū xiàn yì wài",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 9
+  },
+  {
+    "id": 18,
+    "sentence": "毕竟奥运会开始后，其他种类的旅游就减少了",
+    "pinyin": "bì jìng ào yùn huì kāi shǐ hòu ， qí tā zhǒng lèi de lǚ yóu jiù jiǎn shǎo le",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 12
+  },
+  {
+    "id": 19,
+    "sentence": "而现在，著名的知恩院和二尊院几乎没有游客",
+    "pinyin": "ér xiàn zài ， zhù míng de zhī ēn yuàn hé èr zūn yuàn jǐ hū méi yǒu yóu kè",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 13
+  },
+  {
+    "id": 20,
+    "sentence": "这个度假村本身有望成为一个旅游景点",
+    "pinyin": "zhè gè dù jiǎ cūn běn shēn yǒu wàng chéng wèi yī gè lǚ yóu jǐng diǎn",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 7
+  },
+  {
+    "id": 21,
+    "sentence": "这也是我在过去的一年里花费较少的旅行之一",
+    "pinyin": "zhè yě shì wǒ zài guò qù de yī nián lǐ huā fèi jiào shǎo de lǚ xíng zhī yī",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 14
+  },
+  {
+    "id": 22,
+    "sentence": "这些故事表达的正是我们为什么去旅行的原因",
+    "pinyin": "zhè xiē gù shì biǎo dá de zhèng shì wǒ men wèi shén me qù lǚ xíng de yuán yīn",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 11
+  },
+  {
+    "id": 23,
+    "sentence": "这次旅行中，我们住的是一座空置的海滩小屋",
+    "pinyin": "zhè cì lǚ xíng zhōng ， wǒ men zhù de shì yī zuò kōng zhì de hǎi tān xiǎo wū",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 13
+  },
+  {
+    "id": 24,
+    "sentence": "这次来新疆是我们一起在中国的最后一次旅行",
+    "pinyin": "zhè cì lái xīn jiāng shì wǒ men yī qǐ zài zhōng guó de zuì hòu yī cì lǚ xíng",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 12
+  },
+  {
+    "id": 25,
+    "sentence": "除了剧组，来自全国各地的游客也纷至沓来",
+    "pinyin": "chú le jù zǔ ， lái zì quán guó gè dì de yóu kè yě fēn zhì dá lái",
+    "difficulty": "EASY",
+    "category": "official_bank",
+    "word_count": 10
+  },
+  {
+    "id": 26,
+    "sentence": "我在鸭绿江的北京邮电大学上学",
+    "pinyin": "wǒ zài yā lǜ jiāng de běi jīng yóu diàn dà xué shàng xué",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 6
+  },
+  {
+    "id": 27,
+    "sentence": "这里与大型旅游中心不同",
+    "pinyin": "zhè lǐ yǔ dà xíng lǚ yóu zhōng xīn bù tóng",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 6
+  },
+  {
+    "id": 28,
+    "sentence": "在美国旅行是学习民权知识的好方法",
+    "pinyin": "zài měi guó lǚ xíng shì xué xí mín quán zhī shí de hǎo fāng fǎ",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 10
+  },
+  {
+    "id": 29,
+    "sentence": "该地区已暂时关闭所有旅游景点",
+    "pinyin": "gāi dì qū yǐ zàn shí guān bì suǒ yǒu lǚ yóu jǐng diǎn",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 7
+  },
+  {
+    "id": 30,
+    "sentence": "冰岛奢华住处遍布的岛屿",
+    "pinyin": "bīng dǎo shē huá zhù chù biàn bù de dǎo yǔ",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 6
+  },
+  {
+    "id": 31,
+    "sentence": "我一点儿也不会怀念比基尼比赛",
+    "pinyin": "wǒ yī diǎn ér yě bù huì huái niàn bǐ jī ní bǐ sài",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 7
+  },
+  {
+    "id": 32,
+    "sentence": "我们一起吃了三文鱼手卷",
+    "pinyin": "wǒ men yī qǐ chī le sān wén yú shǒu juǎn",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 6
+  },
+  {
+    "id": 33,
+    "sentence": "我们下了车，另一群人也下了车",
+    "pinyin": "wǒ men xià le chē ， lìng yī qún rén yě xià le chē",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 12
+  },
+  {
+    "id": 34,
+    "sentence": "我在大陆和香港都居住过多年",
+    "pinyin": "wǒ zài dà lù hé xiāng gǎng dōu jū zhù guò duō nián",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 9
+  },
+  {
+    "id": 35,
+    "sentence": "我是一个旅居德国的新闻工作者",
+    "pinyin": "wǒ shì yī gè lǚ jū dé guó de xīn wén gōng zuò zhě",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 8
+  },
+  {
+    "id": 36,
+    "sentence": "我的机场度假就是这样开始的",
+    "pinyin": "wǒ de jī chǎng dù jiǎ jiù shì zhè yàng kāi shǐ de",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 8
+  },
+  {
+    "id": 37,
+    "sentence": "我知道你肯定要当个被宰的游客",
+    "pinyin": "wǒ zhī dào nǐ kěn dìng yào dāng gè bèi zǎi de yóu kè",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 10
+  },
+  {
+    "id": 38,
+    "sentence": "所有人都出来享受这个假日",
+    "pinyin": "suǒ yǒu rén dōu chū lái xiǎng shòu zhè gè jiǎ rì",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 6
+  },
+  {
+    "id": 39,
+    "sentence": "旅游业对该国经济的发展至关重要",
+    "pinyin": "lǚ yóu yè duì gāi guó jīng jì de fā zhǎn zhì guān zhòng yào",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 7
+  },
+  {
+    "id": 40,
+    "sentence": "旅行社已经暂停了在武汉的行程",
+    "pinyin": "lǚ xíng shè yǐ jīng zàn tíng le zài wǔ hàn de xíng chéng",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 8
+  },
+  {
+    "id": 41,
+    "sentence": "本月，意大利的里雅斯特的游客",
+    "pinyin": "běn yuè ， yì dà lì de lǐ yǎ sī tè de yóu kè",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 6
+  },
+  {
+    "id": 42,
+    "sentence": "游客中心将在细致的规范下运行",
+    "pinyin": "yóu kè zhōng xīn jiāng zài xì zhì de guī fàn xià yùn xíng",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 9
+  },
+  {
+    "id": 43,
+    "sentence": "游客们在街头拍摄太空船的照片",
+    "pinyin": "yóu kè men zài jiē tóu pāi shè tài kōng chuán de zhào piàn",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 8
+  },
+  {
+    "id": 44,
+    "sentence": "罗马斗兽场外的中国游客",
+    "pinyin": "luó mǎ dòu shòu chǎng wài de zhōng guó yóu kè",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 6
+  },
+  {
+    "id": 45,
+    "sentence": "而在这里，有着中国最蛮荒动人的风景",
+    "pinyin": "ér zài zhè lǐ ， yǒu zhe zhōng guó zuì mán huāng dòng rén de fēng jǐng",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 11
+  },
+  {
+    "id": 46,
+    "sentence": "菲律宾便是这样一个地方",
+    "pinyin": "fēi lǜ bīn biàn shì zhè yàng yī gè dì fāng",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 5
+  },
+  {
+    "id": 47,
+    "sentence": "这些游客多属于中国新生的中产阶级",
+    "pinyin": "zhè xiē yóu kè duō shǔ yú zhōng guó xīn shēng de zhōng chǎn jiē jí",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 8
+  },
+  {
+    "id": 48,
+    "sentence": "这里是如何度过愉快的空中旅行",
+    "pinyin": "zhè lǐ shì rú hé dù guò yú kuài de kōng zhōng lǚ xíng",
+    "difficulty": "MEDIUM",
+    "category": "official_bank",
+    "word_count": 8
+  },
+  {
+    "id": 49,
+    "sentence": "正是这两个朋友在一本旅游指南中发现了这个中国村庄",
+    "pinyin": "zhèng shì zhè liǎng gè péng yǒu zài yī běn lǚ yóu zhǐ nán zhōng fā xiàn le zhè gè zhōng guó cūn zhuāng",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 13
+  },
+  {
+    "id": 50,
+    "sentence": "汇率和出国旅游的盛行都是导致这一结果的因素",
+    "pinyin": "huì lǜ hé chū guó lǚ yóu de shèng xíng dōu shì dǎo zhì zhè yī jié guǒ de yīn sù",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 13
+  },
+  {
+    "id": 51,
+    "sentence": "这趟旅行在我认识的前几年就已经有了雏形",
+    "pinyin": "zhè tàng lǚ xíng zài wǒ rèn shí de qián jǐ nián jiù yǐ jīng yǒu le chú xíng",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 13
+  },
+  {
+    "id": 52,
+    "sentence": "一个夏天的晚上，我带着两个女大学生乘坐观光船游览",
+    "pinyin": "yī gè xià tiān de wǎn shàng ， wǒ dài zhe liǎng gè nǚ dà xué shēng chéng zuò guān guāng chuán yóu lǎn",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 15
+  },
+  {
+    "id": 53,
+    "sentence": "在塔穆宁，平静的图蒙湾海滨沿岸坐落着一排旅游酒店",
+    "pinyin": "zài tǎ mù níng ， píng jìng de tú méng wān hǎi bīn yán àn zuò luò zhe yī pái lǚ yóu jiǔ diàn",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 14
+  },
+  {
+    "id": 54,
+    "sentence": "图蒙湾的海滩上坐落着该岛的主要旅游酒店",
+    "pinyin": "tú méng wān de hǎi tān shàng zuò luò zhe gāi dǎo de zhǔ yào lǚ yóu jiǔ diàn",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 12
+  },
+  {
+    "id": 55,
+    "sentence": "除了板门店的隧道，生态旅游也成了吸引游客的热门",
+    "pinyin": "chú le bǎn mén diàn de suì dào ， shēng tài lǚ yóu yě chéng le xī yǐn yóu kè de rè mén",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 13
+  },
+  {
+    "id": 56,
+    "sentence": "年轻人大量涌向滑雪胜地和其他海外旅游景点",
+    "pinyin": "nián qīng rén dà liàng yǒng xiàng huá xuě shèng dì hé qí tā hǎi wài lǚ yóu jǐng diǎn",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 9
+  },
+  {
+    "id": 57,
+    "sentence": "并非所有人都对签证项目的增长感到高兴",
+    "pinyin": "bìng fēi suǒ yǒu rén dōu duì qiān zhèng xiàng mù de zēng zhǎng gǎn dào gāo xīng",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 9
+  },
+  {
+    "id": 58,
+    "sentence": "度假岛上的一些餐馆禁止中国公民入内",
+    "pinyin": "dù jiǎ dǎo shàng de yī xiē cān guǎn jìn zhǐ zhōng guó gōng mín rù nèi",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 9
+  },
+  {
+    "id": 59,
+    "sentence": "度假村的工作人员能说英语、南非荷兰语和土著科萨语",
+    "pinyin": "dù jiǎ cūn de gōng zuò rén yuán néng shuō yīng yǔ 、 nán fēi hé lán yǔ hé tǔ zhù kē sà yǔ",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 13
+  },
+  {
+    "id": 60,
+    "sentence": "度假村虽小，但提供的服务可与大型滑雪场媲美",
+    "pinyin": "dù jiǎ cūn suī xiǎo ， dàn tí gōng de fú wù kě yǔ dà xíng huá xuě chǎng pì měi",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 12
+  },
+  {
+    "id": 61,
+    "sentence": "很多五星级酒店也会在此淡季期间提供吸引人的套餐",
+    "pinyin": "hěn duō wǔ xīng jí jiǔ diàn yě huì zài cǐ dàn jì qī jiān tí gōng xī yǐn rén de tào cān",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 14
+  },
+  {
+    "id": 62,
+    "sentence": "悉尼的港湾不仅交通便利，而且乐趣无穷",
+    "pinyin": "xī ní de gǎng wān bù jǐn jiāo tōng biàn lì ， ér qiě lè qù wú qióng",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 10
+  },
+  {
+    "id": 63,
+    "sentence": "意大利的食物花样肯定比游客们知道的多得多",
+    "pinyin": "yì dà lì de shí wù huā yàng kěn dìng bǐ yóu kè men zhī dào de duō dé duō",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 11
+  },
+  {
+    "id": 64,
+    "sentence": "我也及时赶到海滩上，体会了阳光洒在皮肤上的感觉",
+    "pinyin": "wǒ yě jí shí gǎn dào hǎi tān shàng ， tǐ huì le yáng guāng sǎ zài pí fū shàng de gǎn jué",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 16
+  },
+  {
+    "id": 65,
+    "sentence": "我也想以寿司晚餐的形式寻找日本海岸的味道",
+    "pinyin": "wǒ yě xiǎng yǐ shòu sī wǎn cān de xíng shì xún zhǎo rì běn hǎi àn de wèi dào",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 13
+  },
+  {
+    "id": 66,
+    "sentence": "我也生吃了一些贻贝，入口时还带着来自海湾的凉气",
+    "pinyin": "wǒ yě shēng chī le yī xiē yí bèi ， rù kǒu shí hái dài zhe lái zì hǎi wān de liáng qì",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 17
+  },
+  {
+    "id": 67,
+    "sentence": "我们一起手拉手在光滑的岩石上往下走",
+    "pinyin": "wǒ men yī qǐ shǒu lā shǒu zài guāng huá de yán shí shàng wǎng xià zǒu",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 9
+  },
+  {
+    "id": 68,
+    "sentence": "我们也继续进行研究，寻找其他长寿地区",
+    "pinyin": "wǒ men yě jì xù jìn xíng yán jiū ， xún zhǎo qí tā zhǎng shòu dì qū",
+    "difficulty": "HARD",
+    "category": "official_bank",
+    "word_count": 10
+  }
+]

@@ -1,0 +1,282 @@
+
+===== page 1 =====
+1 
+ 
+北京邮电大学 本科毕业设计（论文）任务书 
+Project Specification Form 
+Part 2 - Student 
+学院 
+School 
+International 
+School 
+专业 
+Programme 
+Telecommunications Engineering with 
+Management 
+姓 
+Family name Liu 名 
+First Name Weiliang 
+BUPT 学号 
+BUPT number 2022213200 QM 学号 
+QM number 221155662 班级 
+Class 2022215107 
+论文题目  
+Project Title 
+Android Chinese words game app 
+论文概述  
+Project outline 
+ 
+Write about 
+500-800 words 
+ 
+Please refer to 
+Project Student 
+Handbook 
+section 3.2 
+This project aims to design and implement a mobile game application to assist 
+beginner and intermediate Chinese learners in reinforcing their language skills 
+in an engaging and interactive way. The app will include 3 mini-games, each 
+targeting a specific aspect of Chinese language learning, such as vocabulary, 
+pronunciation, character recognition, and grammar. A scoring and reward 
+system will be integrated to motivate users and track their progress. The 
+application will be developed for the Android platform using Unity and Android 
+SDK. 
+ 
+1. An initial analysis of user requirements, and how data will be 
+collected.  
+a. Game Initialization  
+The user is able to login/register to the app and see a main menu offering access 
+to different games, user profile, and settings.  
+b. User Progress Tracking 
+Users shall be able to view their profiles, game scores, historical performance, 
+and unlocked achievements. 
+c. Game Selection Interface 
+1） Users will be able to choose from three Chinese language games, each with 
+clear instructions and difficulty settings. 
+2） Users shall be able to select and adjust difficulty levels, details can be seen 
+in item f of the requirements. 
+d. Game Type 
+1) Character Matching Game: Users match Pinyin to the correct Chinese 
+character. The game will use a drag-and-drop or tap-to-match interface. 
+2) Pronunciation Quiz: Users need to pronounce the words and then get the 
+correct pronunciation and receive instant feedback. 
+3) Word Puzzle: Users will rearrange scrambled characters to form correct 
+words or sentences. 
+e. Reward System 
+Users can earn a variety of virtual badges by completing challenges across the 
+application.  
+1) They can unlock Milestone Badges by reaching cumulative targets, such as 
+"First Steps" after completing 10 games or "Login Streak" for using the app 
+for 7 consecutive days.  
+2) They can unlock Game-Specific Badges by completing the game in 
+particular conditions, like "Perfect Match" for achieving a 10-streak in 
+
+===== page 2 =====
+2 
+ 
+Character Matching or "Excellent Pronunciation" for 3-streak in 
+Pronunciation Quiz. 
+f. Difficulty System 
+Users can select from three standardized difficulty levels (Easy, Medium, Hard) 
+across all three game types.  
+ 
+2. The algorithms, methodologies, and other techniques to be 
+employed. 
+a. Character Matching Game 
+Randomized Item Selection Algorithm: Get random characters and distractors 
+from the database. 
+b. Pronunciation Quiz 
+Speech Recognition and Pronunciation Assessment: Integrate third-party speech 
+evaluation SDKs to analyse users' pronunciation through multi-dimensional 
+metrics including phoneme accuracy, tone correctness, fluency, and 
+completeness.  
+c. Word Puzzle 
+NLP Processing: Use NLP models to segment sentences based on parts of 
+speech and number them. 
+Shuffling Algorithm: Randomize the numbers created by the NLP model to 
+ensure a different puzzle sequence is generated each time. 
+ 
+3. An initial specification of how users will interact with the system.  
+User Action:  
+1) The user taps on the icons for the four games (Character Matching, 
+Pronunciation Quiz, Word Puzzle, AI Painting Master), profile, or settings 
+on the main screen. 
+2) On a game's pre-game screen, the user swipes left or right to view 
+instructions and taps to select a difficulty level (Easy, Medium, Hard). 
+System Feedback:  
+1) The tapped icon is highlighted visually, and the interface immediately 
+transitions to the corresponding game menu or functional screen. 
+2) The screen content updates with the swipe, and the selected difficulty button 
+changes color or state to confirm the choice. 
+ 
+4. Programming language / database/ software package and 
+hardware to be used 
+The application will be developed using the Unity Engine as the primary 
+development platform, with all core game logic and interactions programmed in 
+C#. Targeting the Android platform, the project will utilize SQLite for data 
+storage to manage user progress, game states, and scores. Furthermore, a third-
+party commercial speech evaluation SDK (e.g., iFLYTEK, Tencent Cloud) will 
+be integrated to analyse users' pronunciation, and NLP model to segment 
+sentences. 
+道德规范  
+Ethics 
+ 
+Please confirm by checking the box: 
+ 
+☒ I confirm that I have discussed ethical issues with my supervisor. 
+
+===== page 3 =====
+3 
+ 
+Please discuss 
+ethical issues 
+with your 
+supervisor. 
+ 
+Please refer to 
+Project Student 
+Handbook 
+section 4.1 
+and  
+Project Ethics 
+Guidance 
+Summary of ethical issues: 
+In accordance with the project ethics guidance, the following ethical 
+considerations have been identified and addressed for the "Android Chinese 
+Words Game App" project: 
+1. Human Participants: 
+This project does not involve human participants in surveys, interviews, or 
+structured testing during development, so informed consent and debriefing 
+procedures are not applicable.  
+2. Artificial Intelligence (AI) Techniques: 
+This project utilizes third-party AI services, including a speech evaluation SDK 
+and an NLP model. The following ethical considerations have been addressed: 
+a. Data Privacy 
+Speech Data: Users will be clearly notified that voice inputs are processed 
+by a third-party service for real-time evaluation. No speech data is stored 
+locally or by the developer. 
+Implementation: A privacy notice will be displayed within the app, 
+explaining data processing practices and providing links to third-party 
+privacy policies. 
+b. Algorithmic Bias 
+Speech Recognition: The accuracy of pronunciation assessment depends 
+on the speech SDK's training data and language support. Potential biases in 
+recognizing non-native accents or regional variations are acknowledged. 
+NLP Processing: The NLP model may have biases in handling regional 
+expressions or colloquialisms 
+c. Documentation and Transparency 
+All AI components will be clearly documented in the final report, 
+including: 
+1) API specifications and service providers 
+2) Limitations in recognition accuracy and content generation 
+These measures ensure responsible development and deployment of AI 
+technologies while maintaining focus on educational benefits and user 
+protection. 
+ 
+中期目标  
+Mid-term 
+target.  
+ 
+It must be 
+tangible 
+outcomes, 
+E.g. software, 
+hardware or 
+simulation. 
+Complete User Interface Framework 
+Implementation of all essential screens including main navigation, game 
+selection interface, and profile management. 
+Build a Complete Database and Question Bank  
+Build a complete SQLite database including profiles, game scores, 
+achievements, and difficulty settings. 
+Two Core Gameplay Systems 
+Functional Character-Pinyin matching game and Pronunciation Quiz with 
+integrated speech recognition and accuracy assessment. 
+Basic Reward System 
+Implementation of achievement tracking, score persistence, and reward 
+feedback mechanisms to support user engagement. 
+ 
+ 
+ 
+ 
+
+===== page 4 =====
+4 
+ 
+ 
+Work Plan (Gantt Chart) 
+Fill in the sub-tasks and insert a letter X in the cells to show the extent of each task 
+ Nov 
+1-15 
+Nov 
+16-30 
+Dec 
+1-15 
+Dec  
+16-31 
+Jan 
+1-15 
+Jan 
+16-31 
+Feb 
+1-15 
+Feb 
+16-28 
+Mar 
+1-15 
+Mar 
+16-31 
+Apr 
+1-15 
+Apr 
+16-30 
+Task 1 [Learning Background Technologies and Tools (Unity, Android SDK, C#)] 
+Learn C# fundamentals 
+X X           
+Study Unity engine basics 
+X X           
+Study algorithms and methodologies 
+related to projects, such as SDKs 
+and models 
+ 
+ 
+ X X     
+     
+Research Chinese learning methodologies 
+and gamification   X X         
+Task 2 [Database design, system requirements, and functional design] 
+Define functional requirements, game 
+mechanics and game prototype   X X         
+Design a complete database including user 
+information, game scores.   X X         
+Design Technical Architecture and API 
+Interfaces       X X        
+Design UI/UX and user interaction flow 
+   X X        
+Task 3 [Implementation of game features] 
+Implement Character-Pinyin Matching 
+     X X      
+Completion reward system for the game 
+     X X      
+Implement Pronunciation Quiz 
+      X X     
+Implement Word Puzzle 
+       X X    
+Enhancement of interface  
+        X X   
+Task 4 [Testing, debugging, and finalizing the application] 
+Unit test and debug for Character-Pinyin 
+Matching       X X      
+Unit test and debug for Pronunciation Quiz 
+      X X     
+
+===== page 5 =====
+5 
+ 
+Unit test and debug for Word Puzzle  
+         X X    
+  Functional testing across different devices 
+        X X   
+User experience and performance testing 
+        X X   
+ 

@@ -1,0 +1,46 @@
+[
+  {
+    "user_id": 1,
+    "game_type": "CHARACTER_MATCHING",
+    "difficulty": "EASY",
+    "score": 95,
+    "max_possible_score": 100,
+    "accuracy": 0.95,
+    "time_spent": 45000,
+    "play_date": "2024-01-20 10:30:00",
+    "completed": true
+  },
+  {
+    "user_id": 1,
+    "game_type": "PRONUNCIATION_QUIZ",
+    "difficulty": "EASY",
+    "score": 88,
+    "max_possible_score": 100,
+    "accuracy": 0.88,
+    "time_spent": 55000,
+    "play_date": "2024-01-20 11:15:00",
+    "completed": true
+  },
+  {
+    "user_id": 2,
+    "game_type": "WORD_PUZZLE",
+    "difficulty": "EASY",
+    "score": 100,
+    "max_possible_score": 100,
+    "accuracy": 1.0,
+    "time_spent": 62000,
+    "play_date": "2024-01-19 15:45:00",
+    "completed": true
+  },
+  {
+    "user_id": 3,
+    "game_type": "CHARACTER_MATCHING",
+    "difficulty": "MEDIUM",
+    "score": 75,
+    "max_possible_score": 100,
+    "accuracy": 0.75,
+    "time_spent": 38000,
+    "play_date": "2024-01-20 14:20:00",
+    "completed": true
+  }
+]

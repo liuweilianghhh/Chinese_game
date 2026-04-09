@@ -1,0 +1,583 @@
+
+===== page 1 =====
+1 
+ 
+北京邮电大学 本科毕业设计（论文）中期进度报告 
+Project Mid-term Progress Report 
+学院 
+School 
+International 
+School 
+专业 
+Programme 
+Telecommunications Engineering with 
+Management 
+姓 
+Family name Liu 名 
+First Name Weiliang 
+BUPT 学号 
+BUPT 
+number 
+2022213200 
+QM 学号 
+QM number 221166552 
+班级 
+Class 2022215107 
+论文题目  
+Project Title 
+Android Chinese words game app 
+是否完成任务书中所定的中期目标？Targets met (as set in the Specification)? 
+ [YES] 
+已完成工作 Finished work:  
+1. Technology Selection and Platform Migration 
+The original Specification planned to use Unity Engine with C# as the primary development 
+platform. During early-stage development, it became evident that native Android development 
+(Java + XML) offered significant advantages for this project. 
+The final technology stack is: 
+ Platform: Android (Compile SDK 36) 
+ Language: Java 11 + XML 
+ IDE: Android Studio 
+ Database: SQLite 
+ Key Libraries: HanLP (1.8.6), pinyin4j (2.5.0), Gson (2.8.9), iFlyTek SparkChain SDK 
+2. User Interface Framework Implementation 
+A complete user interface framework has been implemented with 7 Activity screens and 9 XML 
+layout files: 
+Activity Page Layout File Function Purpose 
+Main Activity activity_main.xml Login interface, supports username/password 
+input, includes buttons for login, registration, 
+password modification, and JSON data reloading 
+Registration Page activity_register.xml User registration form page 
+Password Modification 
+Page 
+activity_update_test.xml Password modification form page (requires original 
+password verification and new password input) 
+Game Selection Page activity_game_choice.xml Main game selection interface with toolbar menu, 
+difficulty selection dialog, and loading indicator 
+Game Main Page activity_game.xml Main game container supporting multiple game 
+modes 
+User Profile Page activity_user_profile.xml User profile viewing and editing interface 
+(supports username/email modification and game 
+data statistics viewing) 
+User Achievements 
+Page 
+activity_user_achievements.xml Scrollable list for displaying user achievements 
+Additional UI components: 
+ dialog_select_difficulty.xml— Difficulty selection dialog (Easy / Medium / Hard) 
+ dialog_loading_questions.xml — Loading progress indicator during question preparation 
+ VoiceWaveView — Custom view for real-time voice volume visualization during recording 
+ 
+
+===== page 2 =====
+2 
+ 
+ 
+Navigation Flow: 
+MainActivity (Login) 
+├── register (Registration) 
+├── update_test (Change Password) 
+└── game_choice (Game Selection Hub) 
+    ├── GameActivity — CHARACTER_MATCHING 
+    ├── GameActivity — PRONUNCIATION_QUIZ 
+    ├── GameActivity — WORD_PUZZLE (placeholder) 
+    ├── UserProfileActivity (via menu) 
+└── UserAchievementsActivity (via menu) 
+ 
+                login screen                      game selection screen                   difficulty selection 
+ 
+user profile                     character matching game                  pronunciation quiz 
+
+
+===== page 3 =====
+3 
+ 
+ 
+3. Database Design and Implementation 
+A comprehensive SQLite database (ChineseGame.db) has been designed and implemented using a 
+custom MYsqliteopenhelper.class. The database architecture includes: 
+DAO Layer (10 Data Access Objects): 
+Data Access Object Corresponding Model Class Core Operations 
+UserDAO User User registration, login, profile modification, 
+login information tracking 
+AchievementDAO Achievement, UserAchievement Achievement definition, user achievement 
+progress tracking, achievement badge 
+unlocking 
+GameScoreDAO GameScore Game score recording (per game round), 
+historical score query 
+GameQuestionDetailDAO GameQuestionDetail Storage of answer status and time consumption 
+for each question 
+CharacterPinyinMatchingDAO CharacterPinyinMatching Management of character-pinyin matching 
+game question bank 
+PronunciationQuizDAO PronunciationQuiz Management of pronunciation quiz game 
+metadata 
+SentenceWordDAO SentenceWord Storage of game vocabulary and distractor 
+vocabulary 
+WordPuzzleDAO WordPuzzle Preparation for word puzzle game development 
+GameGeneralDAO GameGeneralData Access and management of general game data 
+ 
+Design Patterns: 
+ DaoFactory — Singleton pattern for consistent DAO instance management across the 
+application 
+ DataManager — Centralized JSON-to-SQLite data pipeline handling table reset, JSON 
+parsing, and bulk insert 
+ SeedDataLoader — Specialized loader for sentences and sentence words, integrating HanLP 
+segmentation for word position updates 
+ 
+
+
+===== page 4 =====
+4 
+ 
+Column Type Constraints 
+id INTEGER PRIMARY KEY, 
+AUTOINCREMENT 
+name VARCHAR(32) UNIQUE, NOT NULL 
+password VARCHAR(32) NOT NULL 
+email VARCHAR(64) — 
+registration_date DATETIME DEFAULT 
+CURRENT_TIMESTAMP 
+last_login_date DATETIME — 
+login_streak INTEGER DEFAULT 0 
+total_games_played INTEGER DEFAULT 0 
+total_score INTEGER DEFAULT 0 
+avatar_path VARCHAR(255) — 
+Users                                                                                     achievements 
+ 
+ 
+ 
+ 
+Column Type Constraints 
+id INTEGER PRIMARY KEY, 
+AUTOINCREMENT 
+user_id INTEGER NOT NULL, FK → 
+users(id) 
+achievement_id INTEGER NOT NULL, FK → 
+achievements(id) 
+unlocked_date DATETIME DEFAULT 
+CURRENT_TIMESTAMP 
+progress_value INTEGER DEFAULT 0 
+user_achievements                                                                                         game_scores 
+ 
+Column Type Constraints 
+id INTEGER PRIMARY KEY, 
+AUTOINCREMENT 
+game_score_id INTEGER NOT NULL, FK → 
+game_scores(id) 
+question_order INTEGER NOT NULL 
+question_id INTEGER NOT NULL 
+user_answer TEXT — 
+is_correct INTEGER DEFAULT 0 
+time_spent INTEGER DEFAULT 0 
+question_score INTEGER DEFAULT 0 
+max_score INTEGER DEFAULT 10 
+game_question_                                                                        details sentences 
+ 
+ 
+ 
+ 
+ 
+Column Type Constraints 
+id INTEGER PRIMARY KEY, 
+AUTOINCREMENT 
+Column Type Constraints 
+id INTEGER PRIMARY KEY, 
+AUTOINCREMENT 
+name VARCHAR(64) NOT NULL 
+description TEXT — 
+icon_path VARCHAR(255) — 
+type VARCHAR(32) NOT NULL 
+category VARCHAR(32) NOT NULL 
+required_value INTEGER DEFAULT 0 
+reward_points INTEGER DEFAULT 0 
+Column Type Constraints 
+id INTEGER PRIMARY KEY, 
+AUTOINCREMENT 
+user_id INTEGER NOT NULL, FK → 
+users(id) 
+game_type VARCHAR(32) NOT NULL 
+difficulty VARCHAR(16) NOT NULL 
+score INTEGER NOT NULL 
+max_possible_score INTEGER DEFAULT 0 
+accuracy REAL DEFAULT 0.0 
+time_spent INTEGER DEFAULT 0 
+play_date DATETIME DEFAULT 
+CURRENT_TIMESTAMP 
+completed INTEGER DEFAULT 1 
+Column Type Constraints 
+id INTEGER PRIMARY KEY, 
+AUTOINCREMENT 
+sentence TEXT NOT NULL, 
+UNIQUE 
+pinyin TEXT — 
+difficulty VARCHAR(16) NOT NULL, 
+DEFAULT 'EASY' 
+category VARCHAR(32) — 
+word_count INTEGER DEFAULT 0 
+
+===== page 5 =====
+5 
+ 
+sentence_id INTEGER NOT NULL, FK → 
+sentences(id) ON 
+DELETE CASCADE 
+word TEXT NOT NULL 
+pinyin TEXT — 
+pos_tag VARCHAR(8) NOT NULL 
+word_order INTEGER NOT NULL 
+word_position INTEGER DEFAULT 0 
+word_difficulty VARCHAR(16) DEFAULT 'EASY' 
+word_frequency INTEGER DEFAULT 0 
+sentence_words                                                                         character_matchi 
+Column Type Constraints 
+id INTEGER PRIMARY KEY, 
+AUTOINCREMENT 
+sentence_id INTEGER NOT NULL, FK → 
+sentences(id) 
+word_id INTEGER NOT NULL, FK → 
+sentence_words(id) 
+audio_path VARCHAR(255) — 
+difficulty VARCHAR(16) NOT NULL 
+hint TEXT — 
+pronunciation_quiz                                                                          word_puzzle 
+ 
+ 
+Column Type Constraints 
+id INTEGER PRIMARY KEY, 
+AUTOINCREMENT 
+Sentence_id INTEGER NOT NULL, FK → 
+sentences(id) 
+word_id INTEGER NOT NULL, FK → 
+sentence_words(id) 
+difficulty VARCHAR(16) NOT NULL 
+hint TEXT — 
+Column Type Constraints 
+id INTEGER PRIMARY KEY, 
+AUTOINCREMENT 
+sentence_id INTEGER NOT NULL, FK → 
+sentences(id) 
+difficulty VARCHAR(16) NOT NULL 
+hint TEXT — 
+
+
+===== page 6 =====
+6 
+ 
+4. JSON Question Bank and Data Loading 
+A rich question bank has been built using 7 JSON data files stored in assets/json/: 
+File Name Content Scale 
+sentences.json Sentence bank with pinyin, difficulty labels and categories 3794 lines 
+sentence_words.json Specialized vocabulary bank for sentence-based games Loaded by InitialDataLoader 
+character_matching.json Question bank for character-pinyin matching game Supports multiple difficulty levels 
+pronunciation_quiz.json Target question bank for pronunciation quiz game Supports multiple difficulty levels 
+word_puzzle.json Question bank for word puzzle game Data preparation completed 
+achievements.json Achievement definition file Includes milestone achievements and 
+game-specific achievements 
+users.json, 
+game_scores.json, 
+user_achievements.json 
+Initial test data — 
+Data Loading Pipeline: 
+1. User triggers "Reload JSON Data" or app initializes 
+2. DataManager.resetAllTablesAndSequences() clears all tables 
+3. JSON files are parsed with Gson and bulk-inserted into SQLite 
+4. SeedDataLoader processes sentences: imports text, runs HanLP segmentation, updates word 
+positions 
+ 
+JSON Data Structure Examples 
+ 
+ 
+ 
+ 
+ 
+ 
+5. Character-Pinyin Matching Game 
+The Character-Pinyin Matching game has been fully implemented with the following features: 
+ Core Gameplay: Display a Pinyin prompt; user selects the correct Chinese word from 4 
+options 
+
+
+===== page 7 =====
+7 
+ 
+ Session Structure: 10 questions per session with visual progress tracking (x/10) 
+ Hint System: Optional hints available for each question to assist learners 
+ Randomized Selection: Questions and distractors are randomly selected from the database, 
+ensuring variety across sessions 
+ Three Difficulty Levels: Easy (common characters), Medium (intermediate vocabulary), Hard 
+(advanced words) — selected before game start 
+ 
+Technical Implementation: 
+ CharacterMatchingDao queries the question bank with difficulty filtering 
+ Randomized distractor generation ensures wrong options are plausible but distinct 
+ Real-time result feedback with visual indicators (correct/incorrect) 
+ Game session data (score, per-question details) saved to database upon completion 
+ 
+getRandomSentenceWordsForGame() 
+ 
+getRandomWordsByPosTag() 
+ 
+ 
+ 
+
+
+===== page 8 =====
+8 
+ 
+6. Pronunciation Quiz with iFlyTek ISE 
+The Pronunciation Quiz has been implemented with professional-grade speech evaluation powered 
+by iFlyTek's Intelligent Speech Evaluation (ISE) engine: 
+a) Core Gameplay: Display a target word/sentence with Pinyin; user holds the microphone button 
+to record their pronunciation; receive instant multi-dimensional feedback 
+b) Speech Evaluation Engine: IseEvaluator.class manages the complete ISE WebSocket lifecycle: 
+ WebSocket connection establishment with iFlyTek API authentication 
+ Audio stream chunking and transmission 
+ XML result parsing for multi-dimensional scores 
+c) Score Mapping: Raw ISE score (0–100) is normalized to a game score (0–10) for consistent 
+user experience 
+d) UI Features: 
+ Hold-to-record microphone button 
+ Real-time VoiceWaveView volume visualization during recording 
+ Detailed ISE feedback display after evaluation 
+ Retry mechanism for re-attempting pronunciation 
+startAudioCapture() 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+===== page 9 =====
+9 
+ 
+calcRms() 
+ 
+parseAndNotifyResult() 
+ 
+ 
+7. Reward and Achievement System 
+A basic reward system has been implemented to motivate user engagement: 
+ Achievement Definitions: Loaded from achievements.json, including: 
+a) Milestone Badges — cumulative targets (e.g., "First Steps" after 10 games, "Login 
+Streak" for 7 consecutive days) 
+b) Game-Specific Badges — conditional achievements (e.g., "Perfect Match" for 10-streak 
+in Character Matching, "Excellent Pronunciation" for 3-streak in Pronunciation Quiz) 
+ Achievement Tracking: AchievementDao implements checkAndUnlockAchievements() to 
+evaluate unlock conditions after each game session 
+
+
+===== page 10 =====
+10 
+ 
+ User Interface: UserAchievementsActivity displays all earned achievements in a scrollable 
+list 
+ Score Persistence: GameScoreDao records session scores; GameQuestionDetailDao tracks 
+per-question performance for detailed analytics 
+Achievement table 
+ 
+ 
+尚需完成的任务 Work to do:   
+1) Word Puzzle Game Implementation 
+Utilize the pre-processed segmentation results from HanLP to implement the core sentence 
+rearrangement gameplay of the Word Puzzle game, apply a dedicated shuffling algorithm to 
+randomly disrupt the word order for each individual puzzle, and since the relevant DAO 
+(WordPuzzleDao), data model (WordPuzzle), and JSON data file (word_puzzle.json) have all 
+been pre-prepared, focus on developing the intuitive drag-and-drop or tap-to-reorder 
+interaction to enable users to arrange words and complete the puzzle. 
+2) Achievement System Enhancement 
+Develop and implement the complete unlock logic for all types of achievement badges and add 
+real-time notification popups to prompt users when an achievement is unlocked, add intuitive 
+visual progress indicators to display the completion status of partially finished achievements 
+for users’ reference, and further connect the achievement check mechanism with all game 
+types in the app, optimizing the currently basic connection logic to ensure comprehensive 
+achievement tracking across gameplay. 
+3) UI/UX Polish and Enhancement 
+Upgrade the app’s visual design by adding smooth animations and transition effects between 
+different screens to improve the fluency of page switching, create dedicated game result 
+
+
+===== page 11 =====
+11 
+ 
+summary screens that display detailed score breakdowns for users to review their game 
+performance, enhance the game selection interface by adding visual previews for each game 
+type to help users quickly understand gameplay features, and optimize the overall layout to 
+achieve adaptive display for different Android device screen sizes and orientations, ensuring a 
+consistent user experience across devices. 
+4) Comprehensive Testing 
+Write professional unit tests to verify the functional correctness of all DAO classes and the 
+core game logic of the app, create detailed instrumented tests to conduct end-to-end 
+verification for all complete UI interaction flows, carry out comprehensive compatibility 
+testing by running the app across different Android devices and various API levels to identify 
+and fix adaptation issues, and perform targeted performance testing for key processes 
+including database queries and speech SDK initialization to test their running efficiency and 
+stability. 
+5) Performance Optimization 
+Optimize the loading efficiency of JSON data files, with a key focus on reducing the loading 
+time of the large sentences.json file containing 3794 lines of data, optimize the overall 
+database query performance by adding proper and reasonable indexes to relevant database 
+tables to speed up data retrieval, and conduct technical optimization for the speech SDK to 
+effectively reduce its initialization latency and improve the app’s startup and functional 
+response speed. 
+6) Final Report Writing 
+Systematically document the entire development process of the project, including the 
+background, key technical decisions made at each stage, and the detailed rationale for the 
+platform migration from Unity to native Android development, comprehensively incorporate 
+all evaluation results and analysis data obtained from the various testing phases of the project 
+into the report to reflect the app’s performance and usability, and complete the writing of all 
+required chapters in strict accordance with the pre-defined final report structure to ensure the 
+report is complete, logical and standardized. 
+存在问题 Problems:   
+1) HanLP Library Size on Mobile Devices 
+Running a full NLP library on mobile devices presented memory and performance challenges. 
+The standard HanLP distribution includes large dictionary files that could impact app size and 
+loading time. 
+ 
+2) Speech Recognition Accuracy for Non-native Speakers 
+The iFlyTek ISE engine is primarily trained on native Chinese speakers. Non-native learners 
+with varying accents may receive lower scores, which could affect user motivation and the 
+fairness of the scoring system. 
+ 
+3) Unreasonable Difficulty Classification of Questions Across Three Game Modes 
+The current difficulty grading for questions in the Character-Pinyin Matching, Pronunciation 
+Quiz and upcoming Word Puzzle games is based on subjective manual labeling, lacking a 
+unified and data-driven difficulty evaluation standard. This leads to inconsistent difficulty 
+calibration between different game modes—for example, some Medium-level questions in the 
+Pronunciation Quiz are actually equivalent to Hard-level in the Character-Pinyin Matching 
+game. Meanwhile, individual game modes have internal difficulty confusion, such as overly 
+simple Hard-level questions or overly challenging Easy-level questions in partial game 
+sections, which seriously affects the user's learning and gaming experience and fails to achieve 
+the intended progressive difficulty guidance for learners. 
+ 
+
+===== page 12 =====
+12 
+ 
+拟采取的办法 Solutions: 
+1) HanLP Optimization 
+Adopted the portable version (1.8.6) of HanLP, which is optimized for smaller footprints. Pre-
+processed segmentation results during data loading via SeedDataLoader and cached results in 
+the SQLite database, so HanLP does not need to run during gameplay. 
+ 
+2) Pronunciation Scoring Normalization 
+Mapped raw ISE scores (0–100) to a normalized game score (0–10) with learner-friendly 
+thresholds. Provided multi-dimensional feedback (accuracy, fluency, completeness, tone) so 
+users can understand specific areas for improvement rather than just seeing a single number. 
+ 
+3) Standardized Difficulty Classification System for Cross-Game Questions 
+First, establish a unified multi-dimensional difficulty evaluation index system applicable to all 
+three game modes, including core indicators such as Chinese character stroke count, word 
+frequency of vocabulary, pinyin/tone complexity, sentence length and syntactic difficulty, and 
+assign scientific weight coefficients to each indicator according to the characteristics of 
+different gameplays. Second, use a data-driven labeling method to replace manual subjective 
+labeling: based on the established index system, write an automated scoring script to calculate 
+the difficulty score of each question, and divide the questions into Easy, Medium and Hard 
+levels with clear score thresholds to ensure cross-game difficulty consistency. 
+论文结构 Structure of the final report: (Chapter headings and section sub headings) 
+ 
+Chapter 1: Introduction 
+    1.1 Background and Motivation 
+    1.2 Project Aims and Objectives 
+    1.3 Report Structure 
+ 
+Chapter 2: Literature Review 
+    2.1 Gamification in Language Learning 
+    2.2 Review of Existing Chinese Learning Applications 
+        2.2.1 Duolingo 
+        2.2.2 Baicizhan 
+        2.2.3 Other Chinese Learning Tools 
+    2.3 Speech Recognition and Evaluation Technologies 
+    2.4 Natural Language Processing for Chinese 
+    2.5 Mobile Application Development Frameworks 
+    2.6 Summary 
+ 
+Chapter 3: Requirements Analysis 
+    3.1 User Requirements 
+    3.2 Functional Requirements 
+        3.2.1 User Management 
+        3.2.2 Game System 
+        3.2.3 Reward System 
+    3.3 Non-functional Requirements 
+    3.4 Use Case Diagrams 
+    3.5 Ethical Considerations 
+ 
+Chapter 4: System Design 
+    4.1 System Architecture Overview 
+    4.2 Database Design 
+        4.2.1 Entity-Relationship Diagram 
+        4.2.2 Table Schema Definitions 
+    4.3 UI/UX Design 
+
+===== page 13 =====
+13 
+ 
+        4.3.1 Wireframes 
+        4.3.2 Navigation Flow 
+    4.4 Game Mechanics Design 
+        4.4.1 Character-Pinyin Matching 
+        4.4.2 Pronunciation Quiz 
+        4.4.3 Word Puzzle 
+    4.5 API and SDK Integration Design 
+        4.5.1 iFlyTek ISE Integration 
+        4.5.2 HanLP and pinyin4j Integration 
+    4.6 Difficulty and Reward System Design 
+ 
+Chapter 5: Implementation 
+    5.1 Development Environment and Tools 
+    5.2 Technology Selection and Platform Migration 
+    5.3 Database Implementation 
+    5.4 User Authentication and Profile Management 
+    5.5 Character-Pinyin Matching Game Implementation 
+    5.6 Pronunciation Quiz Implementation 
+        5.6.1 IseEvaluator WebSocket Architecture 
+        5.6.2 Audio Recording and Streaming 
+        5.6.3 Score Parsing and Normalization 
+    5.7 Word Puzzle Implementation 
+        5.7.1 HanLP Sentence Segmentation 
+        5.7.2 Shuffling Algorithm 
+    5.8 Achievement and Reward System 
+    5.9 Data Loading and Management 
+ 
+Chapter 6: Testing and Evaluation 
+    6.1 Testing Strategy 
+    6.2 Unit Testing 
+    6.3 Integration Testing 
+    6.4 UI/UX Testing 
+    6.5 Performance Testing 
+    6.6 Cross-device Compatibility Testing 
+    6.7 User Acceptance Testing 
+    6.8 Test Results Summary 
+ 
+Chapter 7: Conclusion 
+    7.1 Summary of Achievements 
+    7.2 Limitations 
+    7.3 Future Work 
+ 
+References 
+ 
+Appendices 
+    Appendix A: Full Database Schema 
+    Appendix B: Key Code Listings 
+    Appendix C: User Guide 
+    Appendix D: Test Results 
+ 
