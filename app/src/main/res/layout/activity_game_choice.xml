@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_game_choice_menu"
     android:orientation="vertical"
     tools:context=".game_choice">
 
     <com.google.android.material.appbar.MaterialToolbar
+        style="@style/Widget.ChineseGame.Toolbar"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/duo_green"
         app:title="Choose Game"
         app:titleCentered="true"
         app:titleTextColor="@android:color/white">
@@ -22,7 +23,7 @@
             android:layout_height="36dp"
             android:layout_gravity="end|center_vertical"
             android:layout_marginEnd="16dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@drawable/bg_chip_info"
             android:clickable="true"
             android:contentDescription="Menu"
             android:focusable="true"
@@ -35,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:clipToPadding="false"
         android:fillViewport="true">
 
         <LinearLayout
@@ -42,7 +44,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp">
 
             <ImageView
                 android:id="@+id/iv_choice_mascot"
@@ -61,16 +65,14 @@
                 android:layout_marginBottom="14dp"
                 android:gravity="center"
                 android:text="Pick one challenge and start your streak"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textColor="@color/duo_text_muted" />
 
             <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.ChineseGame.Card"
                 android:id="@+id/card_game_modes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="18dp"
-                app:cardElevation="2dp"
-                app:strokeColor="@color/duo_green"
-                app:strokeWidth="1dp">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -88,7 +90,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_pronunciation_quiz"
-                        style="@style/Widget.ChineseGame.Button"
+                        style="@style/Widget.ChineseGame.Button.Secondary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
@@ -96,7 +98,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_word_puzzle"
-                        style="@style/Widget.ChineseGame.Button"
+                        style="@style/Widget.ChineseGame.Button.Compact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Word Puzzle" />

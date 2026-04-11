@@ -1,19 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFA4F34A</color>
+    <color name="purple_200">#FFB6EE74</color>
     <color name="purple_500">#FF58CC02</color>
-    <color name="purple_700">#FF46A302</color>
-    <color name="teal_200">#FFFFC800</color>
-    <color name="teal_700">#FFD9A800</color>
+    <color name="purple_700">#FF3F9800</color>
+    <color name="teal_200">#FF32C8FF</color>
+    <color name="teal_700">#FF1497CC</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="surface_light">#FFF9FFF3</color>
-    <color name="surface_dark">#FF10150B</color>
+    <color name="surface_light">#FFF7FCF0</color>
+    <color name="surface_dark">#FF11180E</color>
     <color name="duo_green">#FF58CC02</color>
-    <color name="duo_green_dark">#FF46A302</color>
+    <color name="duo_green_dark">#FF3D9300</color>
+    <color name="duo_green_soft">#FFE6F8D2</color>
     <color name="duo_red">#FFFF4B4B</color>
-    <color name="duo_red_dark">#FFE53935</color>
+    <color name="duo_red_dark">#FFD83A38</color>
     <color name="duo_blue">#FF1CB0F6</color>
-    <color name="duo_text_dark">#FF1E2A15</color>
+    <color name="duo_blue_soft">#FFDDF2FF</color>
+    <color name="duo_text_dark">#FF1A2A11</color>
+    <color name="duo_text_muted">#FF586D52</color>
+    <color name="duo_card_bg">#F2FFFFFF</color>
+    <color name="duo_card_bg_strong">#FFFFFFFF</color>
+    <color name="duo_card_stroke">#3D4BAE07</color>
+    <color name="duo_divider">#24213A12</color>
+    <color name="duo_toolbar_start">#FF68D81C</color>
+    <color name="duo_toolbar_end">#FF49B612</color>
+    <color name="duo_bg_top">#FFFAFFEE</color>
+    <color name="duo_bg_mid">#FFF0F9DA</color>
+    <color name="duo_bg_bottom">#FFE7F2D1</color>
+    <color name="duo_bg_secondary_top">#FFF1FBFF</color>
+    <color name="duo_bg_secondary_bottom">#FFE7F4E3</color>
+    <color name="duo_chip_bg">#EFFFFFFF</color>
+    <color name="duo_chip_text">#FF355528</color>
 </resources>
 

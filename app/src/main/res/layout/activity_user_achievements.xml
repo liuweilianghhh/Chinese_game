@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_screen_secondary"
     android:orientation="vertical"
     tools:context=".UserAchievementsActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
+        style="@style/Widget.ChineseGame.Toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         app:title="My Achievements"
         app:titleCentered="true"
         app:titleTextColor="@android:color/white" />
@@ -24,12 +25,26 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:text="Display all achievements you have unlocked"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+        android:textColor="@color/duo_text_muted" />
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="4dp"
+        android:contentDescription="Cat Mascot"
+        android:src="@drawable/ui_icon_mascot" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@drawable/bg_panel_soft"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="8dp"
         android:paddingHorizontal="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
@@ -43,7 +58,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_back"
-        style="@style/Widget.ChineseGame.Button"
+        style="@style/Widget.ChineseGame.Button.Outlined"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

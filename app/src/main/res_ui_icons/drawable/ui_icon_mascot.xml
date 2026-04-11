@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="120dp"
-    android:height="120dp"
-    android:viewportWidth="120"
-    android:viewportHeight="120">
-    <path
-        android:fillColor="#FF58CC02"
-        android:pathData="M60,8C33.5,8 12,29.5 12,56s21.5,48 48,48 48,-21.5 48,-48S86.5,8 60,8z" />
-    <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M40,44a14,14 0,1 0,0 28a14,14 0,1 0,0 -28zM80,44a14,14 0,1 0,0 28a14,14 0,1 0,0 -28z" />
-    <path
-        android:fillColor="#FF1B1B1B"
-        android:pathData="M41,53a6,6 0,1 0,0 12a6,6 0,1 0,0 -12zM79,53a6,6 0,1 0,0 12a6,6 0,1 0,0 -12z" />
-    <path
-        android:fillColor="#FFF9A825"
-        android:pathData="M60,63l9,7l-9,7l-9,-7z" />
-    <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M43,84c3,7 9.9,12 17,12s14,-5 17,-12c-4.3,2.9 -10.5,4.7 -17,4.7S47.3,86.9 43,84z" />
-</vector>
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:antialias="true"
+    android:filter="true"
+    android:gravity="center"
+    android:src="@drawable/ui_icon_mascot_cat" />

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_panel"
     android:minWidth="280dp"
     android:orientation="vertical"
     android:padding="24dp">
@@ -13,6 +14,7 @@
         android:layout_marginBottom="8dp"
         android:text="Select Difficulty"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:textColor="@color/duo_text_dark"
         android:textStyle="bold" />
 
     <TextView
@@ -22,7 +24,8 @@
         android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="All 10 questions in this game will be of the selected difficulty."
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+        android:textColor="@color/duo_text_muted" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_difficulty_easy"
@@ -34,7 +37,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_difficulty_medium"
-        style="@style/Widget.ChineseGame.Button"
+        style="@style/Widget.ChineseGame.Button.Secondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
@@ -42,7 +45,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_difficulty_hard"
-        style="@style/Widget.ChineseGame.Button"
+        style="@style/Widget.ChineseGame.Button.Danger"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"

@@ -1,6 +1,8 @@
 package com.example.chinese_game;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -21,6 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class UserAchievementsActivity extends AppCompatActivity {
+    private static final String TAG = "UserAchievementsActivity";
 
     private LinearLayout achievementsContainer;
     private Button btnBack;
@@ -54,25 +57,53 @@ public class UserAchievementsActivity extends AppCompatActivity {
     }
 
     private void loadUserAchievements() {
-        List<UserAchievement> userAchievements = achievementDao.getUserAchievements(userId);
-
-        if (userAchievements.isEmpty()) {
-            TextView noAchievementsText = new TextView(this);
-            noAchievementsText.setText("You haven't unlocked any achievements yet!\n\nKeep playing to earn achievements!");
-            noAchievementsText.setTextSize(16);
-            noAchievementsText.setTextColor(MaterialColors.getColor(noAchievementsText, com.google.android.material.R.attr.colorOnSurfaceVariant));
-            noAchievementsText.setPadding(dpToPx(16), dpToPx(24), dpToPx(16), dpToPx(24));
-            noAchievementsText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            achievementsContainer.addView(noAchievementsText);
+        if (achievementsContainer == null) {
+            Toast.makeText(this, "Achievement view not found", Toast.LENGTH_SHORT).show();
             return;
         }
+        achievementsContainer.removeAllViews();
 
-        for (UserAchievement userAchievement : userAchievements) {
-            Achievement achievement = achievementDao.findById(userAchievement.getAchievementId());
-            if (achievement != null) {
-                View achievementCard = createAchievementCard(achievement, userAchievement);
-                achievementsContainer.addView(achievementCard);
+        try {
+            List<UserAchievement> userAchievements = achievementDao.getUserAchievements(userId);
+
+            if (userAchievements == null || userAchievements.isEmpty()) {
+                TextView noAchievementsText = new TextView(this);
+                noAchievementsText.setText("You haven't unlocked any achievements yet!\n\nKeep playing to earn achievements!");
+                noAchievementsText.setTextSize(16);
+                noAchievementsText.setTextColor(resolveMaterialColor(
+                        noAchievementsText,
+                        com.google.android.material.R.attr.colorOnSurfaceVariant,
+                        Color.GRAY));
+                noAchievementsText.setPadding(dpToPx(16), dpToPx(24), dpToPx(16), dpToPx(24));
+                noAchievementsText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                achievementsContainer.addView(noAchievementsText);
+                return;
             }
+
+            for (UserAchievement userAchievement : userAchievements) {
+                try {
+                    Achievement achievement = achievementDao.findById(userAchievement.getAchievementId());
+                    if (achievement != null) {
+                        View achievementCard = createAchievementCard(achievement, userAchievement);
+                        achievementsContainer.addView(achievementCard);
+                    }
+                } catch (Exception itemException) {
+                    Log.e(TAG, "Failed to render achievementId=" + userAchievement.getAchievementId(), itemException);
+                }
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to load achievements for userId=" + userId, e);
+            Toast.makeText(this, "Failed to load achievements", Toast.LENGTH_SHORT).show();
+        }
+
+        if (achievementsContainer.getChildCount() == 0) {
+            TextView fallbackText = new TextView(this);
+            fallbackText.setText("No achievements available.");
+            fallbackText.setTextSize(16);
+            fallbackText.setTextColor(Color.GRAY);
+            fallbackText.setPadding(dpToPx(16), dpToPx(24), dpToPx(16), dpToPx(24));
+            fallbackText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            achievementsContainer.addView(fallbackText);
         }
     }
 
@@ -81,7 +112,10 @@ public class UserAchievementsActivity extends AppCompatActivity {
         cardView.setRadius(dpToPx(16));
         cardView.setCardElevation(dpToPx(2));
         cardView.setStrokeWidth(dpToPx(1));
-        cardView.setStrokeColor(MaterialColors.getColor(cardView, com.google.android.material.R.attr.colorOutline));
+        cardView.setStrokeColor(resolveMaterialColor(
+                cardView,
+                com.google.android.material.R.attr.colorOutline,
+                Color.LTGRAY));
 
         LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -96,32 +130,50 @@ public class UserAchievementsActivity extends AppCompatActivity {
         cardView.addView(cardLayout);
 
         TextView nameText = new TextView(this);
-        nameText.setText(achievement.getName());
+        nameText.setText(achievement.getName() != null ? achievement.getName() : "Unnamed Achievement");
         nameText.setTextSize(18);
-        nameText.setTextColor(MaterialColors.getColor(nameText, com.google.android.material.R.attr.colorOnSurface));
+        nameText.setTextColor(resolveMaterialColor(
+                nameText,
+                com.google.android.material.R.attr.colorOnSurface,
+                Color.BLACK));
         nameText.setTypeface(null, android.graphics.Typeface.BOLD);
         cardLayout.addView(nameText);
 
         TextView descriptionText = new TextView(this);
-        descriptionText.setText(achievement.getDescription());
+        descriptionText.setText(achievement.getDescription() != null ? achievement.getDescription() : "");
         descriptionText.setTextSize(14);
-        descriptionText.setTextColor(MaterialColors.getColor(descriptionText, com.google.android.material.R.attr.colorOnSurfaceVariant));
+        descriptionText.setTextColor(resolveMaterialColor(
+                descriptionText,
+                com.google.android.material.R.attr.colorOnSurfaceVariant,
+                Color.DKGRAY));
         descriptionText.setPadding(0, dpToPx(4), 0, dpToPx(8));
         cardLayout.addView(descriptionText);
 
         LinearLayout categoryLayout = new LinearLayout(this);
         categoryLayout.setOrientation(LinearLayout.HORIZONTAL);
+        String categoryDisplayName = achievement.getCategory() != null
+                ? achievement.getCategory().getDisplayName()
+                : "General";
+        String typeDisplayName = achievement.getType() != null
+                ? achievement.getType().getDisplayName()
+                : "Milestone Badge";
 
         TextView categoryText = new TextView(this);
-        categoryText.setText(String.format("Category: %s", achievement.getCategory().getDisplayName()));
+        categoryText.setText(String.format("Category: %s", categoryDisplayName));
         categoryText.setTextSize(12);
-        categoryText.setTextColor(MaterialColors.getColor(categoryText, com.google.android.material.R.attr.colorPrimary));
+        categoryText.setTextColor(resolveMaterialColor(
+                categoryText,
+                com.google.android.material.R.attr.colorPrimary,
+                Color.BLUE));
         categoryLayout.addView(categoryText);
 
         TextView typeText = new TextView(this);
-        typeText.setText(String.format(" | Type: %s", achievement.getType().getDisplayName()));
+        typeText.setText(String.format(" | Type: %s", typeDisplayName));
         typeText.setTextSize(12);
-        typeText.setTextColor(MaterialColors.getColor(typeText, com.google.android.material.R.attr.colorSecondary));
+        typeText.setTextColor(resolveMaterialColor(
+                typeText,
+                com.google.android.material.R.attr.colorSecondary,
+                Color.GRAY));
         categoryLayout.addView(typeText);
 
         cardLayout.addView(categoryLayout);
@@ -132,7 +184,10 @@ public class UserAchievementsActivity extends AppCompatActivity {
                         ? dateFormat.format(userAchievement.getUnlockedDate())
                         : "Unknown"));
         unlockTimeText.setTextSize(12);
-        unlockTimeText.setTextColor(MaterialColors.getColor(unlockTimeText, com.google.android.material.R.attr.colorPrimary));
+        unlockTimeText.setTextColor(resolveMaterialColor(
+                unlockTimeText,
+                com.google.android.material.R.attr.colorPrimary,
+                Color.GRAY));
         unlockTimeText.setPadding(0, dpToPx(8), 0, 0);
         cardLayout.addView(unlockTimeText);
 
@@ -140,7 +195,10 @@ public class UserAchievementsActivity extends AppCompatActivity {
             TextView rewardText = new TextView(this);
             rewardText.setText(String.format("Reward Points: %d", achievement.getRewardPoints()));
             rewardText.setTextSize(12);
-            rewardText.setTextColor(MaterialColors.getColor(rewardText, com.google.android.material.R.attr.colorError));
+            rewardText.setTextColor(resolveMaterialColor(
+                    rewardText,
+                    com.google.android.material.R.attr.colorError,
+                    Color.RED));
             rewardText.setPadding(0, dpToPx(4), 0, 0);
             cardLayout.addView(rewardText);
         }
@@ -151,6 +209,15 @@ public class UserAchievementsActivity extends AppCompatActivity {
     private int dpToPx(int dp) {
         float density = getResources().getDisplayMetrics().density;
         return Math.round(dp * density);
+    }
+
+    private int resolveMaterialColor(View view, int attr, int fallbackColor) {
+        try {
+            return MaterialColors.getColor(view, attr);
+        } catch (Exception e) {
+            Log.w(TAG, "Fallback color used for attr=" + attr, e);
+            return fallbackColor;
+        }
     }
 }
 

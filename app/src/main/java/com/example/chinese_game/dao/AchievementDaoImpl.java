@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.chinese_game.ChineseGameApplication;
 import com.example.chinese_game.MYsqliteopenhelper;
@@ -24,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AchievementDaoImpl implements AchievementDao {
+    private static final String TAG = "AchievementDaoImpl";
     private MYsqliteopenhelper dbHelper;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
     private UserDao userDao;
@@ -55,16 +57,22 @@ public class AchievementDaoImpl implements AchievementDao {
     @Override
     public Achievement findById(int achievementId) {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
-        Cursor cursor = db.query("achievements", null, "id=?",
-                new String[]{String.valueOf(achievementId)}, null, null, null);
+        Cursor cursor = null;
+        try {
+            cursor = db.query("achievements", null, "id=?",
+                    new String[]{String.valueOf(achievementId)}, null, null, null);
 
-        Achievement achievement = null;
-        if (cursor.moveToFirst()) {
-            achievement = cursorToAchievement(cursor);
+            if (cursor.moveToFirst()) {
+                return cursorToAchievement(cursor);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "findById failed for achievementId=" + achievementId, e);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-        cursor.close();
-        // Keep database connection open for App Inspection real-time access
-        return achievement;
+        return null;
     }
 
     @Override
@@ -143,7 +151,10 @@ public class AchievementDaoImpl implements AchievementDao {
         ContentValues cv = new ContentValues();
         cv.put("user_id", userAchievement.getUserId());
         cv.put("achievement_id", userAchievement.getAchievementId());
-        cv.put("unlocked_date", dateFormat.format(userAchievement.getUnlockedDate()));
+        Date unlockedDate = userAchievement.getUnlockedDate() != null
+                ? userAchievement.getUnlockedDate()
+                : new Date();
+        cv.put("unlocked_date", dateFormat.format(unlockedDate));
         cv.put("progress_value", userAchievement.getProgressValue());
 
         long result = db.insert("user_achievements", null, cv);
@@ -166,34 +177,63 @@ public class AchievementDaoImpl implements AchievementDao {
     @Override
     public List<UserAchievement> getUserAchievements(int userId) {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
-        Cursor cursor = db.rawQuery(
-            "SELECT ua.*, a.name, a.description, a.reward_points " +
-            "FROM user_achievements ua " +
-            "JOIN achievements a ON ua.achievement_id = a.id " +
-            "WHERE ua.user_id=? " +
-            "ORDER BY ua.unlocked_date DESC",
-            new String[]{String.valueOf(userId)});
-
         List<UserAchievement> userAchievements = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            UserAchievement ua = new UserAchievement();
-            ua.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
-            ua.setUserId(cursor.getInt(cursor.getColumnIndexOrThrow("user_id")));
-            ua.setAchievementId(cursor.getInt(cursor.getColumnIndexOrThrow("achievement_id")));
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery(
+                "SELECT ua.*, a.name, a.description, a.reward_points " +
+                "FROM user_achievements ua " +
+                "JOIN achievements a ON ua.achievement_id = a.id " +
+                "WHERE ua.user_id=? " +
+                "ORDER BY ua.unlocked_date DESC",
+                new String[]{String.valueOf(userId)});
 
-            try {
-                String dateStr = cursor.getString(cursor.getColumnIndexOrThrow("unlocked_date"));
-                if (dateStr != null) {
-                    ua.setUnlockedDate(dateFormat.parse(dateStr));
+            int idIndex = cursor.getColumnIndex("id");
+            int userIdIndex = cursor.getColumnIndex("user_id");
+            int achievementIdIndex = cursor.getColumnIndex("achievement_id");
+            int unlockedDateIndex = cursor.getColumnIndex("unlocked_date");
+            int progressValueIndex = cursor.getColumnIndex("progress_value");
+
+            while (cursor.moveToNext()) {
+                UserAchievement ua = new UserAchievement();
+
+                if (idIndex >= 0) {
+                    ua.setId(cursor.getInt(idIndex));
                 }
-            } catch (ParseException e) {
-                ua.setUnlockedDate(new Date());
-            }
+                if (userIdIndex >= 0) {
+                    ua.setUserId(cursor.getInt(userIdIndex));
+                } else {
+                    ua.setUserId(userId);
+                }
+                if (achievementIdIndex >= 0) {
+                    ua.setAchievementId(cursor.getInt(achievementIdIndex));
+                }
 
-            ua.setProgressValue(cursor.getInt(cursor.getColumnIndexOrThrow("progress_value")));
-            userAchievements.add(ua);
+                try {
+                    String dateStr = unlockedDateIndex >= 0 ? cursor.getString(unlockedDateIndex) : null;
+                    if (dateStr != null) {
+                        ua.setUnlockedDate(dateFormat.parse(dateStr));
+                    } else {
+                        ua.setUnlockedDate(new Date());
+                    }
+                } catch (ParseException e) {
+                    ua.setUnlockedDate(new Date());
+                }
+
+                if (progressValueIndex >= 0) {
+                    ua.setProgressValue(cursor.getInt(progressValueIndex));
+                } else {
+                    ua.setProgressValue(0);
+                }
+                userAchievements.add(ua);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to load user achievements for userId=" + userId, e);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-        cursor.close();
         return userAchievements;
     }
 
@@ -260,7 +300,7 @@ public class AchievementDaoImpl implements AchievementDao {
 
         for (Achievement achievement : milestones) {
             if (isAchievementUnlocked(userId, achievement.getId())) {
-                continue; // 已经解锁
+                continue; // Already unlocked
             }
 
             boolean shouldUnlock = false;
@@ -297,7 +337,7 @@ public class AchievementDaoImpl implements AchievementDao {
 
         for (Achievement achievement : gameAchievements) {
             if (isAchievementUnlocked(userId, achievement.getId())) {
-                continue; // 已经解锁
+                continue; // Already unlocked
             }
 
             boolean shouldUnlock = false;
@@ -348,21 +388,13 @@ public class AchievementDaoImpl implements AchievementDao {
         achievement.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("description")));
         achievement.setIconPath(cursor.getString(cursor.getColumnIndexOrThrow("icon_path")));
 
-        // Parse achievement type
+        // Parse achievement type with null-safe fallback
         String typeStr = cursor.getString(cursor.getColumnIndexOrThrow("type"));
-        try {
-            achievement.setType(Achievement.AchievementType.valueOf(typeStr));
-        } catch (IllegalArgumentException e) {
-            achievement.setType(Achievement.AchievementType.MILESTONE);
-        }
+        achievement.setType(parseAchievementType(typeStr));
 
-        // Parse achievement category
+        // Parse achievement category with null-safe fallback
         String categoryStr = cursor.getString(cursor.getColumnIndexOrThrow("category"));
-        try {
-            achievement.setCategory(Achievement.AchievementCategory.valueOf(categoryStr));
-        } catch (IllegalArgumentException e) {
-            achievement.setCategory(Achievement.AchievementCategory.GENERAL);
-        }
+        achievement.setCategory(parseAchievementCategory(categoryStr));
 
         achievement.setRequiredValue(cursor.getInt(cursor.getColumnIndexOrThrow("required_value")));
         achievement.setRewardPoints(cursor.getInt(cursor.getColumnIndexOrThrow("reward_points")));
@@ -392,23 +424,15 @@ public class AchievementDaoImpl implements AchievementDao {
                 achievement.setRequiredValue(jsonAchievement.optInt("required_value", 0));
                 achievement.setRewardPoints(jsonAchievement.optInt("reward_points", 0));
 
-                // 解析成就类型
+                // Parse achievement type
                 String typeStr = jsonAchievement.optString("type", "MILESTONE");
-                try {
-                    achievement.setType(Achievement.AchievementType.valueOf(typeStr));
-                } catch (IllegalArgumentException e) {
-                    achievement.setType(Achievement.AchievementType.MILESTONE);
-                }
+                achievement.setType(parseAchievementType(typeStr));
 
-                // 解析成就分类
+                // Parse achievement category
                 String categoryStr = jsonAchievement.optString("category", "GENERAL");
-                try {
-                    achievement.setCategory(Achievement.AchievementCategory.valueOf(categoryStr));
-                } catch (IllegalArgumentException e) {
-                    achievement.setCategory(Achievement.AchievementCategory.GENERAL);
-                }
+                achievement.setCategory(parseAchievementCategory(categoryStr));
 
-                // 检查成就名称是否已存在
+                // Check whether achievement name already exists
                 boolean achievementExists = false;
                 for (Achievement existing : findAll()) {
                     if (existing.getName().equals(achievement.getName())) {
@@ -452,12 +476,12 @@ public class AchievementDaoImpl implements AchievementDao {
                 int achievementId = jsonUserAchievement.optInt("achievement_id", -1);
 
                 if (userId == -1 || achievementId == -1) {
-                    continue; // 跳过无效数据
+                    continue; // Skip invalid data
                 }
 
                 UserAchievement userAchievement = new UserAchievement(userId, achievementId);
 
-                // 解析日期
+                // Parse unlocked date
                 String unlockedDateStr = jsonUserAchievement.optString("unlocked_date", null);
                 if (unlockedDateStr != null && !unlockedDateStr.isEmpty()) {
                     try {
@@ -516,4 +540,27 @@ public class AchievementDaoImpl implements AchievementDao {
             return -1;
         }
     }
+
+    private Achievement.AchievementType parseAchievementType(String rawType) {
+        if (rawType == null) {
+            return Achievement.AchievementType.MILESTONE;
+        }
+        try {
+            return Achievement.AchievementType.valueOf(rawType.trim().toUpperCase(Locale.ROOT));
+        } catch (Exception e) {
+            return Achievement.AchievementType.MILESTONE;
+        }
+    }
+
+    private Achievement.AchievementCategory parseAchievementCategory(String rawCategory) {
+        if (rawCategory == null) {
+            return Achievement.AchievementCategory.GENERAL;
+        }
+        try {
+            return Achievement.AchievementCategory.valueOf(rawCategory.trim().toUpperCase(Locale.ROOT));
+        } catch (Exception e) {
+            return Achievement.AchievementCategory.GENERAL;
+        }
+    }
 }
+
