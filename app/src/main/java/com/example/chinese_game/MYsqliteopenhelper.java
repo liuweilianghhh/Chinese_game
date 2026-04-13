@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class MYsqliteopenhelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "ChineseGame.db";
-    private static final int DB_VERSION = 14;
+    private static final int DB_VERSION = 15;
 
     // 保持数据库连接打开以便App Inspection实时访问
     private static SQLiteDatabase persistentDatabase;
@@ -116,25 +116,21 @@ public class MYsqliteopenhelper extends SQLiteOpenHelper {
     private static final String CREATE_CHARACTER_MATCHING =
         "CREATE TABLE character_matching (" +
         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-        "sentence_id INTEGER NOT NULL, " +
         "word_id INTEGER NOT NULL, " +
         "difficulty VARCHAR(16) NOT NULL, " +
         "hint TEXT, " +
-        "FOREIGN KEY (sentence_id) REFERENCES sentences(id), " +
-        "FOREIGN KEY (word_id) REFERENCES sentence_words(id)" +
+        "FOREIGN KEY (word_id) REFERENCES game_words(id)" +
         ")";
 
     // 发音测验游戏表（规范化，引用sentences和sentence_words）
     private static final String CREATE_PRONUNCIATION_QUIZ =
         "CREATE TABLE pronunciation_quiz (" +
         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-        "sentence_id INTEGER NOT NULL, " +
         "word_id INTEGER NOT NULL, " +
         "audio_path VARCHAR(255), " +
         "difficulty VARCHAR(16) NOT NULL, " +
         "hint TEXT, " +
-        "FOREIGN KEY (sentence_id) REFERENCES sentences(id), " +
-        "FOREIGN KEY (word_id) REFERENCES sentence_words(id)" +
+        "FOREIGN KEY (word_id) REFERENCES game_words(id)" +
         ")";
 
     // 字词谜题游戏表（规范化，仅引用句子）
@@ -216,10 +212,8 @@ public class MYsqliteopenhelper extends SQLiteOpenHelper {
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_sentence_words_pos_tag ON sentence_words(pos_tag)");
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_sentence_words_word_difficulty ON sentence_words(word_difficulty)");
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_sentence_words_word ON sentence_words(word)");
-        db.execSQL("CREATE INDEX IF NOT EXISTS idx_character_matching_sentence_id ON character_matching(sentence_id)");
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_character_matching_word_id ON character_matching(word_id)");
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_character_matching_difficulty ON character_matching(difficulty)");
-        db.execSQL("CREATE INDEX IF NOT EXISTS idx_pronunciation_quiz_sentence_id ON pronunciation_quiz(sentence_id)");
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_pronunciation_quiz_word_id ON pronunciation_quiz(word_id)");
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_pronunciation_quiz_difficulty ON pronunciation_quiz(difficulty)");
         db.execSQL("CREATE INDEX IF NOT EXISTS idx_word_puzzle_sentence_id ON word_puzzle(sentence_id)");

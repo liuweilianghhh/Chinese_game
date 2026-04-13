@@ -1,0 +1,121 @@
+1. Chapter 1 Introduction
+1.1 Background and Motivation  
+1.2 Problem Statement  
+1.3 Aim and Objectives  
+1.4 Project Scope  
+1.5 Project Contributions  
+1.6 Report Structure  
+
+2. Chapter 2 Literature Review
+2.1 Gamification in Language Learning  
+2.2 Review of Existing Chinese Learning Applications  
+2.2.1 Duolingo  
+2.2.2 Baicizhan  
+2.2.3 Other Chinese Learning Tools  
+2.3 Speech Recognition and Pronunciation Assessment Technologies  
+2.4 Natural Language Processing in Chinese Learning Applications  
+2.5 Mobile Educational Application Development Approaches  
+2.6 Summary of Literature Review  
+
+3. Chapter 3 Requirements Analysis  
+3.1 Project Overview  
+3.2 Target Users and Learning Scenarios  
+3.3 Requirement Elicitation  
+3.4 Functional Requirements  
+3.4.1 User Management Requirements  
+3.4.2 Game Selection and Difficulty Requirements  
+3.4.3 Character Matching Requirements  
+3.4.4 Pronunciation Quiz Requirements  
+3.4.5 Word Puzzle Requirements  
+3.4.6 Achievement and Reward Requirements  
+3.4.7 Progress Tracking Requirements  
+3.5 Non-functional Requirements  
+3.6 Ethical Considerations  
+3.7 Summary  
+
+4. Chapter 4 Design and Implementation  
+4.1 Chapter Overview  
+4.2 System Design  
+4.2.1 Overall System Architecture  
+4.2.2 Module Decomposition  
+4.2.3 Activity Navigation Design  
+4.2.4 Technology Stack Design  
+4.2.5 Platform Migration from Unity to Native Android  
+4.3 Database Design and Implementation  
+4.3.1 Database Requirements  
+4.3.2 Entity Relationship Design  
+4.3.3 Table Structure Design  
+4.3.4 Relationship Between Core Tables  
+4.3.5 DAO Layer Design  
+4.3.6 JSON-to-SQLite Data Import Design  
+4.4 User Management Function Design and Implementation  
+4.4.1 Login and Registration Design  
+4.4.2 Login and Registration Implementation  
+4.4.3 Password Update Design  
+4.4.4 Password Update Implementation  
+4.4.5 User Profile Design  
+4.4.6 User Profile Implementation  
+4.5 Character Matching Function Design and Implementation  
+4.5.1 Game Rule Design  
+4.5.2 Question Selection Design  
+4.5.3 Difficulty Design  
+4.5.4 Option and Distractor Generation Design  
+4.5.5 Character Matching Implementation  
+4.5.6 Score Recording and Data Persistence  
+4.6 Pronunciation Quiz Function Design and Implementation  
+4.6.1 Interaction Design  
+4.6.2 Audio Capture and Recognition Design  
+4.6.3 Speech Evaluation Design  
+4.6.4 Pronunciation Quiz Implementation  
+4.6.5 Score Normalisation and Feedback Mechanism  
+4.6.6 Error Handling and Retry Design  
+4.7 Word Puzzle Function Design and Implementation  
+4.7.1 Puzzle Rule Design  
+4.7.2 Sentence Segmentation Design  
+4.7.3 Shuffle Mechanism Design  
+4.7.4 Drag-and-Drop Interaction Design  
+4.7.5 Word Puzzle Implementation  
+4.7.6 Result Checking and Persistence  
+4.8 Achievement and Progress Tracking Function Design and Implementation  
+4.8.1 Reward System Design  
+4.8.2 Achievement Classification Design  
+4.8.3 Progress Tracking Design  
+4.8.4 Achievement and Progress Implementation  
+4.9 Summary  
+
+5. Chapter 5 Testing and Evaluation  
+5.1 Testing Strategy  
+5.2 Functional Testing  
+5.2.1 User Management Testing  
+5.2.2 Character Matching Testing  
+5.2.3 Pronunciation Quiz Testing  
+5.2.4 Word Puzzle Testing  
+5.2.5 Achievement System Testing  
+5.3 Database Testing  
+5.4 UI and Interaction Testing  
+5.5 Compatibility Testing  
+5.6 Performance Testing  
+5.7 Evaluation of Results  
+5.8 Limitations of Testing  
+5.9 Summary  
+
+6. Chapter 6 Results and Discussion  
+6.1 User Management Results  
+6.2 Character Matching Results  
+6.3 Pronunciation Quiz Results  
+6.4 Word Puzzle Results  
+6.5 Achievement and Progress Tracking Results  
+6.6 Discussion of System Effectiveness  
+6.7 Discussion of Limitations  
+6.8 Comparison with Initial Objectives  
+6.9 Summary  
+
+7. Chapter 7 Conclusion and Future Work  
+7.1 Overall Project Summary  
+7.2 Achievement of Objectives  
+7.3 Main Limitations  
+7.4 Future Work  
+
+
+
+

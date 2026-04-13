@@ -8,16 +8,17 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.chinese_game.MYsqliteopenhelper;
 import com.example.chinese_game.javabean.PronunciationQuiz;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+
 public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
-    private MYsqliteopenhelper dbHelper;
+    private final MYsqliteopenhelper dbHelper;
 
     public PronunciationQuizDaoImpl(Context context) {
         this.dbHelper = new MYsqliteopenhelper(context);
@@ -26,56 +27,59 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
     @Override
     public long save(PronunciationQuiz data) {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
+        String difficulty = resolveDifficultyForWord(db, data.getWordId());
+        if (difficulty == null) return -1;
+
         ContentValues cv = new ContentValues();
-        cv.put("sentence_id", data.getSentenceId());
         cv.put("word_id", data.getWordId());
         cv.put("audio_path", data.getAudioPath());
-        cv.put("difficulty", data.getDifficulty());
+        cv.put("difficulty", difficulty);
         cv.put("hint", data.getHint());
-
-        long result = db.insert("pronunciation_quiz", null, cv);
-        // 不关闭数据库连接，保持为App Inspection实时访问
-        return result;
+        return db.insert("pronunciation_quiz", null, cv);
     }
 
     @Override
     public PronunciationQuiz findById(int dataId) {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
         Cursor cursor = db.rawQuery(
-            "SELECT pq.id, pq.sentence_id, pq.word_id, pq.audio_path, pq.difficulty, pq.hint, " +
-            "s.sentence AS sentence_text, sw.word AS word_text, sw.pinyin AS word_pinyin " +
-            "FROM pronunciation_quiz pq " +
-            "JOIN sentences s ON pq.sentence_id = s.id " +
-            "JOIN sentence_words sw ON pq.word_id = sw.id " +
-            "WHERE pq.id = ?",
-            new String[]{String.valueOf(dataId)});
-
-        PronunciationQuiz data = null;
-        if (cursor.moveToFirst()) {
-            data = cursorToPronunciationQuiz(cursor);
+                "SELECT pq.id, pq.word_id, pq.audio_path, pq.difficulty, pq.hint, " +
+                        "gw.word AS word_text, gw.pinyin AS word_pinyin " +
+                        "FROM pronunciation_quiz pq " +
+                        "JOIN game_words gw ON pq.word_id = gw.id " +
+                        "WHERE pq.id = ?",
+                new String[]{String.valueOf(dataId)}
+        );
+        try {
+            if (cursor.moveToFirst()) {
+                return cursorToPronunciationQuiz(cursor);
+            }
+            return null;
+        } finally {
+            cursor.close();
         }
-        cursor.close();
-        return data;
     }
 
     @Override
     public List<PronunciationQuiz> findByDifficulty(String difficulty) {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
         Cursor cursor = db.rawQuery(
-            "SELECT pq.id, pq.sentence_id, pq.word_id, pq.audio_path, pq.difficulty, pq.hint, " +
-            "s.sentence AS sentence_text, sw.word AS word_text, sw.pinyin AS word_pinyin " +
-            "FROM pronunciation_quiz pq " +
-            "JOIN sentences s ON pq.sentence_id = s.id " +
-            "JOIN sentence_words sw ON pq.word_id = sw.id " +
-            "WHERE pq.difficulty = ? " +
-            "ORDER BY pq.id ASC",
-            new String[]{difficulty});
+                "SELECT pq.id, pq.word_id, pq.audio_path, pq.difficulty, pq.hint, " +
+                        "gw.word AS word_text, gw.pinyin AS word_pinyin " +
+                        "FROM pronunciation_quiz pq " +
+                        "JOIN game_words gw ON pq.word_id = gw.id " +
+                        "WHERE pq.difficulty = ? " +
+                        "ORDER BY pq.id ASC",
+                new String[]{normalizeDifficulty(difficulty)}
+        );
 
         List<PronunciationQuiz> dataList = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            dataList.add(cursorToPronunciationQuiz(cursor));
+        try {
+            while (cursor.moveToNext()) {
+                dataList.add(cursorToPronunciationQuiz(cursor));
+            }
+        } finally {
+            cursor.close();
         }
-        cursor.close();
         return dataList;
     }
 
@@ -83,32 +87,31 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
     public List<PronunciationQuiz> findActiveData() {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
         Cursor cursor = db.rawQuery(
-            "SELECT pq.id, pq.sentence_id, pq.word_id, pq.audio_path, pq.difficulty, pq.hint, " +
-            "s.sentence AS sentence_text, sw.word AS word_text, sw.pinyin AS word_pinyin " +
-            "FROM pronunciation_quiz pq " +
-            "JOIN sentences s ON pq.sentence_id = s.id " +
-            "JOIN sentence_words sw ON pq.word_id = sw.id " +
-            "ORDER BY pq.difficulty ASC, pq.id ASC",
-            null);
+                "SELECT pq.id, pq.word_id, pq.audio_path, pq.difficulty, pq.hint, " +
+                        "gw.word AS word_text, gw.pinyin AS word_pinyin " +
+                        "FROM pronunciation_quiz pq " +
+                        "JOIN game_words gw ON pq.word_id = gw.id " +
+                        "ORDER BY pq.difficulty ASC, pq.id ASC",
+                null
+        );
 
         List<PronunciationQuiz> dataList = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            dataList.add(cursorToPronunciationQuiz(cursor));
+        try {
+            while (cursor.moveToNext()) {
+                dataList.add(cursorToPronunciationQuiz(cursor));
+            }
+        } finally {
+            cursor.close();
         }
-        cursor.close();
         return dataList;
     }
 
     @Override
     public List<PronunciationQuiz> getRandomData(String difficulty, int count) {
         List<PronunciationQuiz> allData = findByDifficulty(difficulty);
-
-        // If not enough data, return all available
         if (allData.size() <= count) {
             return allData;
         }
-
-        // Randomly select specified number of items
         Collections.shuffle(allData);
         return allData.subList(0, count);
     }
@@ -116,16 +119,16 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
     @Override
     public boolean update(PronunciationQuiz data) {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
+        String difficulty = resolveDifficultyForWord(db, data.getWordId());
+        if (difficulty == null) return false;
+
         ContentValues cv = new ContentValues();
-        cv.put("sentence_id", data.getSentenceId());
         cv.put("word_id", data.getWordId());
         cv.put("audio_path", data.getAudioPath());
-        cv.put("difficulty", data.getDifficulty());
+        cv.put("difficulty", difficulty);
         cv.put("hint", data.getHint());
 
-        int result = db.update("pronunciation_quiz", cv, "id=?",
-                new String[]{String.valueOf(data.getId())});
-        // 不关闭数据库连接，保持为App Inspection实时访问
+        int result = db.update("pronunciation_quiz", cv, "id=?", new String[]{String.valueOf(data.getId())});
         return result > 0;
     }
 
@@ -133,9 +136,7 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
     public boolean setActive(int dataId, boolean active) {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
         ContentValues cv = new ContentValues();
-
-        int result = db.update("pronunciation_quiz", cv, "id=?",
-                new String[]{String.valueOf(dataId)});
+        int result = db.update("pronunciation_quiz", cv, "id=?", new String[]{String.valueOf(dataId)});
         return result > 0;
     }
 
@@ -143,7 +144,6 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
     public boolean delete(int dataId) {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
         int result = db.delete("pronunciation_quiz", "id=?", new String[]{String.valueOf(dataId)});
-        // 不关闭数据库连接，保持为App Inspection实时访问
         return result > 0;
     }
 
@@ -152,40 +152,50 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
         PronunciationQuizStatistics stats = new PronunciationQuizStatistics();
 
-        // 获取总数
         Cursor totalCursor = db.rawQuery("SELECT COUNT(*) FROM pronunciation_quiz", null);
-        if (totalCursor.moveToFirst()) {
-            stats.totalQuestions = totalCursor.getInt(0);
-        }
-        totalCursor.close();
-
-        // Get active questions
-        Cursor countCursor = db.rawQuery("SELECT COUNT(*) FROM pronunciation_quiz", null);
-        if (countCursor.moveToFirst()) {
-            stats.activeQuestions = countCursor.getInt(0);
-        }
-        countCursor.close();
-
-        // Group by difficulty
-        Cursor difficultyCursor = db.rawQuery(
-            "SELECT difficulty, COUNT(*) FROM pronunciation_quiz GROUP BY difficulty", null);
-        while (difficultyCursor.moveToNext()) {
-            String difficultyStr = difficultyCursor.getString(0);
-            int count = difficultyCursor.getInt(1);
-
-            switch (difficultyStr) {
-                case "EASY":
-                    stats.easyQuestions = count;
-                    break;
-                case "MEDIUM":
-                    stats.mediumQuestions = count;
-                    break;
-                case "HARD":
-                    stats.hardQuestions = count;
-                    break;
+        try {
+            if (totalCursor.moveToFirst()) {
+                stats.totalQuestions = totalCursor.getInt(0);
             }
+        } finally {
+            totalCursor.close();
         }
-        difficultyCursor.close();
+
+        Cursor activeCursor = db.rawQuery("SELECT COUNT(*) FROM pronunciation_quiz", null);
+        try {
+            if (activeCursor.moveToFirst()) {
+                stats.activeQuestions = activeCursor.getInt(0);
+            }
+        } finally {
+            activeCursor.close();
+        }
+
+        Cursor difficultyCursor = db.rawQuery(
+                "SELECT difficulty, COUNT(*) FROM pronunciation_quiz GROUP BY difficulty",
+                null
+        );
+        try {
+            while (difficultyCursor.moveToNext()) {
+                String difficulty = difficultyCursor.getString(0);
+                int count = difficultyCursor.getInt(1);
+                switch (difficulty) {
+                    case "EASY":
+                        stats.easyQuestions = count;
+                        break;
+                    case "MEDIUM":
+                        stats.mediumQuestions = count;
+                        break;
+                    case "HARD":
+                        stats.hardQuestions = count;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } finally {
+            difficultyCursor.close();
+        }
+
         return stats;
     }
 
@@ -197,11 +207,13 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
         db.beginTransaction();
         try {
             for (PronunciationQuiz data : dataList) {
+                String difficulty = resolveDifficultyForWord(db, data.getWordId());
+                if (difficulty == null) continue;
+
                 ContentValues cv = new ContentValues();
-                cv.put("sentence_id", data.getSentenceId());
                 cv.put("word_id", data.getWordId());
                 cv.put("audio_path", data.getAudioPath());
-                cv.put("difficulty", data.getDifficulty());
+                cv.put("difficulty", difficulty);
                 cv.put("hint", data.getHint());
 
                 long result = db.insert("pronunciation_quiz", null, cv);
@@ -220,23 +232,33 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
     @Override
     public long insertIfNotExists(PronunciationQuiz data) {
         if (data == null) return -1;
+
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
-        Cursor c = db.query("pronunciation_quiz", new String[]{"id"},
-                "sentence_id = ? AND word_id = ?",
-                new String[]{String.valueOf(data.getSentenceId()), String.valueOf(data.getWordId())},
-                null, null, null, "1");
-        if (c.moveToFirst()) {
-            long existingId = c.getLong(0);
-            c.close();
-            return existingId;
+        String difficulty = resolveDifficultyForWord(db, data.getWordId());
+        if (difficulty == null) return -1;
+
+        Cursor cursor = db.query(
+                "pronunciation_quiz",
+                new String[]{"id"},
+                "word_id = ? AND difficulty = ?",
+                new String[]{String.valueOf(data.getWordId()), difficulty},
+                null,
+                null,
+                null,
+                "1"
+        );
+        try {
+            if (cursor.moveToFirst()) {
+                return cursor.getLong(0);
+            }
+        } finally {
+            cursor.close();
         }
-        c.close();
 
         ContentValues cv = new ContentValues();
-        cv.put("sentence_id", data.getSentenceId());
         cv.put("word_id", data.getWordId());
         cv.put("audio_path", data.getAudioPath());
-        cv.put("difficulty", data.getDifficulty());
+        cv.put("difficulty", difficulty);
         cv.put("hint", data.getHint());
         return db.insert("pronunciation_quiz", null, cv);
     }
@@ -245,15 +267,14 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
     public boolean hasData(String difficulty) {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
         Cursor cursor = db.rawQuery(
-            "SELECT COUNT(*) FROM pronunciation_quiz WHERE difficulty=?",
-            new String[]{difficulty});
-
-        boolean hasData = false;
-        if (cursor.moveToFirst()) {
-            hasData = cursor.getInt(0) > 0;
+                "SELECT COUNT(*) FROM pronunciation_quiz WHERE difficulty=?",
+                new String[]{normalizeDifficulty(difficulty)}
+        );
+        try {
+            return cursor.moveToFirst() && cursor.getInt(0) > 0;
+        } finally {
+            cursor.close();
         }
-        cursor.close();
-        return hasData;
     }
 
     @Override
@@ -262,46 +283,23 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
 
         String query;
         String[] args;
-
         if (difficulty != null) {
             query = "SELECT COUNT(*) FROM pronunciation_quiz WHERE difficulty=?";
-            args = new String[]{difficulty};
+            args = new String[]{normalizeDifficulty(difficulty)};
         } else {
             query = "SELECT COUNT(*) FROM pronunciation_quiz";
             args = null;
         }
 
         Cursor cursor = db.rawQuery(query, args);
-        int count = 0;
-        if (cursor.moveToFirst()) {
-            count = cursor.getInt(0);
+        try {
+            if (cursor.moveToFirst()) {
+                return cursor.getInt(0);
+            }
+            return 0;
+        } finally {
+            cursor.close();
         }
-        cursor.close();
-        return count;
-    }
-
-    private PronunciationQuiz cursorToPronunciationQuiz(Cursor cursor) {
-        PronunciationQuiz data = new PronunciationQuiz();
-        data.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
-        data.setSentenceId(cursor.getInt(cursor.getColumnIndexOrThrow("sentence_id")));
-        data.setWordId(cursor.getInt(cursor.getColumnIndexOrThrow("word_id")));
-        data.setAudioPath(cursor.getString(cursor.getColumnIndexOrThrow("audio_path")));
-        data.setDifficulty(cursor.getString(cursor.getColumnIndexOrThrow("difficulty")));
-        data.setHint(cursor.getString(cursor.getColumnIndexOrThrow("hint")));
-        int sentenceTextIndex = cursor.getColumnIndex("sentence_text");
-        if (sentenceTextIndex != -1) {
-            data.setSentence(cursor.getString(sentenceTextIndex));
-        }
-        int wordTextIndex = cursor.getColumnIndex("word_text");
-        if (wordTextIndex != -1) {
-            data.setWord(cursor.getString(wordTextIndex));
-        }
-        int wordPinyinIndex = cursor.getColumnIndex("word_pinyin");
-        if (wordPinyinIndex != -1) {
-            data.setPinyin(cursor.getString(wordPinyinIndex));
-        }
-
-        return data;
     }
 
     @Override
@@ -311,91 +309,53 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
         }
 
         int importedCount = 0;
+        boolean inTransaction = false;
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
 
         try {
             JSONArray jsonArray = new JSONArray(jsonContent);
-
             db.beginTransaction();
+            inTransaction = true;
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonData = jsonArray.getJSONObject(i);
-
-                String word = jsonData.optString("word", "");
-                String pinyin = jsonData.optString("pinyin", "");
-                String audioPath = jsonData.optString("audio_path", "");
-                String difficulty = jsonData.optString("difficulty", "EASY");
+                String audioPath = emptyToNull(jsonData.optString("audio_path", null));
                 String hint = jsonData.optString("hint", null);
 
-                // 1. sentences 中确保有对应记录（将单词视为一句）
-                int sentenceId = -1;
-                Cursor sentenceCursor = db.rawQuery(
-                    "SELECT id FROM sentences WHERE sentence = ?",
-                    new String[]{word});
-                if (sentenceCursor.moveToFirst()) {
-                    sentenceId = sentenceCursor.getInt(0);
-                }
-                sentenceCursor.close();
+                int wordId = jsonData.optInt("word_id", -1);
+                if (wordId <= 0) {
+                    String word = jsonData.optString("word", "").trim();
+                    if (word.isEmpty()) continue;
 
-                if (sentenceId == -1) {
-                    ContentValues sentenceValues = new ContentValues();
-                    sentenceValues.put("sentence", word);
-                    sentenceValues.put("pinyin", pinyin);
-                    sentenceValues.put("difficulty", difficulty);
-                    sentenceValues.put("category", (String) null);
-                    sentenceValues.put("word_count", 1);
-                    long newSentenceId = db.insert("sentences", null, sentenceValues);
-                    if (newSentenceId == -1) {
-                        continue;
-                    }
-                    sentenceId = (int) newSentenceId;
+                    String difficulty = normalizeDifficulty(jsonData.optString("difficulty", "EASY"));
+                    String pinyin = emptyToNull(jsonData.optString("pinyin", null));
+                    String posTag = emptyToNull(jsonData.optString("pos_tag", "X"));
+                    long insertedWordId = ensureGameWord(db, word, pinyin, posTag, difficulty, hint);
+                    if (insertedWordId <= 0 || insertedWordId > Integer.MAX_VALUE) continue;
+                    wordId = (int) insertedWordId;
                 }
 
-                // 2. sentence_words 中确保有对应记录
-                int wordId = -1;
-                Cursor wordCursor = db.rawQuery(
-                    "SELECT id FROM sentence_words WHERE sentence_id = ? AND word_order = 1",
-                    new String[]{String.valueOf(sentenceId)});
-                if (wordCursor.moveToFirst()) {
-                    wordId = wordCursor.getInt(0);
-                }
-                wordCursor.close();
+                String difficulty = resolveDifficultyForWord(db, wordId);
+                if (difficulty == null) continue;
 
-                if (wordId == -1) {
-                    ContentValues wordValues = new ContentValues();
-                    wordValues.put("sentence_id", sentenceId);
-                    wordValues.put("word", word);
-                    wordValues.put("pinyin", pinyin);
-                    wordValues.put("pos_tag", "X");
-                    wordValues.put("word_order", 1);
-                    wordValues.put("word_position", 1);
-                    wordValues.put("word_difficulty", difficulty);
-                    wordValues.put("word_frequency", 0);
-                    long newWordId = db.insert("sentence_words", null, wordValues);
-                    if (newWordId == -1) {
-                        continue;
-                    }
-                    wordId = (int) newWordId;
-                }
-
-                // 3. 检查 pronunciation_quiz 是否已有记录
-                boolean dataExists = false;
                 Cursor existsCursor = db.rawQuery(
-                    "SELECT COUNT(*) FROM pronunciation_quiz WHERE sentence_id = ? AND word_id = ? AND difficulty = ?",
-                    new String[]{String.valueOf(sentenceId), String.valueOf(wordId), difficulty});
-                if (existsCursor.moveToFirst()) {
-                    dataExists = existsCursor.getInt(0) > 0;
+                        "SELECT COUNT(*) FROM pronunciation_quiz WHERE word_id = ? AND difficulty = ?",
+                        new String[]{String.valueOf(wordId), difficulty}
+                );
+                boolean exists;
+                try {
+                    exists = existsCursor.moveToFirst() && existsCursor.getInt(0) > 0;
+                } finally {
+                    existsCursor.close();
                 }
-                existsCursor.close();
 
-                if (!dataExists) {
-                    ContentValues pqValues = new ContentValues();
-                    pqValues.put("sentence_id", sentenceId);
-                    pqValues.put("word_id", wordId);
-                    pqValues.put("audio_path", audioPath);
-                    pqValues.put("difficulty", difficulty);
-                    pqValues.put("hint", hint);
-                    long result = db.insert("pronunciation_quiz", null, pqValues);
+                if (!exists) {
+                    ContentValues values = new ContentValues();
+                    values.put("word_id", wordId);
+                    values.put("audio_path", audioPath);
+                    values.put("difficulty", difficulty);
+                    values.put("hint", hint);
+                    long result = db.insert("pronunciation_quiz", null, values);
                     if (result != -1) {
                         importedCount++;
                     }
@@ -407,14 +367,16 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
             e.printStackTrace();
             return -1;
         } finally {
-            db.endTransaction();
+            if (inTransaction) {
+                db.endTransaction();
+            }
         }
 
         return importedCount;
     }
 
     @Override
-    public int importFromAssetsJson(android.content.Context context) {
+    public int importFromAssetsJson(Context context) {
         try {
             java.io.InputStream inputStream = context.getAssets().open("json/pronunciation_quiz.json");
             int size = inputStream.available();
@@ -427,5 +389,83 @@ public class PronunciationQuizDaoImpl implements PronunciationQuizDao {
             e.printStackTrace();
             return -1;
         }
+    }
+
+    private PronunciationQuiz cursorToPronunciationQuiz(Cursor cursor) {
+        PronunciationQuiz data = new PronunciationQuiz();
+        data.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
+        data.setSentenceId(0);
+        data.setSentence(null);
+        data.setWordId(cursor.getInt(cursor.getColumnIndexOrThrow("word_id")));
+        data.setAudioPath(cursor.getString(cursor.getColumnIndexOrThrow("audio_path")));
+        data.setDifficulty(cursor.getString(cursor.getColumnIndexOrThrow("difficulty")));
+        data.setHint(cursor.getString(cursor.getColumnIndexOrThrow("hint")));
+
+        int wordTextIndex = cursor.getColumnIndex("word_text");
+        if (wordTextIndex != -1) {
+            data.setWord(cursor.getString(wordTextIndex));
+        }
+        int wordPinyinIndex = cursor.getColumnIndex("word_pinyin");
+        if (wordPinyinIndex != -1) {
+            data.setPinyin(cursor.getString(wordPinyinIndex));
+        }
+
+        return data;
+    }
+
+    private long ensureGameWord(SQLiteDatabase db, String word, String pinyin, String posTag, String difficulty, String hint) {
+        Cursor existsCursor = db.rawQuery(
+                "SELECT id FROM game_words WHERE word = ? AND difficulty = ? LIMIT 1",
+                new String[]{word, difficulty}
+        );
+        try {
+            if (existsCursor.moveToFirst()) {
+                return existsCursor.getLong(0);
+            }
+        } finally {
+            existsCursor.close();
+        }
+
+        ContentValues values = new ContentValues();
+        values.put("word", word);
+        values.put("pinyin", pinyin);
+        values.put("pos_tag", posTag == null ? "X" : posTag);
+        values.put("difficulty", difficulty);
+        values.put("hint", hint);
+        return db.insert("game_words", null, values);
+    }
+
+    private String resolveDifficultyForWord(SQLiteDatabase db, int wordId) {
+        Cursor cursor = db.rawQuery(
+                "SELECT difficulty FROM game_words WHERE id = ? LIMIT 1",
+                new String[]{String.valueOf(wordId)}
+        );
+        try {
+            if (cursor.moveToFirst()) {
+                return cursor.getString(0);
+            }
+            return null;
+        } finally {
+            cursor.close();
+        }
+    }
+
+    private static String normalizeDifficulty(String difficulty) {
+        if (difficulty == null) return "EASY";
+        String value = difficulty.trim().toUpperCase(Locale.ROOT);
+        switch (value) {
+            case "EASY":
+            case "MEDIUM":
+            case "HARD":
+                return value;
+            default:
+                return "EASY";
+        }
+    }
+
+    private static String emptyToNull(String value) {
+        if (value == null) return null;
+        String trimmed = value.trim();
+        return trimmed.isEmpty() ? null : trimmed;
     }
 }
