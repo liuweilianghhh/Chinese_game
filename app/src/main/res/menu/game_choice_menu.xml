@@ -7,6 +7,12 @@
         android:id="@+id/menu_user_achievements"
         android:title="User Achievements" />
     <item
+        android:id="@+id/menu_game_records"
+        android:title="Game Records" />
+    <item
+        android:id="@+id/menu_music_toggle"
+        android:title="Turn Music Off" />
+    <item
         android:id="@+id/menu_logout"
         android:title="Logout" />
 </menu>

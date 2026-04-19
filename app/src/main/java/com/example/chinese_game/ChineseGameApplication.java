@@ -1,7 +1,9 @@
 package com.example.chinese_game;
 
+import android.app.Activity;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 
 import com.example.chinese_game.speech.IFlyTekConfig;
 import com.iflytek.sparkchain.core.SparkChain;
@@ -9,27 +11,62 @@ import com.iflytek.sparkchain.core.SparkChainConfig;
 
 public class ChineseGameApplication extends Application {
     private static ChineseGameApplication instance;
+    private static boolean sparkChainInitialized = false;
+    private static String sparkChainInitError = null;
+
     private MYsqliteopenhelper dbHelper;
     private SQLiteDatabase database;
-    private static boolean sparkChainInitialized = false;
+    private int startedActivityCount = 0;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-        
-        // 初始化数据库 helper 并保持数据库连接打开，便于 App Inspection 在软件运行中随时访问
+
         dbHelper = new MYsqliteopenhelper(this);
         database = dbHelper.getPersistentDatabase();
-        android.util.Log.i("ChineseGameApplication", "Database connection opened and kept alive for App Inspection");
+        android.util.Log.i("ChineseGameApplication",
+                "Database connection opened and kept alive for App Inspection");
 
-        // 进入软件时不导入 JSON，仅在用户点击 Reload 时由 DataManager.reloadAllDataFromJson() 导入
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+                startedActivityCount++;
+                if (startedActivityCount == 1) {
+                    BackgroundMusicManager.getInstance(ChineseGameApplication.this).onAppForeground();
+                }
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+                startedActivityCount = Math.max(0, startedActivityCount - 1);
+                if (startedActivityCount == 0) {
+                    BackgroundMusicManager.getInstance(ChineseGameApplication.this).onAppBackground();
+                }
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+            }
+        });
     }
-    
-    /**
-     * 初始化科大讯飞SparkChain SDK（延迟初始化，在需要时调用）
-     * @return true表示初始化成功或已初始化
-     */
+
     public static boolean initSparkChain() {
         if (sparkChainInitialized) {
             return true;
@@ -39,33 +76,30 @@ public class ChineseGameApplication extends Application {
                     .appID(IFlyTekConfig.APP_ID)
                     .apiKey(IFlyTekConfig.API_KEY)
                     .apiSecret(IFlyTekConfig.API_SECRET);
-            
+
             int ret = SparkChain.getInst().init(instance.getApplicationContext(), config);
-            
             if (ret == 0) {
                 sparkChainInitialized = true;
-                android.util.Log.i("ChineseGameApplication", 
-                    "科大讯飞SparkChain SDK初始化成功, APPID: " + IFlyTekConfig.APP_ID);
+                android.util.Log.i("ChineseGameApplication",
+                        "SparkChain SDK initialized successfully. APPID: " + IFlyTekConfig.APP_ID);
                 return true;
-            } else {
-                android.util.Log.e("ChineseGameApplication", 
-                    "科大讯飞SparkChain SDK初始化失败, 错误码: " + ret);
-                return false;
             }
+
+            android.util.Log.e("ChineseGameApplication",
+                    "SparkChain SDK initialization failed. Error code: " + ret);
+            return false;
         } catch (Throwable e) {
-            android.util.Log.e("ChineseGameApplication", 
-                "科大讯飞SparkChain SDK初始化异常: " + e.getMessage(), e);
+            android.util.Log.e("ChineseGameApplication",
+                    "SparkChain SDK initialization error: " + e.getMessage(), e);
             sparkChainInitError = e.getMessage();
             return false;
         }
     }
-    
-    private static String sparkChainInitError = null;
-    
+
     public static String getSparkChainInitError() {
         return sparkChainInitError;
     }
-    
+
     public static boolean isSparkChainInitialized() {
         return sparkChainInitialized;
     }
@@ -87,7 +121,7 @@ public class ChineseGameApplication extends Application {
 
     @Override
     public void onTerminate() {
+        BackgroundMusicManager.getInstance(this).release();
         super.onTerminate();
-        // 不关闭数据库连接，保证运行期间 App Inspection 可随时访问；进程结束时由系统回收
     }
 }

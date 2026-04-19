@@ -4,13 +4,20 @@ import android.annotation.SuppressLint;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.ClipData;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
+import android.util.TypedValue;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,7 +29,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.TextViewCompat;
 
+import com.example.chinese_game.dao.UserDao;
 import com.example.chinese_game.dao.GameWordDao;
 import com.example.chinese_game.dao.GameQuestionDetailDao;
 import com.example.chinese_game.dao.GameScoreDao;
@@ -40,9 +49,11 @@ import com.example.chinese_game.utils.DaoFactory;
 import com.example.chinese_game.view.VoiceWaveView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 
@@ -52,7 +63,7 @@ public class GameActivity extends AppCompatActivity {
     private int userId;
     private TextView tvGameType, tvMessage, tvProgress, tvPinyinQuestion, tvQuestionHint, tvResult;
     private View panelCharacterMatching, panelWordPuzzle, panelPronunciationQuiz;
-    private Button btnOpt1, btnOpt2, btnOpt3, btnOpt4, btnBackToMenu, btnBackPlaceholder;
+    private Button btnOpt1, btnOpt2, btnOpt3, btnOpt4, btnBackToMenu, btnBackPlaceholder, btnMusicSettings;
     private TextView tvWordPuzzleProgress, tvWordPuzzleContext, tvWordPuzzleHint, tvWordPuzzleResult;
     private LinearLayout layoutWordPuzzleSlots, layoutWordPuzzleSource;
     private Button btnWordPuzzleReset, btnWordPuzzleSubmit, btnWordPuzzleBack;
@@ -69,8 +80,14 @@ public class GameActivity extends AppCompatActivity {
     private static final int PUZZLE_BLOCK_COUNT = 5;
     private static final int LONG_SENTENCE_WORD_THRESHOLD = 9;
     private static final int MAX_SENTENCE_POOL = 60;
+    private static final int MAX_WORD_PUZZLE_TOKEN_LENGTH = 5;
     private static final String BLANK_PLACEHOLDER = "___";
     private static final Random RANDOM = new Random();
+    private static final Set<Integer> EXCLUDED_WORD_PUZZLE_SENTENCE_IDS = Collections.unmodifiableSet(
+            new HashSet<>(Arrays.asList(
+                    10, 15, 26, 30, 36, 37, 41, 42, 44, 46, 48
+            ))
+    );
     private List<CharacterMatching> questions;
     private int currentIndex;
     private int correctCount;
@@ -86,12 +103,15 @@ public class GameActivity extends AppCompatActivity {
     private GameWordDao gameWordDao;
     private GameScoreDao gameScoreDao;
     private GameQuestionDetailDao gameQuestionDetailDao;
+    private UserDao userDao;
     private MYsqliteopenhelper dbHelper;
     private List<PuzzleQuestion> puzzleQuestions;
     private PuzzleQuestion currentPuzzleQuestion;
     private final List<FrameLayout> wordPuzzleSlots = new ArrayList<>();
     private SpeechRecognitionHelper speechHelper;
     private IseEvaluator iseEvaluator;
+    private BackgroundMusicManager backgroundMusicManager;
+    private boolean sessionStatsSynced;
     private int[] pronScores;           // 濮ｅ繘顣藉妤€鍨?(0閳?0)
     private int currentQuestionScore;   // 瑜版挸澧犳０妯绘付閸氬簼绔村▎鈥崇繁閸?
     /** 閸楁洟顣界粵鏃堫暯缂佹挻鐏夐敍宀€鏁ゆ禍搴ｇ波閺夌喎鎮楅崘娆忓弳 game_question_details */
@@ -140,6 +160,7 @@ public class GameActivity extends AppCompatActivity {
         userId = getIntent().getIntExtra("USER_ID", -1);
 
         tvGameType = findViewById(R.id.tv_game_type);
+        btnMusicSettings = findViewById(R.id.btn_music_settings);
         tvFeedbackBanner = findViewById(R.id.tv_feedback_banner);
         tvMessage = findViewById(R.id.tv_message);
         tvProgress = findViewById(R.id.tv_progress);
@@ -176,6 +197,14 @@ public class GameActivity extends AppCompatActivity {
         tvPronunciationResult = findViewById(R.id.tv_pronunciation_result);
         tvPronunciationInstruction = findViewById(R.id.tv_pronunciation_instruction);
         dbHelper = new MYsqliteopenhelper(this);
+        userDao = DaoFactory.getUserDao(this);
+        backgroundMusicManager = BackgroundMusicManager.getInstance(this);
+        sessionStatsSynced = false;
+        refreshMusicButtonState();
+
+        if (btnMusicSettings != null) {
+            btnMusicSettings.setOnClickListener(v -> toggleMusic());
+        }
 
         if ("CHARACTER_MATCHING".equals(gameType)) {
             tvGameType.setText("Character Matching");
@@ -504,13 +533,22 @@ public class GameActivity extends AppCompatActivity {
             gs.setId((int) currentGameScoreId);
             gameScoreDao.update(gs);
         }
+        syncCompletedSessionStats(score);
 
         tvPinyinQuestion.setVisibility(View.GONE);
         tvQuestionHint.setVisibility(View.GONE);
         tvProgress.setVisibility(View.GONE);
         setOptionsVisible(0);
-        tvResult.setVisibility(View.VISIBLE);
-        tvResult.setText("Done!\nCorrect " + correctCount + " / " + total + "\nScore " + score + " / " + maxScoreTotal);
+        renderResultCard(
+                tvResult,
+                "Character Matching",
+                "Correct",
+                correctCount + " / " + total,
+                score,
+                maxScoreTotal,
+                accuracy,
+                timeSpent
+        );
         btnBackToMenu.setVisibility(View.VISIBLE);
     }
 
@@ -1193,6 +1231,9 @@ public class GameActivity extends AppCompatActivity {
         }
 
         isHoldRecording = true;
+        if (backgroundMusicManager != null) {
+            backgroundMusicManager.setDucked(true);
+        }
         if (tvRecognitionStatus != null) tvRecognitionStatus.setText("Listening...");
         setMicRecordingVisual(true);
         if (voiceWaveView != null) voiceWaveView.start();
@@ -1239,6 +1280,9 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void onRecordingStopped() {
+        if (backgroundMusicManager != null) {
+            backgroundMusicManager.setDucked(false);
+        }
         setMicRecordingVisual(false);
         if (voiceWaveView != null) voiceWaveView.stop();
     }
@@ -1342,6 +1386,7 @@ public class GameActivity extends AppCompatActivity {
             gs.setId((int) currentGameScoreId);
             gameScoreDao.update(gs);
         }
+        syncCompletedSessionStats(totalScore);
 
         if (tvPronunciationInstruction != null) tvPronunciationInstruction.setVisibility(View.GONE);
         if (tvPronunciationWord != null) tvPronunciationWord.setVisibility(View.GONE);
@@ -1354,20 +1399,18 @@ public class GameActivity extends AppCompatActivity {
         if (voiceWaveView != null) { voiceWaveView.reset(); voiceWaveView.setVisibility(View.GONE); }
         if (tvRecognitionStatus != null) tvRecognitionStatus.setVisibility(View.GONE);
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Results\n\n");
-        for (int i = 0; i < total; i++) {
-            String word = questions.get(i).getWord();
-            sb.append("Q").append(i + 1).append("  ").append(word)
-              .append("    ").append(pronScores[i]).append("/").append(MAX_SCORE_PER_QUESTION).append("\n");
-        }
-        sb.append("\n------------------------------\n");
-        sb.append("Total: ").append(totalScore).append(" / ").append(maxScoreTotal);
-        sb.append(String.format("\nAccuracy: %.0f%%", accuracy * 100));
-
         if (tvPronunciationResult != null) {
-            tvPronunciationResult.setVisibility(View.VISIBLE);
-            tvPronunciationResult.setText(sb.toString());
+            double averagePerWord = total > 0 ? (double) totalScore / total : 0.0;
+            renderResultCard(
+                    tvPronunciationResult,
+                    "Pronunciation Quiz",
+                    "Average",
+                    String.format(Locale.getDefault(), "%.1f / %d", averagePerWord, MAX_SCORE_PER_QUESTION),
+                    totalScore,
+                    maxScoreTotal,
+                    accuracy,
+                    timeSpent
+            );
         }
     }
 
@@ -1472,12 +1515,14 @@ public class GameActivity extends AppCompatActivity {
     }
 
             private PuzzleQuestion buildWordPuzzleDragQuestion(int sentenceId, String sentence) {
+        if (EXCLUDED_WORD_PUZZLE_SENTENCE_IDS.contains(sentenceId)) return null;
         if (sentence == null) return null;
         String sentenceText = sentence.trim();
         if (sentenceText.isEmpty()) return null;
 
         List<SentenceToken> tokens = getSentenceTokensForDrag(sentenceId, sentenceText);
         if (tokens.size() < PUZZLE_BLOCK_COUNT) return null;
+        if (!isSuitableWordPuzzleSentence(sentenceText, tokens)) return null;
 
         int start = tokens.size() == PUZZLE_BLOCK_COUNT ? 0 : (tokens.size() - PUZZLE_BLOCK_COUNT + 1) / 2;
         List<String> target = new ArrayList<>();
@@ -1505,6 +1550,18 @@ public class GameActivity extends AppCompatActivity {
             q.hint = "Drag the 5 blocks to restore the correct order.";
         }
         return q;
+    }
+
+    private boolean isSuitableWordPuzzleSentence(String sentenceText, List<SentenceToken> tokens) {
+        if (sentenceText == null || sentenceText.isEmpty()) return false;
+        if (tokens == null || tokens.size() < PUZZLE_BLOCK_COUNT) return false;
+        for (SentenceToken token : tokens) {
+            if (token == null || token.word == null) return false;
+            String word = token.word.trim();
+            if (word.isEmpty()) return false;
+            if (word.length() > MAX_WORD_PUZZLE_TOKEN_LENGTH) return false;
+        }
+        return true;
     }
 
         private String buildMaskedContextWithPunctuation(String sentenceText, String left, String right) {
@@ -1599,12 +1656,13 @@ public class GameActivity extends AppCompatActivity {
         layoutWordPuzzleSlots.removeAllViews();
         layoutWordPuzzleSource.removeAllViews();
         wordPuzzleSlots.clear();
+        int slotWidth = getWordPuzzleSlotWidth(currentPuzzleQuestion.targetBlocks);
 
         for (int i = 0; i < PUZZLE_BLOCK_COUNT; i++) {
             FrameLayout slot = new FrameLayout(this);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, dpToPx(56), 1f);
-            if (i > 0) lp.setMarginStart(dpToPx(4));
-            if (i < PUZZLE_BLOCK_COUNT - 1) lp.setMarginEnd(dpToPx(4));
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(slotWidth, dpToPx(56));
+            if (i > 0) lp.setMarginStart(dpToPx(6));
+            if (i < PUZZLE_BLOCK_COUNT - 1) lp.setMarginEnd(dpToPx(6));
             slot.setLayoutParams(lp);
 
             GradientDrawable bg = new GradientDrawable();
@@ -1642,7 +1700,14 @@ public class GameActivity extends AppCompatActivity {
             blockView.setTextSize(18);
             blockView.setTextColor(Color.BLACK);
             blockView.setGravity(android.view.Gravity.CENTER);
-            blockView.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
+            blockView.setMinWidth(Math.max(dpToPx(72), slotWidth - dpToPx(12)));
+            blockView.setMinHeight(dpToPx(52));
+            blockView.setMaxLines(1);
+            blockView.setIncludeFontPadding(false);
+            blockView.setPadding(dpToPx(12), dpToPx(8), dpToPx(12), dpToPx(8));
+            TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
+                    blockView, 12, 18, 1, TypedValue.COMPLEX_UNIT_SP
+            );
 
             GradientDrawable bg = new GradientDrawable();
             bg.setColor(Color.parseColor("#E3F2FD"));
@@ -1669,12 +1734,28 @@ public class GameActivity extends AppCompatActivity {
             block.setLayoutParams(new FrameLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         } else {
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, dpToPx(52), 1f);
-            lp.setMarginStart(dpToPx(4));
-            lp.setMarginEnd(dpToPx(4));
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, dpToPx(52));
+            lp.setMarginStart(dpToPx(6));
+            lp.setMarginEnd(dpToPx(6));
             block.setLayoutParams(lp);
         }
         target.addView(block);
+    }
+
+    private int getWordPuzzleSlotWidth(List<String> blocks) {
+        int maxLength = 1;
+        if (blocks != null) {
+            for (String block : blocks) {
+                if (block != null) {
+                    maxLength = Math.max(maxLength, block.trim().length());
+                }
+            }
+        }
+        if (maxLength >= 5) return dpToPx(124);
+        if (maxLength == 4) return dpToPx(112);
+        if (maxLength == 3) return dpToPx(96);
+        return dpToPx(84);
     }
 
     private void resetWordPuzzleDragBoard() {
@@ -1774,17 +1855,143 @@ public class GameActivity extends AppCompatActivity {
             gs.setId((int) currentGameScoreId);
             gameScoreDao.update(gs);
         }
+        syncCompletedSessionStats(score);
 
         if (layoutWordPuzzleSource != null) layoutWordPuzzleSource.removeAllViews();
         if (layoutWordPuzzleSlots != null) layoutWordPuzzleSlots.removeAllViews();
         wordPuzzleSlots.clear();
 
         if (tvWordPuzzleResult != null) {
-            tvWordPuzzleResult.setVisibility(View.VISIBLE);
-            tvWordPuzzleResult.setText("Done!\nCorrect " + correctCount + " / " + total + "\nScore " + score + " / " + maxScoreTotal);
+            renderResultCard(
+                    tvWordPuzzleResult,
+                    "Word Puzzle",
+                    "Correct",
+                    correctCount + " / " + total,
+                    score,
+                    maxScoreTotal,
+                    accuracy,
+                    timeSpent
+            );
         }
         if (btnWordPuzzleSubmit != null) btnWordPuzzleSubmit.setVisibility(View.GONE);
         if (btnWordPuzzleReset != null) btnWordPuzzleReset.setVisibility(View.GONE);
+    }
+
+    private void syncCompletedSessionStats(int score) {
+        if (sessionStatsSynced || userDao == null || userId <= 0) {
+            return;
+        }
+        userDao.updateGameStats(userId, score);
+        sessionStatsSynced = true;
+    }
+
+    private void toggleMusic() {
+        if (backgroundMusicManager == null) {
+            return;
+        }
+        boolean enabled = !backgroundMusicManager.isMusicEnabled();
+        backgroundMusicManager.setMusicEnabled(enabled);
+        refreshMusicButtonState();
+        Toast.makeText(this, enabled ? "Background music on" : "Background music off", Toast.LENGTH_SHORT).show();
+    }
+
+    private void refreshMusicButtonState() {
+        if (btnMusicSettings == null || backgroundMusicManager == null) {
+            return;
+        }
+        boolean enabled = backgroundMusicManager.isMusicEnabled();
+        btnMusicSettings.setText(enabled ? "Music On" : "Music Off");
+        btnMusicSettings.setAlpha(enabled ? 1f : 0.7f);
+    }
+
+    private void renderResultCard(
+            TextView target,
+            String gameLabel,
+            String primaryLabel,
+            String primaryValue,
+            int score,
+            int maxScore,
+            double accuracy,
+            long timeSpent
+    ) {
+        if (target == null) {
+            return;
+        }
+
+        String headline = accuracy >= 0.9
+                ? "Excellent finish"
+                : accuracy >= 0.7
+                ? "Nice work"
+                : "Round complete";
+        String footer = accuracy >= 0.9
+                ? "Strong result. Ready for another round."
+                : accuracy >= 0.6
+                ? "Good momentum. A second try could push it higher."
+                : "Progress saved in your history. Keep building accuracy.";
+
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+
+        int headlineStart = builder.length();
+        builder.append(headline);
+        int headlineEnd = builder.length();
+        builder.setSpan(new StyleSpan(Typeface.BOLD), headlineStart, headlineEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setSpan(new RelativeSizeSpan(1.2f), headlineStart, headlineEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setSpan(new ForegroundColorSpan(getColor(
+                accuracy >= 0.9 ? R.color.duo_green_dark : R.color.duo_blue
+        )), headlineStart, headlineEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        builder.append("\n");
+        int gameLabelStart = builder.length();
+        builder.append(gameLabel);
+        int gameLabelEnd = builder.length();
+        builder.setSpan(new RelativeSizeSpan(0.92f), gameLabelStart, gameLabelEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setSpan(new ForegroundColorSpan(getColor(R.color.duo_text_muted)), gameLabelStart, gameLabelEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        appendMetricLine(builder, primaryLabel, primaryValue, true);
+        appendMetricLine(builder, "Score", score + " / " + maxScore, false);
+        appendMetricLine(builder, "Accuracy", String.format(Locale.getDefault(), "%.0f%%", accuracy * 100), false);
+        appendMetricLine(builder, "Time", formatDuration(timeSpent), false);
+
+        builder.append("\n\n");
+        int footerStart = builder.length();
+        builder.append(footer);
+        int footerEnd = builder.length();
+        builder.setSpan(new ForegroundColorSpan(getColor(R.color.duo_text_muted)), footerStart, footerEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setSpan(new RelativeSizeSpan(0.92f), footerStart, footerEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        target.setVisibility(View.VISIBLE);
+        target.setBackgroundResource(R.drawable.bg_result_summary_card);
+        target.setText(builder);
+        target.setTextColor(getColor(R.color.duo_text_dark));
+        target.setGravity(android.view.Gravity.START);
+        target.setPadding(dpToPx(20), dpToPx(20), dpToPx(20), dpToPx(20));
+        target.setLineSpacing(0f, 1.15f);
+    }
+
+    private void appendMetricLine(SpannableStringBuilder builder, String label, String value, boolean firstMetric) {
+        builder.append(firstMetric ? "\n\n" : "\n");
+        int labelStart = builder.length();
+        builder.append(label).append("  ");
+        int labelEnd = builder.length();
+        builder.setSpan(new StyleSpan(Typeface.BOLD), labelStart, labelEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setSpan(new ForegroundColorSpan(getColor(R.color.duo_text_muted)), labelStart, labelEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        int valueStart = builder.length();
+        builder.append(value);
+        int valueEnd = builder.length();
+        builder.setSpan(new RelativeSizeSpan(1.05f), valueStart, valueEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setSpan(new ForegroundColorSpan(getColor(R.color.duo_text_dark)), valueStart, valueEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
+
+    private String formatDuration(long timeSpentMs) {
+        long totalSeconds = Math.max(0L, timeSpentMs / 1000L);
+        long hours = totalSeconds / 3600L;
+        long minutes = (totalSeconds % 3600L) / 60L;
+        long seconds = totalSeconds % 60L;
+        if (hours > 0) {
+            return String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds);
+        }
+        return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
     }
 
     private int dpToPx(int dp) {
@@ -1803,7 +2010,16 @@ public class GameActivity extends AppCompatActivity {
         }
     }
     @Override
+    protected void onResume() {
+        super.onResume();
+        refreshMusicButtonState();
+    }
+
+    @Override
     protected void onDestroy() {
+        if (backgroundMusicManager != null) {
+            backgroundMusicManager.setDucked(false);
+        }
         if (currentGameScoreId > 0 && !gameCompleted) {
             if ("WORD_PUZZLE".equals(gameType) && puzzleQuestions != null && currentIndex < puzzleQuestions.size()) {
                 saveIncompleteWordPuzzleDragGame();

@@ -27,6 +27,7 @@ public class game_choice extends AppCompatActivity {
     private View mascotView, subtitleView, cardModes;
     private int userId;
     private UserDao userDao;
+    private BackgroundMusicManager backgroundMusicManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class game_choice extends AppCompatActivity {
         }
 
         userDao = DaoFactory.getUserDao(this);
+        backgroundMusicManager = BackgroundMusicManager.getInstance(this);
         initViews();
         setupListeners();
         playEntranceAnimation();
@@ -140,12 +142,22 @@ public class game_choice extends AppCompatActivity {
             } else if (itemId == R.id.menu_user_achievements) {
                 openUserAchievements();
                 return true;
+            } else if (itemId == R.id.menu_game_records) {
+                openGameRecords();
+                return true;
+            } else if (itemId == R.id.menu_music_toggle) {
+                toggleMusic();
+                return true;
             } else if (itemId == R.id.menu_logout) {
                 confirmLogout();
                 return true;
             }
             return false;
         });
+        popupMenu.getMenu().findItem(R.id.menu_music_toggle)
+                .setTitle(backgroundMusicManager != null && backgroundMusicManager.isMusicEnabled()
+                        ? "Turn Music Off"
+                        : "Turn Music On");
         popupMenu.show();
     }
 
@@ -157,6 +169,12 @@ public class game_choice extends AppCompatActivity {
 
     private void openUserAchievements() {
         Intent intent = new Intent(this, UserAchievementsActivity.class);
+        intent.putExtra("USER_ID", userId);
+        startActivity(intent);
+    }
+
+    private void openGameRecords() {
+        Intent intent = new Intent(this, GameRecordsActivity.class);
         intent.putExtra("USER_ID", userId);
         startActivity(intent);
     }
@@ -177,15 +195,13 @@ public class game_choice extends AppCompatActivity {
         finish();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1001 && resultCode == RESULT_OK && data != null) {
-            String updatedUsername = data.getStringExtra("UPDATED_USERNAME");
-            if (updatedUsername != null) {
-                Toast.makeText(this, "User information updated", Toast.LENGTH_SHORT).show();
-            }
+    private void toggleMusic() {
+        if (backgroundMusicManager == null) {
+            return;
         }
+        boolean enabled = !backgroundMusicManager.isMusicEnabled();
+        backgroundMusicManager.setMusicEnabled(enabled);
+        Toast.makeText(this, enabled ? "Background music on" : "Background music off", Toast.LENGTH_SHORT).show();
     }
 
     private void playEntranceAnimation() {
@@ -203,5 +219,16 @@ public class game_choice extends AppCompatActivity {
         ObjectAnimator.ofFloat(btnCharacterMatching, View.TRANSLATION_X, 0f, 8f, -8f, 0f)
                 .setDuration(260)
                 .start();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1001 && resultCode == RESULT_OK && data != null) {
+            String updatedUsername = data.getStringExtra("UPDATED_USERNAME");
+            if (updatedUsername != null) {
+                Toast.makeText(this, "User information updated", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

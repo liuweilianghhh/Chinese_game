@@ -48,6 +48,9 @@
             android:name=".UserAchievementsActivity"
             android:exported="false" />
         <activity
+            android:name=".GameRecordsActivity"
+            android:exported="false" />
+        <activity
             android:name=".GameActivity"
             android:exported="false" />
         <activity

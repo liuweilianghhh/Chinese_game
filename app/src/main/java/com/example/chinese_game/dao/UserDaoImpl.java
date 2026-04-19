@@ -125,13 +125,22 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean updateGameStats(int userId, int score) {
         SQLiteDatabase db = dbHelper.getPersistentDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("total_games_played", "total_games_played + 1");
-        cv.put("total_score", "total_score + " + score);
+        db.execSQL(
+                "UPDATE users " +
+                        "SET total_games_played = total_games_played + 1, " +
+                        "total_score = total_score + ? " +
+                        "WHERE id = ?",
+                new Object[]{score, userId}
+        );
 
-        int result = db.update("users", cv, "id=?", new String[]{String.valueOf(userId)});
+        Cursor cursor = db.rawQuery("SELECT changes()", null);
+        boolean updated = false;
+        if (cursor.moveToFirst()) {
+            updated = cursor.getInt(0) > 0;
+        }
+        cursor.close();
         // 不关闭数据库连接，保持为App Inspection实时访问
-        return result > 0;
+        return updated;
     }
 
     @Override

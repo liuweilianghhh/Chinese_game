@@ -73,11 +73,11 @@
   },
   {
     "id": 10,
-    "sentence": "我约会、旅行、拾起了一份新的差事",
-    "pinyin": "wǒ yuē huì 、 lǚ xíng 、 shí qǐ le yī fèn xīn de chà shì",
+    "sentence": "我约会、旅行，还找到了一份新的工作",
+    "pinyin": "wǒ yuē huì 、 lǚ xíng ， hái zhǎo dào le yī fèn xīn de gōng zuò",
     "difficulty": "EASY",
     "category": "official_bank",
-    "word_count": 11
+    "word_count": 9
   },
   {
     "id": 11,
@@ -113,11 +113,11 @@
   },
   {
     "id": 15,
-    "sentence": "本州西海岸日本艺术博览会和新观光游",
-    "pinyin": "běn zhōu xī hǎi àn rì běn yì shù bó lǎn huì hé xīn guān guāng yóu",
+    "sentence": "本州西海岸举办了日本艺术博览会和新观光游活动",
+    "pinyin": "běn zhōu xī hǎi àn jǔ bàn le rì běn yì shù bó lǎn huì hé xīn guān guāng yóu huó dòng",
     "difficulty": "EASY",
     "category": "official_bank",
-    "word_count": 9
+    "word_count": 11
   },
   {
     "id": 16,
@@ -201,11 +201,11 @@
   },
   {
     "id": 26,
-    "sentence": "我在鸭绿江的北京邮电大学上学",
-    "pinyin": "wǒ zài yā lǜ jiāng de běi jīng yóu diàn dà xué shàng xué",
+    "sentence": "我在北京邮电大学上学",
+    "pinyin": "wǒ zài běi jīng yóu diàn dà xué shàng xué",
     "difficulty": "MEDIUM",
     "category": "official_bank",
-    "word_count": 6
+    "word_count": 4
   },
   {
     "id": 27,
@@ -233,11 +233,11 @@
   },
   {
     "id": 30,
-    "sentence": "冰岛奢华住处遍布的岛屿",
-    "pinyin": "bīng dǎo shē huá zhù chù biàn bù de dǎo yǔ",
+    "sentence": "这是一座遍布冰岛奢华住处的岛屿",
+    "pinyin": "zhè shì yī zuò biàn bù bīng dǎo shē huá zhù chù de dǎo yǔ",
     "difficulty": "MEDIUM",
     "category": "official_bank",
-    "word_count": 6
+    "word_count": 7
   },
   {
     "id": 31,
@@ -281,16 +281,16 @@
   },
   {
     "id": 36,
-    "sentence": "我的机场度假就是这样开始的",
-    "pinyin": "wǒ de jī chǎng dù jiǎ jiù shì zhè yàng kāi shǐ de",
+    "sentence": "我的机场假期就是这样开始的",
+    "pinyin": "wǒ de jī chǎng jià qī jiù shì zhè yàng kāi shǐ de",
     "difficulty": "MEDIUM",
     "category": "official_bank",
-    "word_count": 8
+    "word_count": 7
   },
   {
     "id": 37,
-    "sentence": "我知道你肯定要当个被宰的游客",
-    "pinyin": "wǒ zhī dào nǐ kěn dìng yào dāng gè bèi zǎi de yóu kè",
+    "sentence": "我知道你肯定不想当一个被坑的游客",
+    "pinyin": "wǒ zhī dào nǐ kěn dìng bù xiǎng dāng yī gè bèi kēng de yóu kè",
     "difficulty": "MEDIUM",
     "category": "official_bank",
     "word_count": 10
@@ -321,19 +321,19 @@
   },
   {
     "id": 41,
-    "sentence": "本月，意大利的里雅斯特的游客",
-    "pinyin": "běn yuè ， yì dà lì de lǐ yǎ sī tè de yóu kè",
+    "sentence": "本月，意大利里雅斯特的游客数量明显增加",
+    "pinyin": "běn yuè ， yì dà lì lǐ yǎ sī tè de yóu kè shù liàng míng xiǎn zēng jiā",
     "difficulty": "MEDIUM",
     "category": "official_bank",
-    "word_count": 6
+    "word_count": 8
   },
   {
     "id": 42,
-    "sentence": "游客中心将在细致的规范下运行",
-    "pinyin": "yóu kè zhōng xīn jiāng zài xì zhì de guī fàn xià yùn xíng",
+    "sentence": "游客中心将按照严格规范运行",
+    "pinyin": "yóu kè zhōng xīn jiāng àn zhào yán gé guī fàn yùn xíng",
     "difficulty": "MEDIUM",
     "category": "official_bank",
-    "word_count": 9
+    "word_count": 6
   },
   {
     "id": 43,
@@ -345,8 +345,8 @@
   },
   {
     "id": 44,
-    "sentence": "罗马斗兽场外的中国游客",
-    "pinyin": "luó mǎ dòu shòu chǎng wài de zhōng guó yóu kè",
+    "sentence": "罗马斗兽场外聚集了许多中国游客",
+    "pinyin": "luó mǎ dòu shòu chǎng wài jù jí le xǔ duō zhōng guó yóu kè",
     "difficulty": "MEDIUM",
     "category": "official_bank",
     "word_count": 6
@@ -361,11 +361,11 @@
   },
   {
     "id": 46,
-    "sentence": "菲律宾便是这样一个地方",
-    "pinyin": "fēi lǜ bīn biàn shì zhè yàng yī gè dì fāng",
+    "sentence": "菲律宾就是这样一个适合度假的地方",
+    "pinyin": "fēi lǜ bīn jiù shì zhè yàng yī gè shì hé dù jià de dì fāng",
     "difficulty": "MEDIUM",
     "category": "official_bank",
-    "word_count": 5
+    "word_count": 8
   },
   {
     "id": 47,
@@ -377,8 +377,8 @@
   },
   {
     "id": 48,
-    "sentence": "这里是如何度过愉快的空中旅行",
-    "pinyin": "zhè lǐ shì rú hé dù guò yú kuài de kōng zhōng lǚ xíng",
+    "sentence": "这里介绍如何度过一次愉快的空中旅行",
+    "pinyin": "zhè lǐ jiè shào rú hé dù guò yī cì yú kuài de kōng zhōng lǚ xíng",
     "difficulty": "MEDIUM",
     "category": "official_bank",
     "word_count": 8

@@ -18,6 +18,26 @@
         android:paddingTop="40dp"
         android:paddingBottom="28dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_marginBottom="8dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_music_settings"
+                style="@style/Widget.ChineseGame.Button.Outlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:text="Music"
+                android:textAllCaps="false"
+                app:icon="@drawable/ic_music_note_24"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="@color/duo_text_dark" />
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/iv_mascot"
             android:layout_width="120dp"

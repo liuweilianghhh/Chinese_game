@@ -18,13 +18,14 @@ import com.example.chinese_game.dao.UserDaoImpl;
 import com.example.chinese_game.javabean.User;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button login, register, update, reloadData;
+    private Button login, register, update, reloadData, musicSettingsButton;
     private EditText name, password;
     private ImageView mascotView;
     private TextView titleView, subtitleView;
     private View cardAuth, mainActions;
     private UserDao userDao;
     private DataManager dataManager;
+    private BackgroundMusicManager backgroundMusicManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         userDao = new UserDaoImpl(this);
         dataManager = DataManager.getInstance(this);
+        backgroundMusicManager = BackgroundMusicManager.getInstance(this);
         find();
+        refreshMusicButtonState();
         playIntroAnimation();
     }
 
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         password = findViewById(R.id.edpassword);
         update = findViewById(R.id.update2);
         reloadData = findViewById(R.id.reload_data);
+        musicSettingsButton = findViewById(R.id.btn_music_settings);
         mascotView = findViewById(R.id.iv_mascot);
         titleView = findViewById(R.id.tv_main_title);
         subtitleView = findViewById(R.id.tv_main_subtitle);
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         register.setOnClickListener(this);
         update.setOnClickListener(this);
         reloadData.setOnClickListener(this);
+        musicSettingsButton.setOnClickListener(this);
     }
 
     private void playIntroAnimation() {
@@ -113,6 +118,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    private void toggleMusic() {
+        if (backgroundMusicManager == null) {
+            return;
+        }
+        boolean enabled = !backgroundMusicManager.isMusicEnabled();
+        backgroundMusicManager.setMusicEnabled(enabled);
+        refreshMusicButtonState();
+        Toast.makeText(this, enabled ? "Background music on" : "Background music off", Toast.LENGTH_SHORT).show();
+    }
+
+    private void refreshMusicButtonState() {
+        if (musicSettingsButton == null || backgroundMusicManager == null) {
+            return;
+        }
+        boolean enabled = backgroundMusicManager.isMusicEnabled();
+        musicSettingsButton.setText(enabled ? "Music On" : "Music Off");
+        musicSettingsButton.setAlpha(enabled ? 1f : 0.7f);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshMusicButtonState();
+    }
+
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -155,6 +185,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.reload_data:
                 reloadDataFromJson();
+                break;
+            case R.id.btn_music_settings:
+                toggleMusic();
                 break;
         }
     }

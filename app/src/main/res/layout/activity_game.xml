@@ -17,15 +17,35 @@
         android:paddingTop="20dp"
         android:paddingBottom="24dp">
 
-        <TextView
-            android:id="@+id/tv_game_type"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:textColor="@color/duo_text_dark"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tv_game_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/duo_text_dark"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_music_settings"
+                style="@style/Widget.ChineseGame.Button.Outlined"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:minWidth="0dp"
+                android:text="Music"
+                android:textAllCaps="false"
+                app:icon="@drawable/ic_music_note_24"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="@color/duo_text_dark" />
+        </FrameLayout>
 
         <ImageView
             android:layout_width="76dp"
@@ -142,12 +162,12 @@
 
             <TextView
                 android:id="@+id/tv_result"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:textSize="18sp"
                 android:textColor="@color/duo_text_dark"
-                android:gravity="center"
-                android:padding="24dp"
+                android:gravity="start"
                 android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
@@ -202,12 +222,20 @@
                 android:gravity="center"
                 android:layout_marginBottom="14dp" />
 
-            <LinearLayout
-                android:id="@+id/layout_word_puzzle_slots"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="14dp" />
+                android:layout_marginBottom="14dp"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layout_word_puzzle_slots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="2dp" />
+            </HorizontalScrollView>
 
             <TextView
                 android:layout_width="match_parent"
@@ -218,13 +246,21 @@
                 android:gravity="center"
                 android:layout_marginBottom="8dp" />
 
-            <LinearLayout
-                android:id="@+id/layout_word_puzzle_source"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="16dp"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layout_word_puzzle_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="2dp" />
+            </HorizontalScrollView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -257,10 +293,10 @@
                 android:id="@+id/tv_word_puzzle_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:textSize="16sp"
                 android:textColor="@color/duo_text_dark"
-                android:gravity="center"
-                android:padding="20dp"
+                android:gravity="start"
                 android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
@@ -403,10 +439,10 @@
                 android:id="@+id/tv_pronunciation_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:textSize="16sp"
                 android:textColor="@color/duo_text_dark"
-                android:gravity="center"
-                android:padding="24dp"
+                android:gravity="start"
                 android:visibility="gone" />
         </LinearLayout>
 
