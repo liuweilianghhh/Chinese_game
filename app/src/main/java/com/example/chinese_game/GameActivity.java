@@ -69,7 +69,7 @@ public class GameActivity extends AppCompatActivity {
     private Button btnWordPuzzleReset, btnWordPuzzleSubmit, btnWordPuzzleBack;
     private Button btnStartRecording, btnNextQuestion;
     private VoiceWaveView voiceWaveView;
-    private TextView tvRecognitionStatus, tvPronunciationWord, tvPronunciationPinyin, tvPronunciationProgress;
+    private TextView tvRecognitionStatus, tvPronunciationWord, tvPronunciationPinyin, tvPronunciationHint, tvPronunciationProgress;
     private TextView tvCurrentScore, tvPronunciationResult, tvPronunciationInstruction;
     private TextView tvFeedbackBanner;
     private boolean isHoldRecording = false;
@@ -192,6 +192,7 @@ public class GameActivity extends AppCompatActivity {
         tvRecognitionStatus = findViewById(R.id.tv_recognition_status);
         tvPronunciationWord = findViewById(R.id.tv_pronunciation_word);
         tvPronunciationPinyin = findViewById(R.id.tv_pronunciation_pinyin);
+        tvPronunciationHint = findViewById(R.id.tv_pronunciation_hint);
         tvPronunciationProgress = findViewById(R.id.tv_pronunciation_progress);
         tvCurrentScore = findViewById(R.id.tv_current_score);
         tvPronunciationResult = findViewById(R.id.tv_pronunciation_result);
@@ -1178,7 +1179,7 @@ public class GameActivity extends AppCompatActivity {
 
         if (tvPronunciationWord != null) tvPronunciationWord.setText(word != null ? word : "");
         if (tvPronunciationPinyin != null) tvPronunciationPinyin.setText(pinyin != null ? pinyin : "");
-        if (tvQuestionHint != null) tvQuestionHint.setText(hint != null ? hint : "");
+        if (tvPronunciationHint != null) tvPronunciationHint.setText(hint != null ? hint : "");
         if (tvPronunciationProgress != null)
             tvPronunciationProgress.setText((currentIndex + 1) + " / " + questions.size());
         if (tvRecognitionStatus != null) tvRecognitionStatus.setText("Hold the mic to speak");
@@ -1391,7 +1392,7 @@ public class GameActivity extends AppCompatActivity {
         if (tvPronunciationInstruction != null) tvPronunciationInstruction.setVisibility(View.GONE);
         if (tvPronunciationWord != null) tvPronunciationWord.setVisibility(View.GONE);
         if (tvPronunciationPinyin != null) tvPronunciationPinyin.setVisibility(View.GONE);
-        if (tvQuestionHint != null) tvQuestionHint.setVisibility(View.GONE);
+        if (tvPronunciationHint != null) tvPronunciationHint.setVisibility(View.GONE);
         if (tvPronunciationProgress != null) tvPronunciationProgress.setVisibility(View.GONE);
         if (btnStartRecording != null) btnStartRecording.setVisibility(View.GONE);
         if (btnNextQuestion != null) btnNextQuestion.setVisibility(View.GONE);
@@ -1900,7 +1901,8 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
         boolean enabled = backgroundMusicManager.isMusicEnabled();
-        btnMusicSettings.setText(enabled ? "Music On" : "Music Off");
+        btnMusicSettings.setText(enabled ? "On" : "Off");
+        btnMusicSettings.setContentDescription(enabled ? "Turn music off" : "Turn music on");
         btnMusicSettings.setAlpha(enabled ? 1f : 0.7f);
     }
 

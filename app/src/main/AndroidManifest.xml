@@ -30,7 +30,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Chinese_game"
-        android:debuggable="true"
         android:requestLegacyExternalStorage="true">
         <activity
             android:name=".update_test"

@@ -289,10 +289,7 @@ public class UserAchievementsActivity extends AppCompatActivity {
         TextView nameText = new TextView(this);
         nameText.setText(achievement.getName() != null ? achievement.getName() : "Unnamed Achievement");
         nameText.setTextSize(18);
-        nameText.setTextColor(resolveMaterialColor(
-                nameText,
-                com.google.android.material.R.attr.colorOnSurface,
-                Color.BLACK));
+        nameText.setTextColor(getColor(R.color.duo_text_dark));
         nameText.setTypeface(null, Typeface.BOLD);
         LinearLayout.LayoutParams nameParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         nameText.setLayoutParams(nameParams);

@@ -12,6 +12,7 @@ android {
         }
     }
 
+
     defaultConfig {
         applicationId = "com.example.chinese_game"
         minSdk = 24
@@ -21,6 +22,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
