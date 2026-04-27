@@ -1,133 +1,81 @@
-# Chinese Learning Game 🎮
+# CatLingo 软件说明
 
-一个基于Android的中文学习游戏应用，集成了科大讯飞SparkChain大模型语音识别技术。
+CatLingo 是一个 Android 中文学习游戏应用，包含用户登录、三类中文练习游戏、发音测验、成绩记录、成就系统和本地 SQLite 数据管理。
 
-## ✨ 功能特性
+## 主要功能
 
-- 🎤 **高精度语音识别**: 基于SparkChain大模型，识别准确率~95%
-- 🎯 **发音测验游戏**: 实时评估中文发音准确度
-- 📊 **智能评分**: 多维度发音评分算法
-- 🎨 **三个难度等级**: 简单、中等、困难
+| 功能 | 说明 |
+| --- | --- |
+| 用户系统 | 支持注册、登录、资料查看与修改 |
+| 游戏选择 | 支持 `EASY`, `MEDIUM`, `HARD` 三个难度 |
+| 字形匹配 | 从词汇池中出题，记录答题结果和得分 |
+| 发音测验 | 使用讯飞 SparkChain 相关 SDK 和语音评测逻辑进行中文发音练习 |
+| 句子拼图 | 基于句子和分词数据进行拖拽式组句练习 |
+| 游戏记录 | 保存每局汇总成绩和逐题明细 |
+| 成就系统 | 根据用户进度和游戏表现解锁成就 |
+| 数据重载 | 可从 `assets/json` 重新导入初始数据 |
+| 背景音乐 | 应用前后台自动控制播放状态，支持开关 |
 
-## 🚀 快速开始
+## 技术栈
 
-### 1. 添加SDK文件
+| 项目 | 当前配置 |
+| --- | --- |
+| 语言 | Java |
+| 构建系统 | Gradle / Android Gradle Plugin |
+| `minSdk` | 24 |
+| `compileSdk` | 36 |
+| `targetSdk` | 36 |
+| Java 版本 | 11 |
+| 本地数据库 | SQLite |
+| 中文分词 | HanLP portable 1.8.6 |
+| 拼音转换 | pinyin4j 2.5.0 |
+| 语音能力 | SparkChain AAR, Codec AAR, OkHttp, Gson |
 
-将 `SparkChain.aar` 复制到 `app/libs/` 目录：
+## 项目结构
 
-```bash
-SparkChain_Android_SDK_2.0.1_rc1/SDK/SparkChain.aar → app/libs/SparkChain.aar
-```
-
-### 2. 同步Gradle
-
-在Android Studio中点击 "Sync Project with Gradle Files"
-
-### 3. 运行应用
-
-连接设备或启动模拟器，点击 Run 按钮
-
-**详细步骤**: [START_HERE.md](./START_HERE.md)
-
-## 📚 文档
-
-| 文档 | 说明 |
-|------|------|
-| [START_HERE.md](./START_HERE.md) | 快速开始（3步完成） |
-| [SPARKCHAIN_QUICK_START.md](./SPARKCHAIN_QUICK_START.md) | SparkChain SDK快速开始 |
-| [SPARKCHAIN_INTEGRATION_GUIDE.md](./SPARKCHAIN_INTEGRATION_GUIDE.md) | SparkChain SDK详细集成指南 |
-| [SPEECH_RECOGNITION_README.md](./SPEECH_RECOGNITION_README.md) | 语音识别框架文档 |
-| [PRONUNCIATION_QUIZ_INTEGRATION.md](./PRONUNCIATION_QUIZ_INTEGRATION.md) | 发音游戏集成文档 |
-| [Database_Documentation.md](./Database_Documentation.md) | 数据库文档 |
-| [JSON_Import_Examples.md](./JSON_Import_Examples.md) | JSON数据导入示例 |
-
-## 🏗️ 项目结构
-
-```
+```text
 Chinese_game/
-├── app/
-│   ├── src/main/java/com/example/chinese_game/
-│   │   ├── speech/              # 语音识别框架
-│   │   ├── utils/               # 工具类
-│   │   ├── dao/                 # 数据访问层
-│   │   ├── javabean/            # 数据模型
-│   │   └── GameActivity.java   # 游戏主Activity
-│   ├── libs/
-│   │   └── SparkChain.aar      # 讯飞SDK（需手动添加）
-│   └── build.gradle.kts
-├── START_HERE.md               # 快速开始
-├── README.md                   # 本文件
-└── ...
+├─ app/
+│  ├─ libs/                         # SparkChain.aar 和 Codec.aar
+│  └─ src/main/
+│     ├─ assets/json/               # 初始 JSON 数据
+│     ├─ java/com/example/chinese_game/
+│     │  ├─ dao/                    # SQLite 数据访问层
+│     │  ├─ javabean/               # 数据模型
+│     │  ├─ speech/                 # 语音识别与评测相关代码
+│     │  ├─ utils/                  # 分词、拼音、数据导入等工具
+│     │  └─ view/                   # 自定义视图
+│     └─ res/                       # 页面布局、图标、音频等资源
+├─ sql/
+│  └─ chinese_game_mysql_schema.sql # MySQL ER 图辅助脚本
+├─ Database_Documentation.md        # 数据库说明
+└─ README.md                        # 软件说明
 ```
 
-## 🎮 使用说明
+## 运行方式
 
-### 发音游戏
+1. 使用 Android Studio 打开项目根目录。
+2. 确认 `app/libs/` 下存在 `SparkChain.aar` 和 `Codec.aar`。
+3. 在 `app/src/main/java/com/example/chinese_game/speech/IFlyTekConfig.java` 中配置讯飞开放平台应用信息。
+4. 同步 Gradle。
+5. 连接 Android 设备或启动模拟器后运行 `app`。
 
-1. 启动应用 → 选择"游戏选择" → 点击"发音测验"
-2. 查看屏幕上的汉字和拼音
-3. 点击"开始录音" 🎤 → 大声朗读 → 点击"停止录音" ⏹️
-4. 查看识别结果和评分
+也可以在命令行构建调试包：
 
-## 🔧 技术栈
-
-- **语言**: Java
-- **SDK**: SparkChain Android SDK 2.0.1 RC1
-- **依赖**: HanLP (中文分词)、Pinyin4j (拼音转换)
-- **最低版本**: Android 5.0 (API 21)
-- **目标版本**: Android 14 (API 34)
-
-## 🔑 配置APPID
-
-在 `IFlyTekConfig.java` 中配置您的讯飞应用信息：
-
-```java
-public class IFlyTekConfig {
-    public static final String APP_ID = "your_app_id";
-    public static final String API_KEY = "your_api_key";
-    public static final String API_SECRET = "your_api_secret";
-}
+```powershell
+.\gradlew.bat :app:assembleDebug
 ```
 
-获取APPID: [讯飞开放平台](https://www.xfyun.cn/)
+## 使用流程
 
-## ❓ 常见问题
+1. 打开应用后注册或登录用户。
+2. 如需重置测试数据，在登录页点击 Reload Data。
+3. 进入游戏选择页，选择字形匹配、发音测验或句子拼图。
+4. 选择难度并开始游戏。
+5. 游戏结束后，可在菜单中查看用户资料、成就和历史记录。
 
-| 问题 | 解决方案 |
-|------|---------|
-| 找不到SparkChain.aar | 确认文件在 `app/libs/` 目录，同步Gradle |
-| SDK初始化失败 | 检查APPID配置和网络连接 |
-| 无法录音 | 授予录音权限 |
-| 识别结果为空 | 检查网络、音量、噪音 |
+## 数据库
 
-详细问题排查: [SPARKCHAIN_INTEGRATION_GUIDE.md](./SPARKCHAIN_INTEGRATION_GUIDE.md)
+本项目的数据库说明集中保留在 [Database_Documentation.md](./Database_Documentation.md)。数据库结构以 `MYsqliteopenhelper.java` 为准，MySQL Workbench 建模使用 `sql/chinese_game_mysql_schema.sql`。
 
-## 📊 性能指标
-
-| 指标 | 数值 |
-|------|------|
-| 识别准确率 | ~95% |
-| 识别延迟 | ~400ms |
-| 内存占用 | ~20MB |
-
-## 🔒 权限说明
-
-- ✅ **RECORD_AUDIO**: 录音识别（必需）
-- ✅ **INTERNET**: 网络请求（必需）
-- ✅ **READ/WRITE_EXTERNAL_STORAGE**: SDK日志（必需）
-
-## 📞 获取帮助
-
-- 📖 [SparkChain官方文档](https://www.xfyun.cn/doc/spark/大模型识别.html)
-- 🏠 [讯飞开放平台](https://www.xfyun.cn/)
-- 🎫 [工单系统](https://console.xfyun.cn/workorder/commit)
-
-## 🙏 致谢
-
-- [科大讯飞](https://www.xfyun.cn/) - SparkChain语音识别SDK
-- [HanLP](https://github.com/hankcs/HanLP) - 中文自然语言处理
-- [Pinyin4j](https://github.com/belerweb/pinyin4j) - 汉字转拼音
-
----
-
-**Made with ❤️ for Chinese learners**
+维护数据库时需要同步更新代码、SQL 脚本和数据库说明文档。
